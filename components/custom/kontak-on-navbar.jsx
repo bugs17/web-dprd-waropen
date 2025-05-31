@@ -17,10 +17,10 @@ const KontakOnNavbar = () => {
         duration:1.2
     }}
     className="py-1.5 px-1.5 rounded-bl-lg bg-slate-600 flex flex-row gap-4">
-        <Facebook size={24} className="text-[#f0c400] cursor-pointer" />
-        <Instagram size={24} className="text-[#f0c400] cursor-pointer" />
-        <Twitter size={24} className="text-[#f0c400] cursor-pointer" />
-        <Mail size={24} className="text-[#f0c400] cursor-pointer" />
+        <Facebook size={20} className="text-[#f0c400] cursor-pointer" />
+        <Instagram size={20} className="text-[#f0c400] cursor-pointer" />
+        <Twitter size={20} className="text-[#f0c400] cursor-pointer" />
+        <Mail size={20} className="text-[#f0c400] cursor-pointer" />
         <div className="ml-3 border-l-[1px] border-r-[1px] border-slate-800 flex items-center pl-3 pr-3">
             <MapPin size={18} className="text-slate-100 mr-3" />
             <p className="text-xs text-slate-100 italic">Jl. Samratulangi depan masjid agung</p>

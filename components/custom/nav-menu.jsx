@@ -13,11 +13,13 @@ import {
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { usePathname } from "next/navigation";
 
 
 const menuItems = [
     {
         title:'Beranda',
+        match:'/',
         path:'/'
     },
     {
@@ -122,6 +124,7 @@ const menuItems = [
 ]
 
 const NavMenu = () => {
+    const pathName = usePathname()
   return (
     <motion.div
     initial={{opacity:0, x:100}}
@@ -140,7 +143,7 @@ const NavMenu = () => {
                 {menuItems.map((item, index) => (
                     item.subMenu ? (
                         <NavigationMenuItem className={`group/linktitle`} key={index}>
-                            <NavigationMenuTrigger className={`bg-transparent  rounded-none text-white hover:bg-none text-lg`}>{item.title}</NavigationMenuTrigger>
+                            <NavigationMenuTrigger className={`bg-transparent  rounded-none text-white hover:bg-none text-md`}>{item.title}</NavigationMenuTrigger>
                                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#f0c400] group-hover/linktitle:w-full transition-all duration-300`}></span>
                                 
                                 <NavigationMenuContent >
@@ -178,8 +181,8 @@ const NavMenu = () => {
                     ) : (
 
                         <NavigationMenuItem className={`group/linktitle`} key={index}>
-                            <NavigationMenuLink asChild className={`bg-transparent  rounded-none text-white  hover:bg-[#231c26] hover:text-white text-lg`}>
-                                <Link href={item.path}>
+                            <NavigationMenuLink asChild className={`bg-transparent ${pathName === item.match ? 'text-[#f0c400]' : 'text-white'}  rounded-none   hover:bg-[#231c26] hover:text-white text-md`}>
+                                <Link href={item.path} >
                                     {item.title}
                                 </Link>
                             </NavigationMenuLink>
