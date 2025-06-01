@@ -3,6 +3,7 @@ import LogoNavbar from './logo-navbar'
 import KontakOnNavbar from './kontak-on-navbar'
 import NavMenu from './nav-menu'
 import SideBarMobile from './side-bar-mobile'
+import NamaKetuaWithTooltip from './nama-ketua-navbar'
 
 const Navbar = () => {
   return (
@@ -11,12 +12,15 @@ const Navbar = () => {
       <LogoNavbar />
 
       {/* ini untuk navbar */}
-      <div className="h-full lg:w-[75%] w-[25%]  lg:flex lg:flex-col ">
+      <div className="h-full lg:w-[75%] w-[25%] lg:flex lg:flex-col ">
         <div className="hidden w-full lg:flex justify-end">
           <KontakOnNavbar />
         </div>
 
-        <div className="justify-end items-end px-3 pb-4 hidden lg:flex w-full h-full">
+        <div className="justify-between items-end px-3 pb-4 hidden lg:flex lg:flex-row w-full h-full">
+          <div className="hidden w-full h-full lg:flex items-end pb-2">
+            <NamaKetuaWithTooltip />
+          </div>
           <NavMenu />
         </div>
 

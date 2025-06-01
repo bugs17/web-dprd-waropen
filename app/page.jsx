@@ -1,4 +1,5 @@
 import BackToTop from "@/components/custom/back-to-top";
+import Hero from "@/components/custom/hero-section";
 import Navbar from "@/components/custom/navbar";
 
 
@@ -15,7 +16,7 @@ export default function Home() {
     <>
       <BackToTop />
       <Navbar />
-      
+      <Hero />
     </>
   );
 }
