@@ -1,24 +1,131 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { ArrowUpRight, ChevronRight, Menu } from "lucide-react"
+import { ArrowUpRight, ChevronRight, Facebook, Instagram, Menu, Twitter } from "lucide-react"
 import { motion } from "framer-motion"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible"
 import Link from "next/link"
 
+const menuItems = [
+  {
+      title:'Beranda',
+      match:'/',
+      path:'/'
+  },
+  {
+      title:'Tentang DPRD',
+      subMenu: [
+          {
+              title:'Informasi Anggota DPRD',
+              path:'#',
+              desc:'Informasi tentang jajaran anggota DPRD'
+          },
+          {
+              title:'Komisi',
+              desc:'Informasi tentang komisi DPRD',
+              path:'#'
+          },
+          {
+              title:'Badan',
+              desc:'Informasi tentang badan DPRD',
+              path:'#'
+          },
+          {
+              title:'Fraksi',
+              desc:'Informasi tentang fraksi DPRD',
+              path:'#'
+          },
+      ]
+  },
+  {
+      title:'Tentang SETWAN',
+      subMenu: [
+          {
+              title:'Profil Sekretariat DPRD',
+              path:'#',
+              desc:'Informasi tentang profil sekretariat'
+          },
+          {
+              title:'Visi & Misi',
+              desc:'Informasi tentang visi-misi sekretariat dprd',
+              path:'#'
+          },
+          {
+              title:'Struktur Organisasi',
+              desc:'Informasi tentang struktur organisasi sekretariat dprd',
+              path:'#'
+          }
+      ]
+  },
+  {
+      title:'Dokumen',
+      subMenu: [
+          {
+              title:'Laporan Keuangan DPRD',
+              path:'#',
+              desc:'Informasi tentang dokumen laporan keuangan DPRD'
+          },
+          {
+              title:'Rencana Strategis DPRD',
+              desc:'Informasi tentang rencana strategis dprd',
+              path:'#'
+          },
+          {
+              title:'Dokumen Publikasi',
+              desc:'Informasi tentang dokumen publikasi dprd',
+              path:'#'
+          },
+          {
+              title:'Produk Hukum',
+              desc:'Informasi tentang produk hukum dprd',
+              path:'#'
+          },
+      ]
+  },
+  {
+      title:'Berita',
+      path:'/'
+  },
+  {
+      title:'Lainnya',
+      subMenu: [
+          {
+              title:'Galery',
+              path:'#',
+              desc:'Kumpulan file media tentang DPRD'
+          },
+          {
+              title:'Kontak',
+              desc:'Informasi kontak',
+              path:'#'
+          },
+          {
+              title:'Pengaduan ke DPRD',
+              desc:'Aduan atau Aspirasi terkait dengan fungsi atau tugas DPRD',
+              path:'#'
+          },
+          {
+              title:'Pengaduan ke Pemerintah Daerah',
+              desc:'Aduan ataupun Aspirasi kepada pemerintah daerah.',
+              path:'#'
+          },
+      ]
+  },
+]
 
 
 const SideBarMobile = () => {
+
+  const currentYear = new Date().getFullYear()
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -42,43 +149,54 @@ const SideBarMobile = () => {
         </SheetHeader>
 
         <div className="w-full h-full">
-            <Collapsible
-                asChild
-                defaultOpen={false}
-                className="group/collapsible"
-            >
+          
+          {menuItems.map((item, index) => (
+            item.subMenu ? (
+            <Collapsible key={index} asChild defaultOpen={false} className="group/collapsible" >
                 <div className="">
                     <CollapsibleTrigger asChild>
                         <div className="flex flex-row w-full justify-between items-center px-2 mb-3">
-                            <span className="text-white">Tentang DPRD</span>
+                            <span className="text-white">{item.title}</span>
                             <ChevronRight className="ml-auto text-[#f0c400] transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                         </div>
                     </CollapsibleTrigger>
-
-                    {['Anggota Dprd', 'Komisi', 'Badan', 'Fraksi'].map((item, index) => (
-                        <CollapsibleContent key={index}>
-                        <div className="w-full pl-6 mb-2">
+                    {item.subMenu.map((subitem, subindex) => (
+                      <CollapsibleContent key={subindex}>
+                        <div className="w-full pl-6 mb-2 ">
                             <SheetClose asChild >
-                                <Link className="text-xs text-white flex flex-row items-center gap-2" href='#'>
-                                    <ArrowUpRight className="text-[#f0c400]" size={12} />
-                                    <span>{item}</span>
+                                <Link className=" text-white flex flex-row items-center gap-2" href={subitem.path}>
+                                    <ArrowUpRight className="text-[#f0c400]" size={14} />
+                                    <span>{subitem.title}</span>
                                 </Link>
                             </SheetClose>
                         </div>
-                        </CollapsibleContent>
+                      </CollapsibleContent>
                     ))}
-                    
                 </div>
-                
             </Collapsible>
+            ) : (
+              <SheetClose asChild key={index} >
+                  <Link className=" text-white flex flex-row items-center px-2 mb-3" href={item.path}>
+                      <span>{item.title}</span>
+                  </Link>
+              </SheetClose>
+            )
+          ))}
+          
             
         </div>
         
         <SheetFooter className="w-full px-0 pb-0">
-          <div className="w-full h-12">
-            halooo
+          <div className="w-full flex flex-row justify-center gap-8 items-center h-12">
+            <Facebook size={20} className="text-[#f0c400] cursor-pointer" />
+            <Instagram size={20} className="text-[#f0c400] cursor-pointer" />
+            <Twitter size={20} className="text-[#f0c400] cursor-pointer" />
+          </div>
+          <div className="text-slate-400 text-center text-xs pb-4">
+            <span>© {currentYear} DPRD Kabupaten Waropen. All rights reserved.</span>
           </div>
         </SheetFooter>
+      <img src="/patern.png" className="absolute pointer-events-none  opacity-5 left-0 bottom-0 h-[350px] w-[800px]" />
       </SheetContent>
     </Sheet>
   )
