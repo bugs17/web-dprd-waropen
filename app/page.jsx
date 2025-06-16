@@ -1,5 +1,7 @@
 import BackToTop from "@/components/custom/back-to-top";
+import Devider from "@/components/custom/devider";
 import Hero from "@/components/custom/hero-section";
+import LayananCepat from "@/components/custom/layanan-cepat";
 import Navbar from "@/components/custom/navbar";
 
 
@@ -17,6 +19,8 @@ export default function Home() {
       <BackToTop />
       <Navbar />
       <Hero />
+      <Devider title={'Layanan Cepat'} />
+      <LayananCepat />
     </>
   );
 }
