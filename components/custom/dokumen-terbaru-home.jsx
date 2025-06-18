@@ -40,7 +40,11 @@ const CustomSelect = () => {
 
 const DokumenTerbaru = () => {
   return (
-    <div className='px-14 flex flex-row gap-4 items-start pb-12'>
+    <div className='relative px-7 lg:px-14 flex flex-row gap-4 items-start pb-12 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]'>
+        
+        <div className="absolute left-[-60px] bottom-[-60px] -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#c93d2a] opacity-20 blur-[100px]"></div>
+        <div className="absolute right-[-60px] top-[-60px] -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#c93d2a] opacity-20 blur-[100px]"></div>
+        
         <div className='w-full hidden lg:block px-8 min-h-[700px] bg-[#231c26] pt-10 overflow-hidden'>
             <div className='h-32 w-full flex flex-col gap-8 border-b-[2px] border-b-white'>
                 <span className='font-semibold text-2xl text-white'>Jenis Dokumen</span>

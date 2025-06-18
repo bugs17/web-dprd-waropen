@@ -3,6 +3,7 @@ import BeritaHome from "@/components/custom/berita";
 import Devider from "@/components/custom/devider";
 import DokumenTerbaru from "@/components/custom/dokumen-terbaru-home";
 import Hero from "@/components/custom/hero-section";
+import KalenderSection from "@/components/custom/kalender-section";
 import LayananCepat from "@/components/custom/layanan-cepat";
 import Navbar from "@/components/custom/navbar";
 
@@ -27,6 +28,8 @@ export default function Home() {
       <BeritaHome />
       <Devider title={'Dokumen Terbaru'} bg={false} btn={false} underLine={true} />
       <DokumenTerbaru />
+      <Devider title={'Kalender Sidang'} bg={true} btn={false} underLine={false} />
+      <KalenderSection />
     </>
   );
 }
