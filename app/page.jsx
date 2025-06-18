@@ -1,6 +1,7 @@
 import BackToTop from "@/components/custom/back-to-top";
 import BeritaHome from "@/components/custom/berita";
 import Devider from "@/components/custom/devider";
+import DokumenTerbaru from "@/components/custom/dokumen-terbaru-home";
 import Hero from "@/components/custom/hero-section";
 import LayananCepat from "@/components/custom/layanan-cepat";
 import Navbar from "@/components/custom/navbar";
@@ -17,14 +18,15 @@ export default function Home() {
 
   return (
     <>
-      <BackToTop />
+      {/* <BackToTop /> */}
       <Navbar />
       <Hero />
-      <Devider title={'Layanan Cepat'} bg={false} btn={false} />
+      <Devider title={'Layanan Cepat'} bg={false} btn={false} underLine={false} />
       <LayananCepat />
-      <Devider title={'Berita Terkini'} bg={true} btn={true} />
+      <Devider title={'Berita Terkini'} bg={true} btn={true} underLine={false} />
       <BeritaHome />
-      <Devider title={'Dokumen Terbaru'} bg={false} btn={false} />
+      <Devider title={'Dokumen Terbaru'} bg={false} btn={false} underLine={true} />
+      <DokumenTerbaru />
     </>
   );
 }

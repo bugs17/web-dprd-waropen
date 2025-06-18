@@ -2,14 +2,20 @@ import React from 'react'
 import { Button } from '../ui/button'
 import { MoveRight } from 'lucide-react'
 
-const Devider = ({title, bg, btn}) => {
+const Devider = ({title, bg, btn, underLine}) => {
   return (
-    <div className={`h-40 w-full  items-center flex flex-row justify-between px-14 ${bg ? 'bg-[#231c26]' : ''} `}>
+    <div className={`h-40 w-full   flex ${btn ? 'flex-row items-center' : 'flex-col justify-center gap-3'}  justify-between px-14 ${bg ? 'bg-[#231c26]' : ''} `}>
 
         <div className='flex flex-row gap-5 items-center'>
             <span className='text-md lg:text-3xl font-semibold text-white uppercase'>{title}</span>
-            <div className="h-1 w-20 lg:w-36 bg-gradient-to-r from-orange-300 to-amber-500" />
+            {!underLine && (
+              <div className="h-1 w-20 lg:w-36 bg-gradient-to-r from-orange-300 to-amber-500" />
+            )}
         </div>
+
+        {underLine && (
+          <div className="h-1 w-full bg-gradient-to-r from-orange-300 to-amber-500" />
+        )}
 
         {btn && (
 

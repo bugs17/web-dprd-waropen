@@ -4,7 +4,7 @@ import React from 'react'
 
 const Card = ({imgUrl, judul, update, urlBerita}) => {
     return (
-            <Link href={'/'} className="relative h-60 w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(25%-0.75rem)] overflow-hidden hover:shadow-amber-100 hover:shadow-md" style={{backgroundImage: `url(${imgUrl})`, backgroundSize:'cover', backgroundPosition: 'center',}}>
+            <Link href={'/'} className="relative h-60 w-full sm:w-[calc(50%-0.75rem)] md:w-[calc(25%-0.75rem)] overflow-hidden hover:shadow-amber-100 hover:shadow-sm" style={{backgroundImage: `url(${imgUrl})`, backgroundSize:'cover', backgroundPosition: 'center',}}>
                 <div
                 className="
                     absolute inset-0 z-0
