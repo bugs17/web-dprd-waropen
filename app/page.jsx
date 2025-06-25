@@ -1,3 +1,4 @@
+import AgendaAndSosialMedia from "@/components/custom/agenda-dan-sosialmedia";
 import BackToTop from "@/components/custom/back-to-top";
 import BeritaHome from "@/components/custom/berita";
 import Devider from "@/components/custom/devider";
@@ -30,6 +31,7 @@ export default function Home() {
       <DokumenTerbaru />
       <Devider title={'Kalender Sidang'} bg={true} btn={false} underLine={false} />
       <KalenderSection />
+      <AgendaAndSosialMedia />
     </>
   );
 }
