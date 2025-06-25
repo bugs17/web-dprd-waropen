@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3029:3000'
+      - '5529:5555'
+    volumes:
+      - ./realDb:/app/realDb
+      - ./uploads:/app/uploads
+    command: "npm run start"
+    restart: always
