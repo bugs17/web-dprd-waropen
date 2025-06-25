@@ -21,7 +21,6 @@ export default function Home() {
   return (
     <>
       {/* <BackToTop /> */}
-      <Navbar />
       <Hero />
       <Devider title={'Layanan Cepat'} bg={false} btn={false} underLine={false} />
       <LayananCepat />

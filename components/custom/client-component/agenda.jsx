@@ -60,7 +60,7 @@ const Agenda = () => {
 
   return (
     <div className='w-full  bg-[#231c26]'>
-            <div className='w-full justify-center items-center flex flex-col py-5'>
+            <div className='w-full justify-center items-center flex flex-col lg:gap-0 gap-4 py-5'>
                 <div className="flex flex-row items-center gap-3">
                     {
                     index <= 0 ? "" : (

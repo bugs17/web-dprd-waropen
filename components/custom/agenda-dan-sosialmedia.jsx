@@ -29,9 +29,9 @@ const sosialMedia = [
 
 const AgendaAndSosialMedia = () => {
   return (
-    <div className='flex flex-row w-full px-10 gap-8'>
+    <div className='flex lg:flex-row flex-col w-full px-10 gap-8'>
 
-    <div className='w-[70%] pl-5 pt-12 gap-8 flex flex-col'>
+    <div className='lg:w-[70%] w-full pl-5 pt-12 gap-8 flex flex-col'>
         <div className='flex flex-col gap-2'>
             <span className='text-3xl font-semibold text-white'>AGENDA HARI INI</span>
             <div className="h-1 w-full bg-gradient-to-r from-orange-300 to-amber-500" />
@@ -41,7 +41,7 @@ const AgendaAndSosialMedia = () => {
         
     </div>
 
-    <div className='w-[30%] pt-12 flex flex-col '>
+    <div className='lg:w-[30%] w-full pt-12 flex flex-col '>
         <div className='flex flex-col gap-2 mb-[32px]'>
             <span className='text-3xl font-semibold text-white'>SOSIAL MEDIA</span>
             <div className="h-1 w-full bg-gradient-to-r from-amber-500 to-orange-300" />
