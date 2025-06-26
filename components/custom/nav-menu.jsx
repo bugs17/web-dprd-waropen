@@ -27,7 +27,7 @@ const menuItems = [
         subMenu: [
             {
                 title:'Informasi Anggota DPRD',
-                path:'#',
+                path:'/tentang-dprd/informasi-anggota-dprd',
                 desc:'Informasi tentang jajaran anggota DPRD'
             },
             {
