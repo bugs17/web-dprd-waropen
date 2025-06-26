@@ -69,13 +69,13 @@ const Agenda = () => {
                     </Button>
                     )
                     }
-                    <span className="font-semibold text-white text-lg">{data.tanggal}</span>
+                    <span className="font-semibold text-white lg:text-lg text-sm">{data.tanggal}</span>
                     <Button onClick={next} className={"cursor-pointer bg-amber-500 hover:bg-orange-300"}>
                         <ChevronRight className="text-black" />
                     </Button>
                 </div>
 
-                <div className="w-full px-12 flex flex-col gap-6">
+                <div className="w-full lg:px-12 px-4 flex flex-col gap-6">
                     <div className="w-full border-l-4 border-violet-400 flex flex-col gap-5 pl-10">
                         <div className="flex flex-row gap-3 items-center">
                             <Clock4 className="text-white" />

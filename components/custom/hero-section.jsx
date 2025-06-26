@@ -2,6 +2,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { motion } from "framer-motion";
+import { Button } from "../ui/button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -29,8 +32,31 @@ const Hero = () => {
               className="h-full w-full object-cover relative"
             />
             {/* Overlay di atas */}
-            <div className="absolute inset-0 bg-[rgba(0,0,0,0.7)] pointer-events-none " />
-            
+            <div className="absolute inset-0 bg-[rgba(0,0,0,0.7)] pointer-events-none " ></div>
+            <motion.div className="z-40 w-full absolute left-0 top-0 bottom-0 flex flex-col justify-center items-center"
+            initial={{opacity:0 }}
+            animate={{opacity:1}}
+            transition={{
+                type:'spring',
+                stiffness:100,
+                damping:25,
+                delay:0.5,
+                duration:1.8
+            }}
+            >
+              <span className="text-white lg:text-6xl text-2xl font-extrabold lg:mb-5 mb-3">Suara Rakyat, Tugas Kami</span>
+              <span className="text-gray-300 font-sans">Website Resmi DPRD Kabupaten Waropen.</span>
+              
+              <Link href={'#'} className="lg:max-w-[30%] mt-8 py-1 flex flex-row items-center px-3 bg-gradient-to-r from-amber-500 to-orange-300 hover:from-orange-300 hover:to-amber-500 border border-white hover:border-amber-200 group cursor-pointer rounded-full">
+                <span className="font-mono group-hover:text-black text-sm text-white">Berita terbaru ⚡️</span>
+                
+                <span className="flex flex-row items-center gap-1 pl-2">
+                  <span className="font-semibold text-sm group-hover:text-black text-white">Lihat </span>
+                  <ArrowRight size={12} className="text-white group-hover:text-black"/>
+                </span>
+
+              </Link>
+            </motion.div>
           </motion.div>
         </SwiperSlide>
         
