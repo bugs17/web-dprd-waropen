@@ -1,5 +1,7 @@
+import HeaderPages from "@/components/custom/header-pages";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import Link from "next/link";
 
 
 const anggotaDewan = [
@@ -35,10 +37,18 @@ const anggotaDewan = [
     },
 ];
 
+const toSlug = (name) => {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, "")    // hapus tanda baca kecuali huruf & angka
+      .replace(/\s+/g, "-")           // ganti spasi jadi tanda minus
+      .trim();
+  };
+
 const CardPerson = ({nama, komisi, fraksi, index}) => {
 
     return (
-        <div className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded h-96 overflow-hidden">
+        <Link href={`/tentang-dprd/detail-anggota-dprk/${toSlug(nama)}`} className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded h-96 overflow-hidden">
             <div className="flex flex-row w-full h-full overflow-hidden">
                 <div className="w-[40%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full overflow-hidden">
                     <Image alt="foto anggota dprk waropen" className="object-cover h-full w-full" height={300} width={300} src={"/person.jpg"}  />
@@ -60,11 +70,14 @@ const CardPerson = ({nama, komisi, fraksi, index}) => {
 
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 const page = () => {
   return (
+    <>
+    <HeaderPages title={"Anggota Dewan Perwakilan Rakyat Kabupaten Waropen"} />
+
     <div className='w-full bg-[#110e12] pt-5 pb-5 lg:px-16 px-10'>
         <div className="w-full flex lg:flex-row flex-col-reverse mb-8">
             <div className="flex flex-col lg:w-[70%] w-full ">
@@ -85,6 +98,7 @@ const page = () => {
             }
         </div>
     </div>
+    </>
   )
 }
 

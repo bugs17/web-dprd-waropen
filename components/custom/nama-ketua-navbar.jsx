@@ -25,7 +25,7 @@ const NamaKetuaWithTooltip = () => {
         </TooltipTrigger>
         <TooltipContent className={'bg-transparent'}>
         <img
-            src="/ketua.jpeg"
+            src="/person.jpg"
             alt="Ketua DPRD Kabupaten Waropen"
             className="w-64 h-auto"
           />
