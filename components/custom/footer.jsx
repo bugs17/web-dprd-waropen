@@ -42,10 +42,10 @@ const Footer = () => {
                         
                         <div className='flex flex-col items-center lg:justify-center justify-start'>
                             <span className='text-white lg:text-xl text-lg lg:text-center text-left font-semibold'>
-                                Dewan Perwakilan Rakyat Daerah <span className='block lg:hidden font-semibold text-white text-lg'>Kabupaten Waropen</span>
+                                Dewan Perwakilan Rakyat Kabupaten <span className='block lg:hidden font-semibold text-white text-lg'>Kabupaten Waropen</span>
                             </span>
                             <span className='text-white lg:block hidden lg:text-center text-left  lg:text-xl text-lg font-semibold'>
-                                Kabupaten Waropen
+                                Waropen
                             </span>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ const Footer = () => {
                     <div className='flex flex-col gap-3'>
                         <div className='flex flex-row gap-2 items-center'>
                             <Mail size={18} className='text-gray-200' />
-                            <span className='text-gray-200'>dprd@waropenkab.go.id</span>
+                            <span className='text-gray-200'>dprk@waropenkab.go.id</span>
                         </div>
                         <div className='flex flex-row gap-2 items-center'>
                             <Phone size={18} className='text-gray-200' />

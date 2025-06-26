@@ -23,26 +23,26 @@ const menuItems = [
         path:'/'
     },
     {
-        title:'Tentang DPRD',
+        title:'Tentang DPRK',
         subMenu: [
             {
-                title:'Informasi Anggota DPRD',
+                title:'Informasi Anggota DPRK',
                 path:'/tentang-dprd/informasi-anggota-dprd',
-                desc:'Informasi tentang jajaran anggota DPRD'
+                desc:'Informasi tentang jajaran anggota DPRK'
             },
             {
                 title:'Komisi',
-                desc:'Informasi tentang komisi DPRD',
+                desc:'Informasi tentang komisi DPRK',
                 path:'#'
             },
             {
                 title:'Badan',
-                desc:'Informasi tentang badan DPRD',
+                desc:'Informasi tentang badan DPRK',
                 path:'#'
             },
             {
                 title:'Fraksi',
-                desc:'Informasi tentang fraksi DPRD',
+                desc:'Informasi tentang fraksi DPRK',
                 path:'#'
             },
         ]
@@ -51,18 +51,18 @@ const menuItems = [
         title:'Tentang SETWAN',
         subMenu: [
             {
-                title:'Profil Sekretariat DPRD',
+                title:'Profil Sekretariat DPRK',
                 path:'#',
                 desc:'Informasi tentang profil sekretariat'
             },
             {
                 title:'Visi & Misi',
-                desc:'Informasi tentang visi-misi sekretariat dprd',
+                desc:'Informasi tentang visi-misi sekretariat dprk',
                 path:'#'
             },
             {
                 title:'Struktur Organisasi',
-                desc:'Informasi tentang struktur organisasi sekretariat dprd',
+                desc:'Informasi tentang struktur organisasi sekretariat dprk',
                 path:'#'
             }
         ]
@@ -71,23 +71,23 @@ const menuItems = [
         title:'Dokumen',
         subMenu: [
             {
-                title:'Laporan Keuangan DPRD',
+                title:'Laporan Keuangan DPRK',
                 path:'#',
-                desc:'Informasi tentang dokumen laporan keuangan DPRD'
+                desc:'Informasi tentang dokumen laporan keuangan DPRK'
             },
             {
-                title:'Rencana Strategis DPRD',
-                desc:'Informasi tentang rencana strategis dprd',
+                title:'Rencana Strategis DPRK',
+                desc:'Informasi tentang rencana strategis dprk',
                 path:'#'
             },
             {
                 title:'Dokumen Publikasi',
-                desc:'Informasi tentang dokumen publikasi dprd',
+                desc:'Informasi tentang dokumen publikasi dprk',
                 path:'#'
             },
             {
                 title:'Produk Hukum',
-                desc:'Informasi tentang produk hukum dprd',
+                desc:'Informasi tentang produk hukum dprk',
                 path:'#'
             },
         ]
@@ -102,7 +102,7 @@ const menuItems = [
             {
                 title:'Galery',
                 path:'#',
-                desc:'Kumpulan file media tentang DPRD'
+                desc:'Kumpulan file media tentang DPRK'
             },
             {
                 title:'Kontak',
@@ -110,8 +110,8 @@ const menuItems = [
                 path:'#'
             },
             {
-                title:'Pengaduan ke DPRD',
-                desc:'Aduan atau Aspirasi terkait dengan fungsi atau tugas DPRD',
+                title:'Pengaduan ke DPRK',
+                desc:'Aduan atau Aspirasi terkait dengan fungsi atau tugas DPRK',
                 path:'#'
             },
             {

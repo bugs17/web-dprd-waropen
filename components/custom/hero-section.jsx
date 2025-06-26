@@ -45,7 +45,7 @@ const Hero = () => {
             }}
             >
               <span className="text-white lg:text-6xl text-2xl font-extrabold lg:mb-5 mb-3">Suara Rakyat, Tugas Kami</span>
-              <span className="text-gray-300 sm:text-sm font-sans">Website Resmi DPRD Kabupaten Waropen.</span>
+              <span className="text-gray-300 sm:text-sm font-sans">Website Resmi DPRK Waropen.</span>
               
               <Link href={'#'} className="lg:max-w-[30%] mt-8 py-1 flex flex-row items-center px-3 bg-gradient-to-r from-amber-500 to-orange-300 hover:from-orange-300 hover:to-amber-500 border border-white hover:border-amber-200 group cursor-pointer rounded-full">
                 <span className="font-mono group-hover:text-black text-sm text-white">Berita terbaru ⚡️</span>
