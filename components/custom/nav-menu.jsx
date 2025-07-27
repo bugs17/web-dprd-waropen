@@ -33,7 +33,7 @@ const menuItems = [
             {
                 title:'Komisi',
                 desc:'Informasi tentang komisi DPRK',
-                path:'#'
+                path:'/tentang-dprd/komisi'
             },
             {
                 title:'Badan',
