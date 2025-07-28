@@ -38,7 +38,7 @@ const menuItems = [
             {
                 title:'Badan',
                 desc:'Informasi tentang badan DPRK',
-                path:'#'
+                path:'/tentang-dprd/badan'
             },
             {
                 title:'Fraksi',
