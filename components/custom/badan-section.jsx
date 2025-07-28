@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
-import CardAnggotaKomisi from "./cardAnggotaKomisi"
+import CardAnggotaBadan from "./card--anggota-badan"
 
 
 const AcordComponent = () => {
@@ -20,12 +20,8 @@ const AcordComponent = () => {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <CardAnggotaKomisi komisi={"A"} nama={"John Doe"} status={"KETUA"} />
-            <CardAnggotaKomisi komisi={"A"} nama={"John Doe"} status={"WAKIL KETUA"} />
-            <CardAnggotaKomisi komisi={"A"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaKomisi komisi={"A"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaKomisi komisi={"A"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaKomisi komisi={"A"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"MUSYAWARAH"} nama={"John Doe"} status={"KETUA"} />
+            
           </div>
         </AccordionContent>
       </AccordionItem>
