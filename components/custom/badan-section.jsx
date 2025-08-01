@@ -20,8 +20,68 @@ const AcordComponent = () => {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <CardAnggotaBadan badan={"MUSYAWARAH"} nama={"John Doe"} status={"KETUA"} />
-            
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-2">
+        <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
+          <h1 className="text-amber-300 text-4xl font-extrabold ">BADAN PEMBENTUK PERATURAN DAERAH</h1>
+        </AccordionTrigger>
+        <AccordionContent className="flex flex-col justify-center">
+          <p className="text-white lg:text-center text-lg text-center">
+            PERIODE TAHUN 2024-2029
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+      
+      <AccordionItem value="item-3">
+        <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
+          <h1 className="text-amber-300 text-4xl font-extrabold ">BADAN KEHORMATAN</h1>
+        </AccordionTrigger>
+        <AccordionContent className="flex flex-col justify-center">
+          <p className="text-white lg:text-center text-lg text-center">
+            PERIODE TAHUN 2024-2029
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-4">
+        <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
+          <h1 className="text-amber-300 text-4xl font-extrabold ">BADAN ANGGARAN</h1>
+        </AccordionTrigger>
+        <AccordionContent className="flex flex-col justify-center">
+          <p className="text-white lg:text-center text-lg text-center">
+            PERIODE TAHUN 2024-2029
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
           </div>
         </AccordionContent>
       </AccordionItem>

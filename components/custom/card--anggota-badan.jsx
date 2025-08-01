@@ -12,7 +12,7 @@ const CardAnggotaBadan = ({nama, badan, status, index}) => {
                     <div className="w-full h-[50%] flex flex-col gap-2">
                         <span className="text-white font-semibold text-lg">{nama}</span>
                         <div className="flex flex-row items-center gap-1">
-                            <span className="text-sm text-gray-200">{badan}</span>
+                            <span className="text-sm text-gray-200">Badan {badan}</span>
                         </div>
                     </div>
 

@@ -43,7 +43,7 @@ const menuItems = [
             {
                 title:'Fraksi',
                 desc:'Informasi tentang fraksi DPRK',
-                path:'#'
+                path:'/tentang-dprd/fraksi'
             },
         ]
     },
@@ -52,7 +52,7 @@ const menuItems = [
         subMenu: [
             {
                 title:'Profil Sekretariat DPRK',
-                path:'#',
+                path:'/tentang-setwan/profil-sekretariat-dprk',
                 desc:'Informasi tentang profil sekretariat'
             },
             {
