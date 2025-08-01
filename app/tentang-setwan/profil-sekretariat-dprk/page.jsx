@@ -15,17 +15,17 @@ const ProfilSekretariat = () => {
             <p className="text-white text-left">
                 Sekretariat DPRK mempunyai tugas menyelenggarakan administrasi kesekretariatan dan keuangan, mendukung pelaksanaan tugas dan fungsi DPRK serta menyediakan dan mengkoordinasikan tenaga ahli yang diperlukan oleh DPRK dalam melaksanakan hak dan fungsinya sesuai dengan kebutuhan.
             </p>
+            <br/>
             <p className="text-white text-left">
-                Fungsi Sekretariat DPRK:
-                <br/>
-                <br/>
-                <ol>
-                    <li>1. Menyelenggarakan administrasi kesekretariatan DPRK</li>
-                    <li>2. Penyelenggaraan administrasi keuangan DPRK</li>
-                    <li>3. Fasilitasi penyelenggaraan rapat DPRK</li>
-                    <li>4. Penyediaan dan pengoordinasian tenaga ahli yang diperlukan oleh DPRK</li>
-                </ol>
+                <span className="font-bold">Fungsi Sekretariat DPRK:</span>
             </p>
+            <ol className="text-white text-left">
+                <li>1. Menyelenggarakan administrasi kesekretariatan DPRK</li>
+                <li>2. Penyelenggaraan administrasi keuangan DPRK</li>
+                <li>3. Fasilitasi penyelenggaraan rapat DPRK</li>
+                <li>4. Penyediaan dan pengoordinasian tenaga ahli yang diperlukan oleh DPRK</li>
+            </ol>
+            <br/>
         </div>
     </>
   )
