@@ -58,12 +58,12 @@ const menuItems = [
             {
                 title:'Visi & Misi',
                 desc:'Informasi tentang visi-misi sekretariat dprk',
-                path:'#'
+                path:'/tentang-setwan/visi-misi'
             },
             {
                 title:'Struktur Organisasi',
                 desc:'Informasi tentang struktur organisasi sekretariat dprk',
-                path:'#'
+                path:'/tentang-setwan/struktur-organisasi'
             }
         ]
     },
@@ -72,23 +72,23 @@ const menuItems = [
         subMenu: [
             {
                 title:'Laporan Keuangan DPRK',
-                path:'#',
+                path:'/dokumen/laporan-keuangan',
                 desc:'Informasi tentang dokumen laporan keuangan DPRK'
             },
             {
                 title:'Rencana Strategis DPRK',
                 desc:'Informasi tentang rencana strategis dprk',
-                path:'#'
+                path:'/dokumen/rencana-strategis'
             },
             {
                 title:'Dokumen Publikasi',
                 desc:'Informasi tentang dokumen publikasi dprk',
-                path:'#'
+                path:'/dokumen/dokumen-publikasi'
             },
             {
                 title:'Produk Hukum',
                 desc:'Informasi tentang produk hukum dprk',
-                path:'#'
+                path:'/dokumen/produk-hukum'
             },
         ]
     },

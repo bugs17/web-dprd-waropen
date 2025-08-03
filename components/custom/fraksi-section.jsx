@@ -1,10 +1,5 @@
 import Image from "next/image"
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import {
   Table,
   TableBody,
   TableCaption,
