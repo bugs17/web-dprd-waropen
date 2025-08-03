@@ -94,7 +94,7 @@ const menuItems = [
     },
     {
         title:'Berita',
-        path:'/'
+        path:'/berita'
     },
     {
         title:'Lainnya',
