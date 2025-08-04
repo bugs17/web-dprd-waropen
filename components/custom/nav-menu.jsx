@@ -101,23 +101,23 @@ const menuItems = [
         subMenu: [
             {
                 title:'Galery',
-                path:'#',
+                path:'/galery',
                 desc:'Kumpulan file media tentang DPRK'
             },
             {
                 title:'Kontak',
                 desc:'Informasi kontak',
-                path:'#'
+                path:'/kontak'
             },
             {
                 title:'Pengaduan ke DPRK',
                 desc:'Aduan atau Aspirasi terkait dengan fungsi atau tugas DPRK',
-                path:'#'
+                path:'/pengaduan-dprk'
             },
             {
                 title:'Pengaduan ke Pemerintah Daerah',
                 desc:'Aduan ataupun Aspirasi kepada pemerintah daerah.',
-                path:'#'
+                path:'/pengaduan-pemda'
             },
         ]
     },

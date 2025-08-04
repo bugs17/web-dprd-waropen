@@ -1,14 +1,12 @@
 import BroadcumCustom from "@/components/custom/client-component/broadcump-custom"
 
-const LayoutBerita = ({children}) => {
+const KontakLayout = ({children}) => {
   return (
     <div>
-        
         <BroadcumCustom />
-        
         {children}
     </div>
   )
 }
 
-export default LayoutBerita
+export default KontakLayout

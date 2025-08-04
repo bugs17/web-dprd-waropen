@@ -1,9 +1,8 @@
 import BroadcumCustom from "@/components/custom/client-component/broadcump-custom"
 
-const LayoutBerita = ({children}) => {
+const GaleryLayout = ({children}) => {
   return (
     <div>
-        
         <BroadcumCustom />
         
         {children}
@@ -11,4 +10,4 @@ const LayoutBerita = ({children}) => {
   )
 }
 
-export default LayoutBerita
+export default GaleryLayout
