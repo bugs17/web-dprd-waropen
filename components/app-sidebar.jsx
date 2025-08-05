@@ -2,16 +2,18 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
+  
   Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
+  Scale,
+  Notebook,
+  Newspaper,
+  SquareUserRound,
+  ChartColumnIncreasing,
+  CalendarCheck2,
+  Puzzle,
+  Users,
+  Vote,
+  Phone
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -33,108 +35,67 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  navMain: [
+  menu1: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
+      name: "Dashboard",
       url: "#",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "Berita",
       url: "#",
-      icon: PieChart,
+      icon: Newspaper,
     },
     {
-      name: "Travel",
+      name: "Anggota Dewan",
       url: "#",
-      icon: Map,
+      icon: SquareUserRound,
+    },
+    {
+      name: "Jadwan Sidang",
+      url: "#",
+      icon: CalendarCheck2,
+    },
+  ],
+  menu2: [
+    {
+      name: "Produk Hukum",
+      url: "#",
+      icon: Scale,
+    },
+    {
+      name: "Renstra",
+      url: "#",
+      icon: Notebook,
+    },
+    {
+      name: "Dokumen Keuangan",
+      url: "#",
+      icon: ChartColumnIncreasing,
+    },
+  ],
+  menu3: [
+    {
+      name: "Komisi",
+      url: "#",
+      icon: Users,
+    },
+    {
+      name: "Badan",
+      url: "#",
+      icon: Puzzle,
+    },
+    {
+      name: "Fraksi",
+      url: "#",
+      icon: Vote,
+    },
+  ],
+  menu4: [
+    {
+      name: "Kontak",
+      url: "#",
+      icon: Phone,
     },
   ],
 }
@@ -147,11 +108,13 @@ export function AppSidebar({
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
-      {/* <h1 className="p-4">Logo DPRK</h1> */}
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavProjects projects={data.menu1} />
+        <NavProjects projects={data.menu2} />
+        <NavProjects projects={data.menu3} />
+        <NavProjects projects={data.menu4} />
       </SidebarContent>
+      
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
