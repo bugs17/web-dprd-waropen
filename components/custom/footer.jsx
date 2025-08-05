@@ -1,7 +1,6 @@
 import { Facebook, Instagram, Mail, Phone, Pin, Twitter, Youtube } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
 
 const sosialMedia = [

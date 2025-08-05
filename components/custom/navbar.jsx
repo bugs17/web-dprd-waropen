@@ -1,4 +1,3 @@
-import React from 'react'
 import LogoNavbar from './logo-navbar'
 import KontakOnNavbar from './kontak-on-navbar'
 import NavMenu from './nav-menu'

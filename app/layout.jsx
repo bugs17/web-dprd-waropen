@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/custom/navbar";
-import Footer from "@/components/custom/footer";
+import NavbarDinamic from "@/components/custom/client-component/navbar-programatic";
+import FooterDinamic from "@/components/custom/client-component/footer-dynamic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,13 +27,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${lora.variable} ${geistMono.variable} antialiased bg-[#110e12]`}
       >
-      <Navbar />
+      <NavbarDinamic />
         {children}
-      <Footer />
+      <FooterDinamic />
       </body>
     </html>
   );
