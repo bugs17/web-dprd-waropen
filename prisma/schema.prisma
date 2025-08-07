@@ -13,3 +13,100 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+
+model AnggotaDewan {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama String
+  tempatLahir String @default("-")
+  tanggalLahir DateTime
+  email String @unique
+  facebookUrl String @default("-")
+  instagramUrl String @default("-")
+  youtubeUrl String @default("-")
+  peranDewan String @default("ANGGOTA")
+  peranKomisi        String    @default("ANGGOTA") // bisa: KETUA, WAKIL, ANGGOTA, BUKAN ANGGOTA
+  peranBadan        String    @default("ANGGOTA") // bisa: KETUA, WAKIL, ANGGOTA, BUKAN ANGGOTA
+
+  imageUrl String
+
+  partaiId           Int                // Foreign key
+  partai             Partai             @relation(fields: [partaiId], references: [id])
+
+  komisiId           Int                // Foreign key
+  komisi             Komisi             @relation(fields: [komisiId], references: [id])
+  
+  badanId           Int                // Foreign key
+  badan             Badan             @relation(fields: [badanId], references: [id])
+
+  riwayatPendidikan RiwayatPendidikan[]
+  riwayatPekerjaan RiwayatPekerjaan[]
+}
+
+model RiwayatPendidikan {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  namaSekolah String @default("-")
+  tahunLulus String @default("-")
+
+  anggotaDewanId Int
+  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id])
+}
+
+model RiwayatPekerjaan {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  jabatanPekerjaan String @default("-")
+  tahunMenjabat String @default("-")
+
+  anggotaDewanId Int
+  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id])
+}
+
+model Partai {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama String
+  imageUrl String
+
+  anggotaDewan AnggotaDewan[]
+
+  fraksiId  String
+  fraksi    Fraksi   @relation(fields: [fraksiId], references: [id])
+}
+
+model Fraksi {
+  id       String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama     String
+  partai   Partai[] // satu fraksi memiliki banyak partai
+}
+
+model Komisi{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama String
+  deskripsi String @default("-")
+  tahunPeriode String @default("-")
+
+  anggotaDewan AnggotaDewan[]
+}
+
+
+model Badan{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  nama String
+  deskripsi String @default("-")
+  tahunPeriode String @default("-")
+
+  anggotaDewan AnggotaDewan[]
+}
