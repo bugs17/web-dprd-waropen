@@ -110,3 +110,76 @@ model Badan{
 
   anggotaDewan AnggotaDewan[]
 }
+
+
+model Setwan {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  visi String @default("-")
+  misi String @default("-")
+  urlImageStrukturOrganisasi String @default("-")
+}
+
+model Dokumen {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  jenisDokumen String //contohnya laporan keuangan, rencana strategis, dokumen publikasi, produk hukum
+  namaDokumen String
+  urlDokumen String?
+}
+
+model Berita {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  judul String
+  isi String
+
+  imageUrl String?
+}
+
+model Galery {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  judul String @default("-")
+  imageUrl String
+}
+
+model JadwalSidang {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  date DateTime
+  tentang String
+  deskripsi String
+  lokasi String
+}
+
+model Agenda {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  date DateTime
+  judulAgenda String
+  deskripsi String
+}
+
+
+model Kontak {
+  email String @default("-") @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  telp String @default("-")
+  alamat String @default("-")
+  facebook String @default("-")
+  instagram String @default("-")
+  twitter String @default("-")
+  youtube String @default("-")
+
+}
