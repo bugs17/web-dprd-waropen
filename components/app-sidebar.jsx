@@ -39,11 +39,13 @@ const data = {
     {
       name: "Dashboard",
       url: "#",
+      match: "/dashboard/jsjs",
       icon: Frame,
     },
     {
       name: "Berita",
-      url: "#",
+      url: "/dashboard/berita",
+      match: "/dashboard/berita",
       icon: Newspaper,
     },
     {

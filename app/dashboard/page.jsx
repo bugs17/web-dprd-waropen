@@ -9,7 +9,6 @@ const DashboardPage = () => {
                   <span className="font-bold text-4xl">😊👋</span>
                   <span className=" text-white">Hallo admin..</span>
                 </div>
-                
             </div>
             <div className="bg-muted/50 aspect-video rounded-xl flex flex-col overflow-hidden" >
                 <div className="w-full h-[80%] flex items-center justify-center">
