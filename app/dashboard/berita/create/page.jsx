@@ -1,11 +1,20 @@
 
+"use client"
+import ImagePicker from '@/components/custom/client-component/pilih-gambar'
 import TextEditor from '@/components/custom/client-component/text-editor'
 import { Input } from '@/components/ui/input'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 
 const CreateBeritaPage = () => {
+
+  const [post, setPost] = useState("")
+  const onChange = (content) => {
+    setPost(content)
+    console.log(content)
+  }
+
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
       <Link href={"/dashboard/berita"} className='flex flex-row gap-3 items-center hover:text-gray-300 group'>
@@ -24,7 +33,10 @@ const CreateBeritaPage = () => {
       </div>
 
       <div className="flex-1 flex flex-col">
-        <TextEditor />
+        <TextEditor content={post} onChange={onChange} />
+        <div className='flex justify-center w-full mt-3'>
+          <ImagePicker />
+        </div>
       </div>
 
     </div>
