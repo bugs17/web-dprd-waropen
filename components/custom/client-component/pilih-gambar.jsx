@@ -4,7 +4,7 @@ import { useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
-export default function ImagePicker() {
+export default function ImagePicker({onChange}) {
   const inputRef = useRef(null)
   const [preview, setPreview] = useState(null)
 
@@ -17,6 +17,7 @@ export default function ImagePicker() {
     if (file) {
       const url = URL.createObjectURL(file)
       setPreview(url)
+      onChange(file)
     }
   }
 
