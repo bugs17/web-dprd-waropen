@@ -137,6 +137,7 @@ model Berita {
   judul String
   isi String
   slug String
+  isDraft Boolean @default(false)
   imageUrl String?
 }
 

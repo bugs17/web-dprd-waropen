@@ -3,6 +3,7 @@
 import { Calendar22 } from '@/components/custom/client-component/date-picker'
 import ImagePicker from '@/components/custom/client-component/pilih-gambar'
 import TextEditor from '@/components/custom/client-component/text-editor'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
@@ -13,25 +14,50 @@ const CreateBeritaPage = () => {
   const [post, setPost] = useState("")
   const [imgFile, setImgFile] = useState(null)
   const [date, setDate] = useState(undefined)
+  const [judul, setJudul] = useState("")
+
 
   const onChange = (content) => {
     setPost(content)
-    console.log(content)
+  }
+
+  const handlePublish = async () => {
+    if (post === "" || imgFile === null || date === undefined || judul === "") {
+      alert("Lengkapi semua kolom sebelum di publish")
+      return
+    }
+    alert(`berhasil`)
+    return
+  }
+
+  const handleBackButton = () => {
+    // lakukan pengecekan dulu sebelum di alihak ke halaman sebelumnya
+    // jika user telah menulis judul atau isi berita atau foto maka ajukan pertanyaan apakah ingin menyimpan perubahan sebelum beralih ke halaman lain
+    // jika ya maka simpan postingan dengan status draft lalu arahkan ke halaman tujuan
+    // jika no maka tidak usah menyimpan perubahan dan langsung redirect ke halaman lain
   }
 
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
-      <Link href={"/dashboard/berita"} className='flex max-w-sm flex-row gap-3 items-center hover:text-gray-300 group'>
-        <ArrowLeft className='text-white group-hover:text-gray-300' />
-        <span>Kembali</span>
-      </Link>
-      <div className='w-full flex flex-row items-center gap-10 py-5'>
+      <div className='flex flex-row justify-between items-center'>
+        <Link href={"/dashboard/berita"} className='flex max-w-sm flex-row gap-3 items-center hover:text-gray-300 group'>
+          <ArrowLeft className='text-white group-hover:text-gray-300' />
+          <span>Kembali</span>
+        </Link>
+        <div className='flex flex-row items-center justify-end gap-2'>
+          <Button className={"hover:cursor-pointer"}>Simpan</Button>
+          <Button onClick={handlePublish} className={"bg-amber-300 hover:bg-amber-400 hover:cursor-pointer"}>Publish</Button>
+        </div>
+      </div>
+
+      <div className='w-full flex flex-row items-center gap-7 py-5'>
           <span className='text-lg text-white'>Judul</span>
           <div className="relative w-full">
               <Input
                   type="text"
                   placeholder="Judul Berita"
                   className="pr-10 text-white"
+                  onChange={(e) => setJudul(e.target.value)}
               />
           </div>
           <span className='text-lg text-white'>Tanggal</span>
