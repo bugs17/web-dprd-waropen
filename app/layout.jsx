@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Lora } from "next/font/google";
 import "./globals.css";
 import NavbarDinamic from "@/components/custom/client-component/navbar-programatic";
 import FooterDinamic from "@/components/custom/client-component/footer-dynamic";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
       >
       <NavbarDinamic />
         {children}
+        <Toaster position="top-center" />
       <FooterDinamic />
       </body>
     </html>

@@ -1,20 +1,30 @@
 
 "use client"
+import { createBerita } from '@/action/create-berita'
 import { Calendar22 } from '@/components/custom/client-component/date-picker'
 import ImagePicker from '@/components/custom/client-component/pilih-gambar'
 import TextEditor from '@/components/custom/client-component/text-editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { toastMessageAtom } from '@/lib/globalState'
+import { useSetAtom } from 'jotai'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 
 const CreateBeritaPage = () => {
+
+  const route = useRouter()
 
   const [post, setPost] = useState("")
   const [imgFile, setImgFile] = useState(null)
   const [date, setDate] = useState(undefined)
   const [judul, setJudul] = useState("")
+  const [loading, setLoading] = useState(false)
+  const setToast = useSetAtom(toastMessageAtom)
+
 
 
   const onChange = (content) => {
@@ -22,12 +32,23 @@ const CreateBeritaPage = () => {
   }
 
   const handlePublish = async () => {
-    if (post === "" || imgFile === null || date === undefined || judul === "") {
-      alert("Lengkapi semua kolom sebelum di publish")
-      return
+    setLoading(true);
+    if (!post || !imgFile || !judul || !date ) {
+      toast.error("Mohon mengisi semua kolom sebelum publish")
+      setLoading(false);
+      return;
     }
-    alert(`berhasil`)
-    return
+
+    try {
+      await createBerita(judul, imgFile, post, date)
+      toast.success("Sukses")
+      setLoading(false)
+      route.push("/dashboard/berita")
+    } catch (error) {
+      console.log("Error saat publish berita")
+      toast.error("Terjadi error. COba lagi!")
+    }
+    
   }
 
   const handleBackButton = () => {
