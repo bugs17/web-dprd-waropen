@@ -23,7 +23,6 @@ const CreateBeritaPage = () => {
   const [date, setDate] = useState(undefined)
   const [judul, setJudul] = useState("")
   const [loading, setLoading] = useState(false)
-  const setToast = useSetAtom(toastMessageAtom)
 
 
 
@@ -51,12 +50,7 @@ const CreateBeritaPage = () => {
     
   }
 
-  const handleBackButton = () => {
-    // lakukan pengecekan dulu sebelum di alihak ke halaman sebelumnya
-    // jika user telah menulis judul atau isi berita atau foto maka ajukan pertanyaan apakah ingin menyimpan perubahan sebelum beralih ke halaman lain
-    // jika ya maka simpan postingan dengan status draft lalu arahkan ke halaman tujuan
-    // jika no maka tidak usah menyimpan perubahan dan langsung redirect ke halaman lain
-  }
+  
 
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
@@ -66,8 +60,7 @@ const CreateBeritaPage = () => {
           <span>Kembali</span>
         </Link>
         <div className='flex flex-row items-center justify-end gap-2'>
-          <Button className={"hover:cursor-pointer"}>Simpan</Button>
-          <Button onClick={handlePublish} className={"bg-amber-300 hover:bg-amber-400 hover:cursor-pointer"}>Publish</Button>
+          <Button disabled={loading} onClick={handlePublish} className={"bg-amber-300 hover:bg-amber-400 hover:cursor-pointer"}>Publish</Button>
         </div>
       </div>
 

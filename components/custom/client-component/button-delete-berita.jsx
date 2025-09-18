@@ -42,7 +42,7 @@ const DeleteBerita = ({judulBerita, idBerita}) => {
             <TooltipTrigger>
                 <AlertDialog open={open} onOpenChange={setOpen}>
                     <AlertDialogTrigger asChild>
-                        <Trash className="text-red-500 text-xs" size={16} />
+                        <Trash className="text-red-500 text-xs cursor-pointer" size={16} />
                     </AlertDialogTrigger>
                     <AlertDialogContent>
                         <AlertDialogHeader>

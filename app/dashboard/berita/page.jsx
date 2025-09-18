@@ -10,7 +10,11 @@ import DeleteBerita from "@/components/custom/client-component/button-delete-ber
 
 const TabelListBerita = async () => {
 
-    const beritas = await prisma.berita.findMany()
+    const beritas = await prisma.berita.findMany({
+        orderBy:{
+            id: 'desc'
+        }
+    })
 
     return (
         <div className="rounded-lg overflow-hidden border border-gray-300">
@@ -57,7 +61,7 @@ const TabelListBerita = async () => {
                                     </Tooltip>
                                     <Tooltip>
                                         <TooltipTrigger>
-                                            <Link href={"#"}>
+                                            <Link href={`/dashboard/berita/edit/${berita.slug}`}>
                                                 <Pencil className="text-white text-xs" size={16} />
                                             </Link>
                                         </TooltipTrigger>
