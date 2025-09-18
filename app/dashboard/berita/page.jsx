@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { truncateText } from "@/lib/trunc-kalimat"
 import Link from "next/link"
 import { prisma } from "@/lib/db"
+import DeleteBerita from "@/components/custom/client-component/button-delete-berita"
 
 const TabelListBerita = async () => {
 
@@ -64,16 +65,8 @@ const TabelListBerita = async () => {
                                             <p>Edit</p>
                                         </TooltipContent>
                                     </Tooltip>
-                                    <Tooltip>
-                                        <TooltipTrigger>
-                                            <Link href={"#"}>
-                                                <Trash className="text-red-500 text-xs" size={16} />
-                                            </Link>
-                                        </TooltipTrigger>
-                                        <TooltipContent>
-                                            <p>Hapus</p>
-                                        </TooltipContent>
-                                    </Tooltip>
+
+                                    <DeleteBerita judulBerita={berita.judul} idBerita={berita.id} />
                                     
                                 </TableCell>
                             </TableRow>
