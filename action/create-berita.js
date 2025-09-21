@@ -28,7 +28,7 @@ export const createBerita = async (judul, image, content, date) => {
     const filePath = path.join(process.cwd(), "/uploads/img-berita", fileName);
 
     // Simpan file ke server
-    const namaFileDiDb = `/uploads/img-berita/${fileName}`
+    const namaFileDiDb = `${fileName}`
     await writeFile(filePath, Buffer.from(await image.arrayBuffer()));
 
 

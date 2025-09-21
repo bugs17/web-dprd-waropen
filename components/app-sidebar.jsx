@@ -38,8 +38,8 @@ const data = {
   menu1: [
     {
       name: "Dashboard",
-      url: "#",
-      match: "/dashboard/jsjs",
+      url: "/dashboard",
+      match: "/dashboard/fsf",
       icon: Frame,
     },
     {
@@ -50,7 +50,8 @@ const data = {
     },
     {
       name: "Anggota Dewan",
-      url: "#",
+      url: "/dashboard/anggota-dewan",
+      match: "/dashboard/anggota-dewan",
       icon: SquareUserRound,
     },
     {

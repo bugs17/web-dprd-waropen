@@ -1,18 +1,32 @@
+import FormEditBerita from "@/components/custom/client-component/form-edit-berita";
+import { prisma } from "@/lib/db";
 import { slugToText } from "@/lib/toSlug";
 
-const EditBeritaPage = ({params}) => {
-    const { slug } = params;
-    
+const EditBeritaPage = async ({params}) => {
+    const { slug } = await params;
+
     if (!slug) {
-        return <p>ID not found</p>;
+    return <p>Not found</p>;
+  }
+    
+
+    let berita;
+    try {
+        berita = await prisma.berita.findFirst({
+            where:{
+                slug:slug
+            }
+        })
+    } catch (error) {
+        console.error(error.message)
     }
 
 
 
+
+
   return (
-    <div>
-        {slugToText(slug)}
-    </div>
+        <FormEditBerita  judulProps={berita.judul} dateProps={berita.createdAt} postProps={berita.isi} imgUrlProps={berita.imageUrl} idProps={berita.id}/>
   )
 }
 

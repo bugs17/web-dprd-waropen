@@ -1,16 +1,27 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
-export default function ImagePicker({onChange}) {
+export default function ImagePicker({onChange, urlImagePreview}) {
+
+  
   const inputRef = useRef(null)
   const [preview, setPreview] = useState(null)
 
+  useEffect(() => {
+    if (urlImagePreview) {
+      setPreview(`/api/berita/image/${urlImagePreview}`)
+    }
+  }, [urlImagePreview]) // hanya jalan saat prop urlImagePreview berubah
+
+  
+  
   const handleClick = () => {
     inputRef.current?.click()
   }
+  
 
   const handleChange = (e) => {
     const file = e.target.files[0]

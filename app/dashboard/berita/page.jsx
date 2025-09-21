@@ -51,7 +51,7 @@ const TabelListBerita = async () => {
                                 <TableCell className="flex gap-2 justify-end items-center text-white">
                                     <Tooltip>
                                         <TooltipTrigger>
-                                            <Link href={"#"} >
+                                            <Link href={`/berita/${berita.slug}`} target="_blank" >
                                                 <Eye className="text-white " size={16} />
                                             </Link>
                                         </TooltipTrigger>
