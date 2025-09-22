@@ -38,6 +38,7 @@ prisma/dev.db
 
 /uploads
 /realDb
+
 # vercel
 .vercel
 
