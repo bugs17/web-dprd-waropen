@@ -37,6 +37,7 @@ yarn-error.log*
 prisma/dev.db
 
 /uploads
+/realDb
 
 # vercel
 .vercel
