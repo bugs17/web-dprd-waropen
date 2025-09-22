@@ -1,19 +1,20 @@
-import DialogAddAnggotaDewan from '@/components/custom/client-component/dialog-add-anggota-dewan'
 import { Button } from '@/components/ui/button'
-import { Eye, Newspaper, Pencil, PersonStanding, Trash, User } from 'lucide-react'
+import { Eye, Pencil, Trash, User } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
   return (
     <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min p-6">
-        <div className="w-full flex justify-end">
-            <DialogAddAnggotaDewan>
+        <div className="w-full flex justify-between">
+            <h1>Daftar anggota dewan</h1>
+            <Link href={"/dashboard/anggota-dewan/create"} >
                 <Button className={"cursor-pointer"}>
                     <User className="text-black" />
                     <span>Tambah</span>
                 </Button>
-            </DialogAddAnggotaDewan>
+            </Link>
         </div>
 
         <div className="flex flex-wrap w-full pb-6 pt-6 gap-4 justify-center">
