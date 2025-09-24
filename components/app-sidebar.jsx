@@ -13,7 +13,8 @@ import {
   Puzzle,
   Users,
   Vote,
-  Phone
+  Phone,
+  Handshake
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -90,8 +91,15 @@ const data = {
     },
     {
       name: "Fraksi",
-      url: "#",
+      url: "/dashboard/fraksi",
+      match: "/dashboard/fraksi",
       icon: Vote,
+    },
+    {
+      name: "Partai",
+      url: "/dashboard/partai",
+      match: "/dashboard/partai",
+      icon: Handshake,
     },
   ],
   menu4: [
