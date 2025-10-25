@@ -2,16 +2,24 @@ import ButtonOpenDialogAddPartai from '@/components/custom/client-component/butt
 import DialogAddPartai from '@/components/custom/client-component/dialog-add-partai'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { prisma } from '@/lib/db'
 import { Pencil, Trash } from 'lucide-react'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
 
-  const partaiList = [
-    { id: 1, nama: "Partai Maju Bersatu", logo: "https://pdiperjuangankalsel.id/wp-content/uploads/2018/01/logo-pdi5.png" },
-    { id: 2, nama: "Partai Harapan Rakyat", logo: "https://pdiperjuangankalsel.id/wp-content/uploads/2018/01/logo-pdi5.png" },
-    { id: 3, nama: "Partai Biru Langit", logo: "https://pdiperjuangankalsel.id/wp-content/uploads/2018/01/logo-pdi5.png" },
-  ]
+
+  const partaiList = await prisma.partai.findMany({
+    orderBy:{
+      id:'desc'
+    }
+  })
+
+  // const partaiList = [
+  //   { id: 1, nama: "Partai Maju Bersatu", logo: "https://pdiperjuangankalsel.id/wp-content/uploads/2018/01/logo-pdi5.png" },
+  //   { id: 2, nama: "Partai Harapan Rakyat", logo: "https://pdiperjuangankalsel.id/wp-content/uploads/2018/01/logo-pdi5.png" },
+  //   { id: 3, nama: "Partai Biru Langit", logo: "https://pdiperjuangankalsel.id/wp-content/uploads/2018/01/logo-pdi5.png" },
+  // ]
 
   return (
     <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min p-6">
@@ -35,11 +43,12 @@ const page = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {partaiList.map((p) => (
+              {partaiList.length > 0 ?
+              partaiList.map((p) => (
                 <TableRow key={p.id} className="">
                   <TableCell>
                     <img
-                      src={p.logo}
+                      src={p.imageUrl}
                       alt={p.nama}
                       className="w-10 h-10 object-cover rounded-md border "
                     />
@@ -56,7 +65,19 @@ const page = () => {
                     </Button>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))
+              :
+              <TableRow >
+                  <TableCell>
+                    <span>---</span>
+                  </TableCell>
+                  <TableCell className="font-medium"><span>---</span></TableCell>
+                  <TableCell className="text-right space-x-2">
+                    <span>---</span>
+                    <span>---</span>
+                  </TableCell>
+                </TableRow>
+              }
             </TableBody>
           </Table>
         </div>

@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export default function ImagePickerPartai({onChange, urlImagePreview, preview, setPreview}) {
+export default function ImagePickerPartai({onChange, urlImagePreview, preview, setPreview, isPending}) {
 
   
   const inputRef = useRef(null)
@@ -50,8 +51,14 @@ export default function ImagePickerPartai({onChange, urlImagePreview, preview, s
         ref={inputRef}
         onChange={handleChange}
         className="hidden"
+        disabled={isPending}
+        
       />
-      <Button variant="secondary" onClick={handleClick} className={"hover:cursor-pointer"}>
+      <Button variant="secondary" onClick={handleClick} disabled={isPending}
+        className={cn(
+          "hover:cursor-pointer",
+          isPending && "opacity-60 !cursor-not-allowed hover:!cursor-not-allowed"
+        )}>
         Pilih Gambar
       </Button>
     </div>

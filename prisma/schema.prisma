@@ -76,8 +76,8 @@ model Partai {
 
   anggotaDewan AnggotaDewan[]
 
-  fraksiId  String
-  fraksi    Fraksi   @relation(fields: [fraksiId], references: [id])
+  fraksiId  String?
+  fraksi    Fraksi?   @relation(fields: [fraksiId], references: [id])
 }
 
 model Fraksi {
