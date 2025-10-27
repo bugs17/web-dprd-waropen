@@ -1,6 +1,7 @@
 import ButtonOpenDialogAddPartai from '@/components/custom/client-component/button-open-dialog-add-partai'
 import DialogAddPartai from '@/components/custom/client-component/dialog-add-partai'
 import DialogDeletePartai from '@/components/custom/client-component/dialog-delete-partai'
+import DialogEditPartai from '@/components/custom/client-component/dialog-edit-partai'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { prisma } from '@/lib/db'
@@ -51,10 +52,7 @@ const page = async () => {
                   </TableCell>
                   <TableCell className="font-medium">{p.nama}</TableCell>
                   <TableCell className="text-right space-x-2">
-                    <Button className={"cursor-pointer hover:!bg-amber-500"} variant="outline" size="sm">
-                      <span>Edit</span>
-                      <Pencil size={10} />
-                    </Button>
+                    <DialogEditPartai idPartaiState={p.id} namaPartaiState={p.nama} urlPreviewState={`/api/partai/image/${p.imageUrl}`} />
                     <DialogDeletePartai key={p.id} idPartai={p.id} namaPartai={p.nama} />
                   </TableCell>
                 </TableRow>

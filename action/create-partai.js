@@ -2,7 +2,6 @@
 import { revalidatePath } from "next/cache";
 import { writeFile } from "fs/promises";
 import path from "path";
-import { createSlug } from "@/lib/toSlug";
 import { prisma } from "@/lib/db";
 
 export const createPartai = async (namaPartai, image) => {

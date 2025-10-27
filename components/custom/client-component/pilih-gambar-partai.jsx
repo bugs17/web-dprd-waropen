@@ -10,11 +10,6 @@ export default function ImagePickerPartai({onChange, urlImagePreview, preview, s
   
   const inputRef = useRef(null)
 
-  // useEffect(() => {
-  //   if (urlImagePreview) {
-  //     setPreview(`/api/berita/image/${urlImagePreview}`)
-  //   }
-  // }, [urlImagePreview]) // hanya jalan saat prop urlImagePreview berubah
 
   
   
