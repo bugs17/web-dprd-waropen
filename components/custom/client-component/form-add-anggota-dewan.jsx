@@ -6,8 +6,66 @@ import { Calendar23 } from "./date-picker-add-anggota"
 import { useState } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-const FormAddAnggotaDewan = () => {
+
+function PartaiDropdown({ options = [], onSelect, placeholder = "Pilih partai" }) {
+  const [selected, setSelected] = useState(null);
+
+  const handleSelect = (partai) => {
+    setSelected(partai);
+    if (onSelect) onSelect(partai);
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="w-full px-3 py-2 border rounded-md bg-white text-left flex items-center justify-between">
+          {selected ? (
+            <div className="flex items-center gap-2">
+              <img
+                src={`/api/partai/image/${selected.imageUrl}`}
+                alt={selected.nama}
+                className="w-6 h-6 object-cover rounded-full"
+              />
+              <span>{selected.nama}</span>
+            </div>
+          ) : (
+            <span className="text-gray-500">{placeholder}</span>
+          )}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-4 h-4 text-gray-500 ml-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent className="w-[240px]">
+        {options.map((partai) => (
+          <DropdownMenuItem
+            key={partai.id}
+            onSelect={() => handleSelect(partai)}
+            className="flex items-center gap-3 px-3 py-2 hover:bg-accent/50 cursor-pointer"
+          >
+            <img
+              src={`/api/partai/image/${partai.imageUrl}`}
+              alt={partai.nama}
+              className="w-6 h-6 object-cover rounded-full"
+            />
+            <span>{partai.nama}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+const FormAddAnggotaDewan = ({partaiList}) => {
     const [date, setDate] = useState(undefined)
 
     const [jobs, setJobs] = useState([
@@ -33,6 +91,10 @@ const FormAddAnggotaDewan = () => {
     const handleSubmit = () => {
         console.log("Riwayat kerja:", jobs)
     }
+
+    const handleSelect = (partai) => {
+    console.log("Partai terpilih:", partai);
+  };
 
     return (
         <div className="flex flex-col gap-6 mt-8">
@@ -70,31 +132,85 @@ const FormAddAnggotaDewan = () => {
                     <Label htmlFor="sd">SD</Label>
                     <Input id="sd" type="text" placeholder="Sekolah Dasar" />
                 </div>
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="smp">SMP</Label>
-                    <Input id="smp" type="text" placeholder="Sekolah menengah pertama" />
+                <div className="flex flex-col gap-3 w-40">
+                    <Label htmlFor="smp">Tahun Lulus</Label>
+                    <Input
+                        type="number"
+                        placeholder="2020"
+                        />
                 </div>
             </div>
+            
             <div className="flex gap-5">
                 <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="sma">SMA/SMK Sederajat</Label>
-                    <Input id="sma" type="text" placeholder="Sekolah Menengah Atas Sederajat" />
+                    <Label htmlFor="SMP">SMP Sederajat</Label>
+                    <Input id="SMP" type="text" placeholder="Sekolah Dasar" />
                 </div>
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="s1">Strata-1</Label>
-                    <Input id="s1" type="text" placeholder="Strata 1" />
+                <div className="flex flex-col gap-3 w-40">
+                    <Label htmlFor="smp">Tahun Lulus</Label>
+                    <Input
+                        type="number"
+                        placeholder="2020"
+                        />
                 </div>
             </div>
+
             <div className="flex gap-5">
                 <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="s2">Strata-2</Label>
-                    <Input id="s2" type="text" placeholder="Strata-2" />
+                    <Label htmlFor="SMA">SMA/SMK Sederajat</Label>
+                    <Input id="SMA" type="text" placeholder="Sekolah Dasar" />
                 </div>
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="s3">Strata-3</Label>
-                    <Input id="s3" type="text" placeholder="Strata-3" />
+                <div className="flex flex-col gap-3 w-40">
+                    <Label htmlFor="smp">Tahun Lulus</Label>
+                    <Input
+                        type="number"
+                        placeholder="2020"
+                        />
                 </div>
             </div>
+
+            <div className="flex gap-5">
+                <div className="flex flex-col gap-3 w-full">
+                    <Label htmlFor="Strata-1">Strata-1</Label>
+                    <Input id="Strata-1" type="text" placeholder="Sekolah Dasar" />
+                </div>
+                <div className="flex flex-col gap-3 w-40">
+                    <Label htmlFor="smp">Tahun Lulus</Label>
+                    <Input
+                        type="number"
+                        placeholder="2020"
+                        />
+                </div>
+            </div>
+
+            <div className="flex gap-5">
+                <div className="flex flex-col gap-3 w-full">
+                    <Label htmlFor="Strata-2">Strata-2</Label>
+                    <Input id="Strata-2" type="text" placeholder="Sekolah Dasar" />
+                </div>
+                <div className="flex flex-col gap-3 w-40">
+                    <Label htmlFor="smp">Tahun Lulus</Label>
+                    <Input
+                        type="number"
+                        placeholder="2020"
+                        />
+                </div>
+            </div>
+
+            <div className="flex gap-5">
+                <div className="flex flex-col gap-3 w-full">
+                    <Label htmlFor="Strata-3">Strata-3</Label>
+                    <Input id="Strata-3" type="text" placeholder="Sekolah Dasar" />
+                </div>
+                <div className="flex flex-col gap-3 w-40">
+                    <Label htmlFor="smp">Tahun Lulus</Label>
+                    <Input
+                        type="number"
+                        placeholder="2020"
+                        />
+                </div>
+            </div>
+
 
             <span className="text-slate-500 mt-3">Riwayat Pekerjaan</span>
             <Separator className={""} />
@@ -141,7 +257,13 @@ const FormAddAnggotaDewan = () => {
                 <Button className={""} type="button" onClick={handleAdd}>
                     Tambah Riwayat
                 </Button>
+            </div>
 
+            <span className="text-slate-500 mt-3">Partai</span>
+            <Separator className={""} />
+
+            <div className="w-full flex">
+                <PartaiDropdown options={partaiList} onSelect={handleSelect} />
             </div>
 
         </div>

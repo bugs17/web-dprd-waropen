@@ -1,9 +1,13 @@
 import FormAddAnggotaDewan from "@/components/custom/client-component/form-add-anggota-dewan"
+import { prisma } from "@/lib/db"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 
-const page = () => {
+const page = async () => {
+
+  const partais = await prisma.partai.findMany()
+
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
         <div className='flex flex-row justify-between items-center'>
@@ -12,7 +16,7 @@ const page = () => {
             <span>Kembali</span>
             </Link>
         </div>
-        <FormAddAnggotaDewan />
+        <FormAddAnggotaDewan partaiList={partais} />
     </div>
   )
 }
