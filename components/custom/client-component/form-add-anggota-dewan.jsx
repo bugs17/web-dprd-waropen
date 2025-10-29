@@ -20,7 +20,7 @@ function PartaiDropdown({ options = [], onSelect, placeholder = "Pilih partai" }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="w-full px-3 py-2 border rounded-md bg-white text-left flex items-center justify-between">
+        <button className="w-full text-slate-500 bg-[#222222] px-3 py-2 border rounded-md text-left flex items-center justify-between">
           {selected ? (
             <div className="flex items-center gap-2">
               <img
@@ -259,11 +259,25 @@ const FormAddAnggotaDewan = ({partaiList}) => {
                 </Button>
             </div>
 
-            <span className="text-slate-500 mt-3">Partai</span>
+            <span className="text-slate-500 mt-3">Partai & jabatan</span>
             <Separator className={""} />
 
-            <div className="w-full flex">
-                <PartaiDropdown options={partaiList} onSelect={handleSelect} />
+            <div className="w-full flex flex-row gap-5">
+                <div className="flex flex-col gap-3 w-full">
+                    <Label>Partai</Label>
+                    <PartaiDropdown options={partaiList} onSelect={handleSelect} />
+                </div>
+                <div className="flex flex-col gap-3 w-full">
+                    <Label>Jabatan</Label>
+                    <PartaiDropdown options={partaiList} onSelect={handleSelect} />
+                </div>
+            </div>
+            <div className="w-[49%] flex flex-row gap-5">
+                <div className="flex flex-col gap-3 w-full">
+                    <Label>Komisi</Label>
+                    <PartaiDropdown options={partaiList} onSelect={handleSelect} />
+                </div>
+                
             </div>
 
         </div>
