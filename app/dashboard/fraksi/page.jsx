@@ -63,14 +63,14 @@ const FraksiList = async () => {
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                
-                                <TableCell className="text-center">
+                                <TableRow>
+                                    <TableCell className="text-center">
                                     <span>---</span>
-                                </TableCell>
-
-                                <TableCell className="text-left">
+                                    </TableCell>
+                                    <TableCell className="text-left">
                                     <span>---</span>
-                                </TableCell>
+                                    </TableCell>
+                                </TableRow>
                             </TableBody>
                         </Table>
 

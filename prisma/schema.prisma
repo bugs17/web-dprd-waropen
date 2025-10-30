@@ -30,10 +30,13 @@ model AnggotaDewan {
   peranKomisi        String    @default("ANGGOTA") // bisa: KETUA, WAKIL, ANGGOTA, BUKAN ANGGOTA
   peranBadan        String    @default("ANGGOTA") // bisa: KETUA, WAKIL, ANGGOTA, BUKAN ANGGOTA
 
+  jabatanFraksi String @default("-")
+
   imageUrl String
 
   partaiId           Int                // Foreign key
   partai             Partai             @relation(fields: [partaiId], references: [id])
+
 
   komisiId           Int                // Foreign key
   komisi             Komisi             @relation(fields: [komisiId], references: [id])

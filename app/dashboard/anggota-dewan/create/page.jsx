@@ -7,6 +7,7 @@ import Link from "next/link"
 const page = async () => {
 
   const partais = await prisma.partai.findMany()
+  const badans = await prisma.badan.findMany()
 
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
@@ -16,7 +17,7 @@ const page = async () => {
             <span>Kembali</span>
             </Link>
         </div>
-        <FormAddAnggotaDewan partaiList={partais} />
+        <FormAddAnggotaDewan partaiList={partais} badanList={badans} />
     </div>
   )
 }
