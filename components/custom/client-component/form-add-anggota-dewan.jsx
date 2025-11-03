@@ -3,207 +3,74 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Calendar23 } from "./date-picker-add-anggota"
-import { useRef, useState } from "react"
+import { useRef, useState, useTransition } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Save, User } from "lucide-react"
+import { Save } from "lucide-react"
+import ImagePickerAnggotaDewan from "./pilih-gambar-anggota-dewan"
+import PartaiDropdown from "./dropdown-list-partai"
+import JabatanAnggotaDewanDropdown from "./dropdown-list-jabatan-anggota-dewan"
+import BadanDropdown from "./dropdown-badan"
 
 
-function PartaiDropdown({ options = [], onSelect, placeholder }) {
-  const [selected, setSelected] = useState(null);
+// constant list jabatan
+const listJabatanAnggotaDewan = [
+    { id: 1, nama: "KETUA DPRK" },
+    { id: 2, nama: "WAKIL KETUA I" },
+    { id: 3, nama: "WAKIL KETUA II" },
+    { id: 4, nama: "WAKIL KETUA III" },
+    { id: 5, nama: "KETUA KOMISI A" },
+    { id: 6, nama: "WAKIL KETUA KOMISI A" },
+    { id: 7, nama: "ANGGOTA KOMISI A" },
+    { id: 8, nama: "KETUA KOMISI B" },
+    { id: 9, nama: "WAKIL KETUA KOMISI B" },
+    { id: 10, nama: "ANGGOTA KOMISI B" },
+    { id: 11, nama: "KETUA KOMISI C" },
+    { id: 12, nama: "WAKIL KETUA KOMISI C" },
+    { id: 13, nama: "ANGGOTA KOMISI C" },
+];
 
-  const handleSelect = (partai) => {
-    setSelected(partai);
-    if (onSelect) onSelect(partai);
-  };
+// constant list jabatan in Badan
+const listJabatanBadan = [
+    { id: 1, nama: "KETUA" },
+    { id: 2, nama: "WAKIL" },
+    { id: 3, nama: "ANGGOTA" },
+    
+];
 
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button className="w-full text-slate-500 bg-[#222222] px-3 py-1 border rounded-md text-left flex items-center justify-between">
-          {selected ? (
-            <div className="flex items-center gap-2">
-              <img
-                src={`/api/partai/image/${selected.imageUrl}`}
-                alt={selected.nama}
-                className="w-6 h-6 object-cover rounded-full"
-              />
-              <span>{selected.nama}</span>
-            </div>
-          ) : (
-            <span className="text-gray-500">{placeholder}</span>
-          )}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 text-gray-500 ml-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </DropdownMenuTrigger>
+// constant list jabatan in Fraksi
+const listJabatanFraksi = [
+    { id: 1, nama: "KETUA" },
+    { id: 2, nama: "WAKIL" },
+    { id: 3, nama: "ANGGOTA" },
+    
+];
 
-      <DropdownMenuContent className="w-[240px]">
-        {options.map((partai) => (
-          <DropdownMenuItem
-            key={partai.id}
-            onSelect={() => handleSelect(partai)}
-            className="flex items-center gap-3 px-3 py-2 hover:bg-accent/50 cursor-pointer"
-          >
-            <img
-              src={`/api/partai/image/${partai.imageUrl}`}
-              alt={partai.nama}
-              className="w-6 h-6 object-cover rounded-full"
-            />
-            <span>{partai.nama}</span>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
-
-function JabatanAnggotaDewanDropdown({ options = [], onSelect, placeholder }) {
-  const [selected, setSelected] = useState(null);
-
-  const handleSelect = (partai) => {
-    setSelected(partai);
-    if (onSelect) onSelect(partai);
-  };
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button className="w-full text-slate-500 bg-[#222222] px-3 py-1 border rounded-md text-left flex items-center justify-between">
-          {selected ? (
-            <div className="flex items-center gap-2">
-              
-              <span>{selected.nama}</span>
-            </div>
-          ) : (
-            <span className="text-gray-500">{placeholder}</span>
-          )}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 text-gray-500 ml-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </DropdownMenuTrigger>
-
-      <DropdownMenuContent className="w-[240px]">
-        {options.map((jabatan) => (
-          <DropdownMenuItem
-            key={jabatan.id}
-            onSelect={() => handleSelect(jabatan)}
-            className="flex items-center gap-3 px-3 py-2 hover:bg-accent/50 cursor-pointer"
-          >
-            <span>{jabatan.nama}</span>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
-
-function BadanDropdown({ options = [], onSelect, placeholder }) {
-  const [selected, setSelected] = useState(null);
-
-  const handleSelect = (partai) => {
-    setSelected(partai);
-    if (onSelect) onSelect(partai);
-  };
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button className="w-full text-slate-500 bg-[#222222] px-3 py-1 border rounded-md text-left flex items-center justify-between">
-          {selected ? (
-            <div className="flex items-center gap-2">
-              
-              <span>{selected.nama}</span>
-            </div>
-          ) : (
-            <span className="text-gray-500">{placeholder}</span>
-          )}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 text-gray-500 ml-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </DropdownMenuTrigger>
-
-      <DropdownMenuContent className="w-[240px]">
-        {options.map((bdn) => (
-          <DropdownMenuItem
-            key={bdn.id}
-            onSelect={() => handleSelect(bdn)}
-            className="flex items-center gap-3 px-3 py-2 hover:bg-accent/50 cursor-pointer"
-          >
-            <span>{bdn.nama}</span>
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
 
 const FormAddAnggotaDewan = ({partaiList, badanList}) => {
 
-    const listJabatanAnggotaDewan = [
-            { id: 1, nama: "KETUA DPRK" },
-            { id: 2, nama: "WAKIL KETUA I" },
-            { id: 3, nama: "WAKIL KETUA II" },
-            { id: 4, nama: "WAKIL KETUA III" },
-            { id: 5, nama: "KETUA KOMISI A" },
-            { id: 6, nama: "WAKIL KETUA KOMISI A" },
-            { id: 7, nama: "ANGGOTA KOMISI A" },
-            { id: 8, nama: "KETUA KOMISI B" },
-            { id: 9, nama: "WAKIL KETUA KOMISI B" },
-            { id: 10, nama: "ANGGOTA KOMISI B" },
-            { id: 11, nama: "KETUA KOMISI C" },
-            { id: 12, nama: "WAKIL KETUA KOMISI C" },
-            { id: 13, nama: "ANGGOTA KOMISI C" },
-        ];
-    
-    const listJabatanBadan = [
-        { id: 1, nama: "KETUA" },
-        { id: 2, nama: "WAKIL" },
-        { id: 3, nama: "ANGGOTA" },
-        
-    ];
 
-    const listJabatanFraksi = [
-        { id: 1, nama: "KETUA" },
-        { id: 2, nama: "WAKIL" },
-        { id: 3, nama: "ANGGOTA" },
-        
-    ];
-
+    // state
+    const [nama, setNama] = useState("")
+    const [tmptLahir, setTmptLahir] = useState("")
     const [date, setDate] = useState(undefined)
-
+    const [imgFile, setImgFile] = useState(null)
+    const [preview, setPreview] = useState(null)
+    const [isPending, startTransition] = useTransition()
+    const [jobs, setJobs] = useState([
+        { id: Date.now(), kerja: "", tahun: "" },
+    ])
+    
+    // ref
     const counterRef = useRef(0)
+
+    // function generate ID for input kerja
     const generateId = () => {
         counterRef.current += 1
         return counterRef.current
     }
 
-    const [jobs, setJobs] = useState([
-        { id: Date.now(), kerja: "", tahun: "" },
-    ])
-
+    // function handle change on job input
     const handleChange = (id, field, value) => {
         setJobs((prev) =>
         prev.map((job) =>
@@ -212,22 +79,27 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
         )
     }
 
+    // handle add new job input
     const handleAdd = () => {
         setJobs((prev) => [...prev, { id: generateId(), kerja: "", tahun: "" }])
     }
 
+    // handle delete input job
     const handleRemove = (id) => {
         setJobs((prev) => prev.filter((job) => job.id !== id))
     }
 
+    // handle submit all input here
     const handleSubmit = () => {
         console.log("Riwayat kerja:", jobs)
     }
 
+    // handle on select paratai from dropdown
     const handleSelectPartai = (partai) => {
         console.log("Partai terpilih:", partai);
     };
     
+    // handle select jabatan anggota dewan from dropdown menu
     const handleSelectJabatanAnggotaDewan = (jabatan) => {
         console.log("jabatan terpilih:", jabatan);
     };
@@ -241,11 +113,11 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
             <div className="flex gap-5">
                 <div className="flex flex-col gap-3 w-full">
                     <Label htmlFor="tanggal-lahir">Nama</Label>
-                    <Input id="nama" type="text" placeholder="Nama anggota dewan" />
+                    <Input onChange={(e) => setNama(e.target.value)} id="nama" type="text" placeholder="Nama anggota dewan" />
                 </div>
                 <div className="flex flex-col gap-3 w-full">
                     <Label htmlFor="tempat-lahir">Tempat Lahir</Label>
-                    <Input id="tempat-lahir" type="text" placeholder="Tempat Lahir" />
+                    <Input onChange={(e) => setTmptLahir(e.target.value)} id="tempat-lahir" type="text" placeholder="Tempat Lahir" />
                 </div>
             </div>
 
@@ -254,10 +126,6 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
                     <Label htmlFor="tgl-lahir">Tanggal Lahir</Label>
                     <Calendar23 date={date} setDate={setDate} />
                 </div>
-                {/* <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="text" placeholder="Email" />
-                </div> */}
             </div>
 
             <span className="text-slate-500 mt-3">Riwayat Pendidikan</span>
@@ -431,6 +299,13 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
                     <Label>Jabatan Dalam Badan DPRK</Label>
                     <BadanDropdown options={listJabatanBadan} onSelect={handleSelectPartai} placeholder={"Pilih badan"} />
                 </div>
+            </div>
+
+            <span className="text-slate-500 mt-3">Foto Anggota Dewan</span>
+            <Separator className={""} />
+
+            <div className='flex justify-center w-full mt-3'>
+              <ImagePickerAnggotaDewan onChange={setImgFile} preview={preview} setPreview={setPreview} isPending={isPending}  />
             </div>
 
 
