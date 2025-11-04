@@ -53,6 +53,21 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
     // state
     const [nama, setNama] = useState("")
     const [tmptLahir, setTmptLahir] = useState("")
+
+    const [sd, setSd] = useState("")
+    const [tahunSd, setTahunSd] = useState(null)
+    const [smp, setSmp] = useState("")
+    const [tahunSmp, setTahunSmp] = useState(null)
+    const [sma, setSma] = useState("")
+    const [tahunSma, setTahunSma] = useState(null)
+    const [s1, setS1] = useState("")
+    const [tahunS1, setTahunS1] = useState(null)
+    const [s2, setS2] = useState("")
+    const [tahunS2, setTahunS2] = useState(null)
+    const [s3, setS3] = useState("")
+    const [tahunS3, setTahunS3] = useState(null)
+
+
     const [date, setDate] = useState(undefined)
     const [imgFile, setImgFile] = useState(null)
     const [preview, setPreview] = useState(null)
@@ -61,7 +76,7 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
         { id: Date.now(), kerja: "", tahun: "" },
     ])
     
-    // ref
+    // ref untuk track id input (ini tidak di gunakan pada element jsx)
     const counterRef = useRef(0)
 
     // function generate ID for input kerja
@@ -91,7 +106,27 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
 
     // handle submit all input here
     const handleSubmit = () => {
-        console.log("Riwayat kerja:", jobs)
+        // lakukan validasi form input sisini sebelum kirim ke backend
+
+        const data = {
+          "nama": nama,
+          "tempat-lahir": tmptLahir,
+          "tanggal-lahir": date,
+          "SD": sd,
+          "tahun-SD": tahunSd,
+          "SMP": smp,
+          "tahun-SMP": tahunSmp,
+          "SMA": sma,
+          "tahun-SMA": tahunSma,
+          "S1": s1,
+          "tahun-S1": tahunS1,
+          "S2": s2,
+          "tahun-S2": tahunS2,
+          "S3": s3,
+          "tahun-S3": tahunS3,
+        }
+
+        console.log(data)
     }
 
     // handle on select paratai from dropdown
@@ -312,7 +347,7 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
             <Separator className={""} />
 
             <div className="w-full flex flex-col items-center">
-                <Button className={"cursor-pointer text-black bg-amber-400 hover:bg-amber-500"}>
+                <Button onClick={handleSubmit} className={"cursor-pointer text-black bg-amber-400 hover:bg-amber-500"}>
                     <Save className="" />
                     <span>Simpan</span>
                 </Button>
