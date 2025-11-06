@@ -3,7 +3,7 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useState } from "react";
 
-export default function JabatanAnggotaDewanDropdown({ options = [], onSelect, placeholder }) {
+export default function JabatanAnggotaDewanDropdown({ options = [], onSelect, placeholder, disabled }) {
   const [selected, setSelected] = useState(null);
 
   const handleSelect = (partai) => {
@@ -14,7 +14,7 @@ export default function JabatanAnggotaDewanDropdown({ options = [], onSelect, pl
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="w-full text-slate-500 bg-[#222222] px-3 py-1 border rounded-md text-left flex items-center justify-between">
+        <button disabled={disabled} className="w-full text-slate-500 bg-[#222222] px-3 py-1 border rounded-md text-left flex items-center justify-between">
           {selected ? (
             <div className="flex items-center gap-2">
               

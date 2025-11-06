@@ -22,7 +22,7 @@ model AnggotaDewan {
   nama String
   tempatLahir String @default("-")
   tanggalLahir DateTime
-  email String @unique
+  email String?
   facebookUrl String @default("-")
   instagramUrl String @default("-")
   youtubeUrl String @default("-")
@@ -38,8 +38,8 @@ model AnggotaDewan {
   partai             Partai             @relation(fields: [partaiId], references: [id])
 
 
-  komisiId           Int                // Foreign key
-  komisi             Komisi             @relation(fields: [komisiId], references: [id])
+  komisiId           Int?                // Foreign key
+  komisi             Komisi?             @relation(fields: [komisiId], references: [id])
   
   badanId           Int                // Foreign key
   badan             Badan             @relation(fields: [badanId], references: [id])
@@ -56,7 +56,7 @@ model RiwayatPendidikan {
   tahunLulus String @default("-")
 
   anggotaDewanId Int
-  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id])
+  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id], onDelete: Cascade)
 }
 
 model RiwayatPekerjaan {
@@ -67,7 +67,7 @@ model RiwayatPekerjaan {
   tahunMenjabat String @default("-")
 
   anggotaDewanId Int
-  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id])
+  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id], onDelete: Cascade)
 }
 
 model Partai {

@@ -38,7 +38,7 @@ export default function ImagePickerAnggotaDewan({onChange, urlImagePreview, prev
           className="rounded-md object-cover"
         />
       ) : (
-        <div className="text-gray-500 text-sm">Pilih logo partai</div>
+        <div className="text-gray-500 text-sm">Pilih Foto Anggota Dewan <span className="text-red-500"> *</span></div>
       )}
       <input
         type="file"

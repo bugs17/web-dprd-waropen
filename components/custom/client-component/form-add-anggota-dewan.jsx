@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Calendar23 } from "./date-picker-add-anggota"
-import { useRef, useState, useTransition } from "react"
+import { useEffect, useId, useRef, useState, useTransition } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { Save } from "lucide-react"
@@ -11,6 +11,11 @@ import ImagePickerAnggotaDewan from "./pilih-gambar-anggota-dewan"
 import PartaiDropdown from "./dropdown-list-partai"
 import JabatanAnggotaDewanDropdown from "./dropdown-list-jabatan-anggota-dewan"
 import BadanDropdown from "./dropdown-badan"
+import toast from "react-hot-toast"
+import { addAnggotaDewan } from "@/action/add-anggota-dewan"
+import { useRouter } from "next/navigation"
+import { getPartaiList } from "@/action/get-partai-list"
+import { getBadanList } from "@/action/get-badan-list"
 
 
 // constant list jabatan
@@ -40,50 +45,72 @@ const listJabatanBadan = [
 
 // constant list jabatan in Fraksi
 const listJabatanFraksi = [
-    { id: 1, nama: "KETUA" },
-    { id: 2, nama: "WAKIL" },
-    { id: 3, nama: "ANGGOTA" },
+    { id: 1, nama: "KETUA FRAKSI" },
+    { id: 2, nama: "WAKIL KETUA FRAKSI" },
+    { id: 3, nama: "ANGGOTA FRAKSI" },
     
 ];
 
 
-const FormAddAnggotaDewan = ({partaiList, badanList}) => {
+const FormAddAnggotaDewan = () => {
+
 
 
     // state
+    const [partaiList, setPartaiList] = useState([])
+    const [badanList, setBadanList] = useState([])
+
+
     const [nama, setNama] = useState("")
     const [tmptLahir, setTmptLahir] = useState("")
+    
+    
+    const [partaiID, setPartaiID] = useState(null)
+    const [jabatanAnggota, setJabatanAnggota] = useState("")
+    const [jabatanFraksi, setJabatanFraksi] = useState("")
+    const [badanID, setBadanID] = useState(null)
+    const [jabatanBadan, setJabatanBadan] = useState("")
 
-    const [sd, setSd] = useState("")
-    const [tahunSd, setTahunSd] = useState(null)
-    const [smp, setSmp] = useState("")
-    const [tahunSmp, setTahunSmp] = useState(null)
-    const [sma, setSma] = useState("")
-    const [tahunSma, setTahunSma] = useState(null)
-    const [s1, setS1] = useState("")
-    const [tahunS1, setTahunS1] = useState(null)
-    const [s2, setS2] = useState("")
-    const [tahunS2, setTahunS2] = useState(null)
-    const [s3, setS3] = useState("")
-    const [tahunS3, setTahunS3] = useState(null)
 
 
     const [date, setDate] = useState(undefined)
     const [imgFile, setImgFile] = useState(null)
     const [preview, setPreview] = useState(null)
     const [isPending, startTransition] = useTransition()
+    const uid = useId()
     const [jobs, setJobs] = useState([
-        { id: Date.now(), kerja: "", tahun: "" },
+        { id: `${uid}-1`, kerja: "", tahun: "" },
+    ])
+    const [pendidikans, setPendidikans] = useState([
+        { id: `${uid}-2`, nama: "", tahun: "" },
     ])
     
     // ref untuk track id input (ini tidak di gunakan pada element jsx)
     const counterRef = useRef(0)
+    const router = useRouter()
+
+
+    useEffect(() => {
+        
+        const getDataPartai = async () => {
+            const partai = await getPartaiList()
+            setPartaiList(partai)
+        }
+        const getDataBadan = async () => {
+            const badan = await getBadanList()
+            setBadanList(badan)
+        }
+
+        getDataPartai()
+        getDataBadan()
+
+    }, [])
 
     // function generate ID for input kerja
     const generateId = () => {
         counterRef.current += 1
-        return counterRef.current
-    }
+    return `${uid}-${counterRef.current}`
+}
 
     // function handle change on job input
     const handleChange = (id, field, value) => {
@@ -93,173 +120,187 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
         )
         )
     }
+    
+    // function handle change on job input
+    const handleChangePendidikans = (id, field, value) => {
+        setPendidikans((prev) =>
+        prev.map((pendidikan) =>
+            pendidikan.id === id ? { ...pendidikan, [field]: value } : pendidikan
+        )
+        )
+    }
 
     // handle add new job input
     const handleAdd = () => {
         setJobs((prev) => [...prev, { id: generateId(), kerja: "", tahun: "" }])
     }
 
+    // handle add new pendidikan input
+    const handleAddPendidikan = () => {
+        setPendidikans((prev) => [...prev, { id: generateId(), nama: "", tahun: "" }])
+    }
+
     // handle delete input job
     const handleRemove = (id) => {
         setJobs((prev) => prev.filter((job) => job.id !== id))
     }
+    
+    // handle delete input pendidikan
+    const handleRemovePendidikan = (id) => {
+        setPendidikans((prev) => prev.filter((pendidikan) => pendidikan.id !== id))
+    }
+
+
+    // handle on select paratai from dropdown
+    const handleSelectPartai = (partai) => {
+        setPartaiID(partai.id)
+    };
+
+    // handle select jabatan anggota dewan from dropdown menu
+    const handleSelectJabatanAnggotaDewan = (jabatan) => {
+        setJabatanAnggota(jabatan.nama);
+    };
+    
+    // handle on select jabatan fraksi
+    const handleSelectJabatanFraksi = (jabatanFraksi) => {
+        setJabatanFraksi(jabatanFraksi.nama)
+    };
+    
+    // handle on select badan
+    const handleSelectBadan = (badan) => {
+        setBadanID(badan.id)
+    };
+    
+    // handle on select jabatan badan
+    const handleSelectJabatanBadan = (jabatanBadan) => {
+        setJabatanBadan(jabatanBadan.nama)
+    };
+
 
     // handle submit all input here
     const handleSubmit = () => {
         // lakukan validasi form input sisini sebelum kirim ke backend
-
-        const data = {
-          "nama": nama,
-          "tempat-lahir": tmptLahir,
-          "tanggal-lahir": date,
-          "SD": sd,
-          "tahun-SD": tahunSd,
-          "SMP": smp,
-          "tahun-SMP": tahunSmp,
-          "SMA": sma,
-          "tahun-SMA": tahunSma,
-          "S1": s1,
-          "tahun-S1": tahunS1,
-          "S2": s2,
-          "tahun-S2": tahunS2,
-          "S3": s3,
-          "tahun-S3": tahunS3,
+        if (imgFile === null || !nama || !tmptLahir || !date || !partaiID || !jabatanAnggota || !jabatanFraksi || !badanID || !jabatanBadan) {
+          toast.error(<span>Lengkapi semua form yang bertanda <span style={{ color: 'red' }}>*</span></span>)
+          return
         }
 
-        console.log(data)
-    }
+        
+        
 
-    // handle on select paratai from dropdown
-    const handleSelectPartai = (partai) => {
-        console.log("Partai terpilih:", partai);
-    };
+        startTransition(() => {
+            toast.promise(
+                addAnggotaDewan(nama, tmptLahir, new Date(date).toISOString(),pendidikans,jobs,partaiID,jabatanAnggota,jabatanFraksi,badanID,jabatanBadan,imgFile),
+                {
+                    loading: 'Saving...',
+                    success: (result) => {
+                        if (result === true) {
+                            toast.success('Anggota Dewan berhasil disimpan!')
+                            setTimeout(() => router.push('/dashboard/anggota-dewan'), 800)
+                            return
+                        }
+                        throw new Error('Gagal menyimpan data');
+                    },
+                        error: (err) => <b>{err.message || 'Terjadi kesalahan'}</b>,
+                }
+            );
+        })
+
+
+    }
     
-    // handle select jabatan anggota dewan from dropdown menu
-    const handleSelectJabatanAnggotaDewan = (jabatan) => {
-        console.log("jabatan terpilih:", jabatan);
-    };
+    
 
     return (
         <div className="flex flex-col gap-6 mt-8">
 
             <span className="text-slate-500">Data diri</span>
             <Separator className={""} />
-
+            
+            {/* nama & tempat lahir */}
             <div className="flex gap-5">
                 <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="tanggal-lahir">Nama</Label>
-                    <Input onChange={(e) => setNama(e.target.value)} id="nama" type="text" placeholder="Nama anggota dewan" />
+                    <Label htmlFor="tanggal-lahir">Nama <span className="text-red-500"> *</span></Label>
+                    <Input disabled={isPending} onChange={(e) => setNama(e.target.value)} id="nama" type="text" placeholder="Nama anggota dewan" />
                 </div>
                 <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="tempat-lahir">Tempat Lahir</Label>
-                    <Input onChange={(e) => setTmptLahir(e.target.value)} id="tempat-lahir" type="text" placeholder="Tempat Lahir" />
+                    <Label htmlFor="tempat-lahir">Tempat Lahir <span className="text-red-500"> *</span></Label>
+                    <Input disabled={isPending} onChange={(e) => setTmptLahir(e.target.value)} id="tempat-lahir" type="text" placeholder="Tempat Lahir" />
                 </div>
             </div>
 
+            {/* tanggal-lahir */}
             <div className="flex pr-[20px]">
                 <div className="flex flex-col gap-3 w-[50%]">
-                    <Label htmlFor="tgl-lahir">Tanggal Lahir</Label>
-                    <Calendar23 date={date} setDate={setDate} />
+                    <Label htmlFor="tgl-lahir">Tanggal Lahir <span className="text-red-500"> *</span></Label>
+                    <Calendar23 disabled={isPending} date={date} setDate={setDate} />
                 </div>
             </div>
 
             <span className="text-slate-500 mt-3">Riwayat Pendidikan</span>
             <Separator className={""} />
 
-            <div className="flex gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="sd">SD</Label>
-                    <Input id="sd" type="text" placeholder="Sekolah Dasar" />
-                </div>
-                <div className="flex flex-col gap-3 w-40">
-                    <Label htmlFor="smp">Tahun Lulus</Label>
-                    <Input
-                        type="number"
-                        placeholder="2020"
+            {/* riwayat pendidikan */}
+            <div className="flex flex-col gap-5">
+                {pendidikans.map((pendidikan, index) => (
+                    <div key={pendidikan.id} className="flex gap-5 items-end">
+                    <div className="flex flex-col gap-3 w-full">
+                        <Label htmlFor={`kerja-${pendidikan.id}`}>Pendidikan {index + 1}</Label>
+                        <Input
+                        disabled={isPending}
+                        id={`kerja-${pendidikan.id}`}
+                        type="text"
+                        placeholder="Pendidikan / Gelar"
+                        value={pendidikan.kerja}
+                        onChange={(e) => handleChangePendidikans(pendidikan.id, "nama", e.target.value)}
                         />
-                </div>
-            </div>
-            
-            <div className="flex gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="SMP">SMP Sederajat</Label>
-                    <Input id="SMP" type="text" placeholder="Sekolah Dasar" />
-                </div>
-                <div className="flex flex-col gap-3 w-40">
-                    <Label htmlFor="smp">Tahun Lulus</Label>
-                    <Input
-                        type="number"
-                        placeholder="2020"
+                    </div>
+
+                    <div className="flex flex-col gap-3 w-40">
+                        <Label htmlFor={`tahun-${pendidikan.id}`}>Tahun</Label>
+                        <Input
+                        disabled={isPending}
+                        id={`tahun-${pendidikan.id}`}
+                        type="text"
+                        placeholder="2001"
+                        value={pendidikan.tahun}
+                        onChange={(e) => handleChangePendidikans(pendidikan.id, "tahun", e.target.value)}
                         />
-                </div>
+                    </div>
+
+                    {pendidikans.length > 1 && (
+                        <Button
+                        disabled={isPending}
+                        type="button"
+                        variant="destructive"
+                        onClick={() => handleRemovePendidikan(pendidikan.id)}
+                        >
+                        Hapus
+                        </Button>
+                    )}
+                    </div>
+                ))}
             </div>
 
-            <div className="flex gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="SMA">SMA/SMK Sederajat</Label>
-                    <Input id="SMA" type="text" placeholder="Sekolah Dasar" />
-                </div>
-                <div className="flex flex-col gap-3 w-40">
-                    <Label htmlFor="smp">Tahun Lulus</Label>
-                    <Input
-                        type="number"
-                        placeholder="2020"
-                        />
-                </div>
-            </div>
-
-            <div className="flex gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="Strata-1">Strata-1</Label>
-                    <Input id="Strata-1" type="text" placeholder="Sekolah Dasar" />
-                </div>
-                <div className="flex flex-col gap-3 w-40">
-                    <Label htmlFor="smp">Tahun Lulus</Label>
-                    <Input
-                        type="number"
-                        placeholder="2020"
-                        />
-                </div>
-            </div>
-
-            <div className="flex gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="Strata-2">Strata-2</Label>
-                    <Input id="Strata-2" type="text" placeholder="Sekolah Dasar" />
-                </div>
-                <div className="flex flex-col gap-3 w-40">
-                    <Label htmlFor="smp">Tahun Lulus</Label>
-                    <Input
-                        type="number"
-                        placeholder="2020"
-                        />
-                </div>
-            </div>
-
-            <div className="flex gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label htmlFor="Strata-3">Strata-3</Label>
-                    <Input id="Strata-3" type="text" placeholder="Sekolah Dasar" />
-                </div>
-                <div className="flex flex-col gap-3 w-40">
-                    <Label htmlFor="smp">Tahun Lulus</Label>
-                    <Input
-                        type="number"
-                        placeholder="2020"
-                        />
-                </div>
+            {/* tambah riwayat pendidikan */}
+            <div className="w-full flex justify-end items-center">
+                <Button disabled={isPending} className={""} type="button" onClick={handleAddPendidikan}>
+                    Tambah Riwayat
+                </Button>
             </div>
 
 
             <span className="text-slate-500 mt-3">Riwayat Pekerjaan</span>
             <Separator className={""} />
 
+            {/* riwayat kerja */}
             <div className="flex flex-col gap-5">
                 {jobs.map((job, index) => (
                     <div key={job.id} className="flex gap-5 items-end">
                     <div className="flex flex-col gap-3 w-full">
                         <Label htmlFor={`kerja-${job.id}`}>Kerja {index + 1}</Label>
                         <Input
+                        disabled={isPending}
                         id={`kerja-${job.id}`}
                         type="text"
                         placeholder="Karir kerja"
@@ -271,9 +312,10 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
                     <div className="flex flex-col gap-3 w-40">
                         <Label htmlFor={`tahun-${job.id}`}>Tahun</Label>
                         <Input
+                        disabled={isPending}
                         id={`tahun-${job.id}`}
-                        type="number"
-                        placeholder="2020"
+                        type="text"
+                        placeholder="2001-2007"
                         value={job.tahun}
                         onChange={(e) => handleChange(job.id, "tahun", e.target.value)}
                         />
@@ -281,6 +323,7 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
 
                     {jobs.length > 1 && (
                         <Button
+                        disabled={isPending}
                         type="button"
                         variant="destructive"
                         onClick={() => handleRemove(job.id)}
@@ -291,24 +334,26 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
                     </div>
                 ))}
             </div>
-
+              
+            {/* tambah riwayat kerja */}
             <div className="w-full flex justify-end items-center">
-                <Button className={""} type="button" onClick={handleAdd}>
+                <Button disabled={isPending} className={""} type="button" onClick={handleAdd}>
                     Tambah Riwayat
                 </Button>
             </div>
 
             <span className="text-slate-500 mt-3">Partai & jabatan</span>
             <Separator className={""} />
-
+            
+            {/* partai & jabatan */}
             <div className="w-full flex flex-col gap-5">
                 <div className="flex flex-col gap-3 w-full">
-                    <Label>Partai</Label>
-                    <PartaiDropdown options={partaiList} onSelect={handleSelectPartai} placeholder={"Pilih partai"} />
+                    <Label>Partai <span className="text-red-500"> *</span></Label>
+                    <PartaiDropdown disabled={isPending} options={partaiList} onSelect={handleSelectPartai} placeholder={"Pilih partai"} />
                 </div>
                 <div className="flex flex-col gap-3 w-full">
-                    <Label>Jabatan Anggota Dewan</Label>
-                    <JabatanAnggotaDewanDropdown options={listJabatanAnggotaDewan} onSelect={handleSelectJabatanAnggotaDewan} placeholder={"pilih jabatan anggota dewan"} />
+                    <Label>Jabatan Anggota Dewan <span className="text-red-500"> *</span></Label>
+                    <JabatanAnggotaDewanDropdown disabled={isPending} options={listJabatanAnggotaDewan} onSelect={handleSelectJabatanAnggotaDewan} placeholder={"pilih jabatan anggota dewan"} />
                 </div>
             </div>
 
@@ -317,8 +362,8 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
 
             <div className="w-full flex flex-col gap-5">
                 <div className="flex flex-col gap-3 w-full">
-                    <Label>Jabatan Dalam Fraksi</Label>
-                    <BadanDropdown options={listJabatanFraksi} onSelect={handleSelectPartai} placeholder={"Pilih jabatan fraksi"} />
+                    <Label>Jabatan Dalam Fraksi <span className="text-red-500"> *</span></Label>
+                    <BadanDropdown disabled={isPending} options={listJabatanFraksi} onSelect={handleSelectJabatanFraksi} placeholder={"Pilih jabatan fraksi"} />
                 </div>
             </div>
             
@@ -327,12 +372,12 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
 
             <div className="w-full flex flex-col gap-5">
                 <div className="flex flex-col gap-3 w-full">
-                    <Label>Badan</Label>
-                    <BadanDropdown options={badanList} onSelect={handleSelectPartai} placeholder={"Pilih badan"} />
+                    <Label>Badan <span className="text-red-500"> *</span></Label>
+                    <BadanDropdown disabled={isPending} options={badanList} onSelect={handleSelectBadan} placeholder={"Pilih badan"} />
                 </div>
                 <div className="flex flex-col gap-3 w-full">
-                    <Label>Jabatan Dalam Badan DPRK</Label>
-                    <BadanDropdown options={listJabatanBadan} onSelect={handleSelectPartai} placeholder={"Pilih badan"} />
+                    <Label>Jabatan Dalam Badan DPRK <span className="text-red-500"> *</span></Label>
+                    <BadanDropdown disabled={isPending} options={listJabatanBadan} onSelect={handleSelectJabatanBadan} placeholder={"Pilih Jabatan"} />
                 </div>
             </div>
 
@@ -347,9 +392,9 @@ const FormAddAnggotaDewan = ({partaiList, badanList}) => {
             <Separator className={""} />
 
             <div className="w-full flex flex-col items-center">
-                <Button onClick={handleSubmit} className={"cursor-pointer text-black bg-amber-400 hover:bg-amber-500"}>
+                <Button disabled={isPending} onClick={handleSubmit} className={"cursor-pointer text-black bg-amber-400 hover:bg-amber-500"}>
                     <Save className="" />
-                    <span>Simpan</span>
+                    <span>{isPending ? 'Menyimpan...' : 'Simpan'}</span>
                 </Button>
             </div>
             

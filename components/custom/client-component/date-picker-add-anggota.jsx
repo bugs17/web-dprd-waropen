@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/popover"
 import { useState } from "react"
 
-export function Calendar23({date, setDate}) {
+export function Calendar23({date, setDate, disabled}) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -21,6 +21,7 @@ export function Calendar23({date, setDate}) {
             variant="outline"
             id="date"
             className="w-full justify-between font-normal"
+            disabled={disabled}
           >
             {date ? date.toLocaleDateString() : "pilih tanggal"}
             <ChevronDownIcon />
