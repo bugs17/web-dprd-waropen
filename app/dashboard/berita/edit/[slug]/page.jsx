@@ -7,7 +7,7 @@ const EditBeritaPage = async ({params}) => {
 
     if (!slug) {
     return <p>Not found</p>;
-  }
+    }
     
 
     let berita;

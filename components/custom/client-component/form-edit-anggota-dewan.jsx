@@ -16,6 +16,7 @@ import { addAnggotaDewan } from "@/action/add-anggota-dewan"
 import { useRouter } from "next/navigation"
 import { getPartaiList } from "@/action/get-partai-list"
 import { getBadanList } from "@/action/get-badan-list"
+import { getAnggotaDewanById } from "@/action/get-instance-dewan"
 
 
 // constant list jabatan
@@ -52,13 +53,14 @@ const listJabatanFraksi = [
 ];
 
 
-const FormAddAnggotaDewan = () => {
+const FormEditAnggotaDewan = ({idDewan}) => {
 
 
 
     // state
     const [partaiList, setPartaiList] = useState([])
     const [badanList, setBadanList] = useState([])
+    const [instanceDewan, setInstanceDewan] = useState({})
 
 
     const [nama, setNama] = useState("")
@@ -91,20 +93,31 @@ const FormAddAnggotaDewan = () => {
 
 
     useEffect(() => {
-        
-        const getDataPartai = async () => {
+        const fetchData = async () => {
             const partai = await getPartaiList()
-            setPartaiList(partai)
-        }
-        const getDataBadan = async () => {
             const badan = await getBadanList()
+            const dewan = await getAnggotaDewanById(idDewan)
+
+            setPartaiList(partai)
             setBadanList(badan)
+            setInstanceDewan(dewan)
+
+            // langsung isi field form-nya
+            setNama(dewan.nama || "")
+            setTmptLahir(dewan.tempatLahir || "")
+            setDate(dewan.tanggalLahir ? new Date(dewan.tanggalLahir) : undefined)
+            setPartaiID(dewan.partaiId || null)
+            setJabatanAnggota(dewan.peranDewan || "")
+            setJabatanFraksi(dewan.jabatanFraksi || "")
+            setBadanID(dewan.badanId || null)
+            setJabatanBadan(dewan.jabatanBadan || "")
+            setPreview(dewan.fotoURL || null)
+            setPendidikans(dewan.riwayatPendidikan || [{ id: `${uid}-2`, nama: "", tahun: "" }])
+            setJobs(dewan.riwayatPekerjaan || [{ id: `${uid}-1`, kerja: "", tahun: "" }])
         }
 
-        getDataPartai()
-        getDataBadan()
-
-    }, [])
+        fetchData()
+    }, [idDewan])
 
     // function generate ID for input kerja
     const generateId = () => {
@@ -242,11 +255,11 @@ const FormAddAnggotaDewan = () => {
             <div className="flex gap-5">
                 <div className="flex flex-col gap-3 w-full">
                     <Label htmlFor="tanggal-lahir">Nama <span className="text-red-500"> *</span></Label>
-                    <Input disabled={isPending} onChange={(e) => setNama(e.target.value)} id="nama" type="text" placeholder="Nama anggota dewan" />
+                    <Input value={nama} disabled={isPending} onChange={(e) => setNama(e.target.value)} id="nama" type="text" placeholder="Nama anggota dewan" />
                 </div>
                 <div className="flex flex-col gap-3 w-full">
                     <Label htmlFor="tempat-lahir">Tempat Lahir <span className="text-red-500"> *</span></Label>
-                    <Input disabled={isPending} onChange={(e) => setTmptLahir(e.target.value)} id="tempat-lahir" type="text" placeholder="Tempat Lahir" />
+                    <Input value={tmptLahir} disabled={isPending} onChange={(e) => setTmptLahir(e.target.value)} id="tempat-lahir" type="text" placeholder="Tempat Lahir" />
                 </div>
             </div>
 
@@ -370,11 +383,11 @@ const FormAddAnggotaDewan = () => {
             <div className="w-full flex flex-col gap-5">
                 <div className="flex flex-col gap-3 w-full">
                     <Label>Partai <span className="text-red-500"> *</span></Label>
-                    <PartaiDropdown disabled={isPending} options={partaiList} onSelect={handleSelectPartai} placeholder={"Pilih partai"} />
+                    <PartaiDropdown value={partaiList.find((p) => p.id === partaiID) || null} disabled={isPending} options={partaiList} onSelect={handleSelectPartai} placeholder={"Pilih partai"} />
                 </div>
                 <div className="flex flex-col gap-3 w-full">
                     <Label>Jabatan Anggota Dewan <span className="text-red-500"> *</span></Label>
-                    <JabatanAnggotaDewanDropdown disabled={isPending} options={listJabatanAnggotaDewan} onSelect={handleSelectJabatanAnggotaDewan} placeholder={"pilih jabatan anggota dewan"} />
+                    <JabatanAnggotaDewanDropdown value={listJabatanAnggotaDewan.find((p) => p.nama === jabatanAnggota || null)} disabled={isPending} options={listJabatanAnggotaDewan} onSelect={handleSelectJabatanAnggotaDewan} placeholder={"pilih jabatan anggota dewan"} />
                 </div>
             </div>
 
@@ -384,7 +397,7 @@ const FormAddAnggotaDewan = () => {
             <div className="w-full flex flex-col gap-5">
                 <div className="flex flex-col gap-3 w-full">
                     <Label>Jabatan Dalam Fraksi <span className="text-red-500"> *</span></Label>
-                    <BadanDropdown disabled={isPending} options={listJabatanFraksi} onSelect={handleSelectJabatanFraksi} placeholder={"Pilih jabatan fraksi"} />
+                    <BadanDropdown value={listJabatanFraksi.find((p) => p.nama === jabatanFraksi || null)} disabled={isPending} options={listJabatanFraksi} onSelect={handleSelectJabatanFraksi} placeholder={"Pilih jabatan fraksi"} />
                 </div>
             </div>
             
@@ -394,7 +407,7 @@ const FormAddAnggotaDewan = () => {
             <div className="w-full flex flex-col gap-5">
                 <div className="flex flex-col gap-3 w-full">
                     <Label>Badan <span className="text-red-500"> *</span></Label>
-                    <BadanDropdown disabled={isPending} options={badanList} onSelect={handleSelectBadan} placeholder={"Pilih badan"} />
+                    <BadanDropdown value={badanList.find((p) => p.id === badanID || null)} disabled={isPending} options={badanList} onSelect={handleSelectBadan} placeholder={"Pilih badan"} />
                 </div>
                 <div className="flex flex-col gap-3 w-full">
                     <Label>Jabatan Dalam Badan DPRK <span className="text-red-500"> *</span></Label>
@@ -424,4 +437,4 @@ const FormAddAnggotaDewan = () => {
     )
 }
 
-export default FormAddAnggotaDewan
+export default FormEditAnggotaDewan

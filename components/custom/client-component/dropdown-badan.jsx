@@ -1,10 +1,14 @@
 "use client"
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function BadanDropdown({ options = [], onSelect, placeholder, disabled }) {
-  const [selected, setSelected] = useState(null);
+export default function BadanDropdown({ options = [], onSelect, placeholder, disabled, value = null }) {
+  const [selected, setSelected] = useState(value);
+
+  useEffect(() => {
+      setSelected(value); // update ketika parent ubah value (misal setelah fetch dari DB)
+    }, [value]);
 
   const handleSelect = (partai) => {
     setSelected(partai);

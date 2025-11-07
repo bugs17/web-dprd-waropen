@@ -1,4 +1,6 @@
+import DialogDeleteAnggotaDewan from '@/components/custom/client-component/dialog-delete-anggota-dewan'
 import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { prisma } from '@/lib/db'
 import { Eye, Pencil, Trash, User } from 'lucide-react'
 import Image from 'next/image'
@@ -23,31 +25,40 @@ const page = async () => {
 
             <div className="flex flex-wrap w-full pb-6 pt-6 gap-4 justify-center">
             {anggotaDewans.map((dewan, index) => (
-                <div
-                key={index}
-                className="w-full lg:w-1/5 h-60 overflow-hidden group"
-                >
-                    <div className="relative w-full h-full overflow-hidden rounded border border-gray-300">
-                        <Image
-                            src={`/api/anggota-dewan/image/${dewan.imageUrl}`}
-                            alt={dewan.nama}
-                            fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
+                
+                    <div
+                    className="w-full lg:w-1/5 h-60 overflow-hidden group"
+                    key={index}
+                    >
+                        <div className="relative w-full h-full overflow-hidden rounded border border-gray-300">
+                            <Image
+                                src={`/api/anggota-dewan/image/${dewan.imageUrl}`}
+                                alt={dewan.nama}
+                                fill
+                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
 
-                        <div className="absolute bottom-0 left-0 p-2">
-                            <Eye size={15} className='cursor-pointer hover:text-green-500' />
-                        </div>
-
-                        <div className="absolute bottom-0 right-0 bg-gradient-to-t from-black/90 to-transparent pr-2 pb-2">
-                            <div className='flex flex-row justify-end gap-3 items-center'>
-                                <Pencil size={15} className='cursor-pointer hover:text-amber-500' />
-                                <Trash size={15} className='cursor-pointer hover:text-red-500' />
+                            <div className="absolute bottom-0 left-0 p-2">
+                                <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Eye size={15} className='cursor-pointer hover:text-black text-amber-500'  />
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>{dewan.nama}</p>
+                                </TooltipContent>
+                                </Tooltip>
                             </div>
-        
+
+                            <div className="absolute bottom-0 right-0 pr-2 pb-2">
+                                <div className='flex flex-row justify-end gap-3 items-center'>
+                                    <Link href={`/dashboard/anggota-dewan/edit/${dewan.id}`}>
+                                        <Pencil size={15} className='cursor-pointer hover:text-black text-amber-500' />
+                                    </Link>
+                                    <DialogDeleteAnggotaDewan namaPartai={dewan.nama} idAnggotaDewan={dewan.id} />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
             ))}
             </div>
         </div>

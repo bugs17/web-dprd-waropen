@@ -30,6 +30,7 @@ export function Calendar23({date, setDate, disabled}) {
         <PopoverContent className="w-auto overflow-hidden p-0" align="start">
           <Calendar
             mode="single"
+            value={date}
             selected={date}
             captionLayout="dropdown"
             onSelect={(date) => {
