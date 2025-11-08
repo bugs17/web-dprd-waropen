@@ -1,4 +1,5 @@
 import DialogDeleteAnggotaDewan from '@/components/custom/client-component/dialog-delete-anggota-dewan'
+import FancyButton from '@/components/custom/client-component/fancyButton'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { prisma } from '@/lib/db'
@@ -16,6 +17,8 @@ const page = async () => {
             <div className="w-full flex justify-between">
                 <h1>Daftar anggota dewan</h1>
                 <Link href={"/dashboard/anggota-dewan/create"} >
+                    
+                    
                     <Button className={"cursor-pointer"}>
                         <User className="text-black" />
                         <span>Tambah</span>

@@ -57,14 +57,16 @@ const data = {
     },
     {
       name: "Jadwan Sidang",
-      url: "#",
+      url: "/dashboard/jadwal-sidang",
+      match: "/dashboard/jadwal-sidang",
       icon: CalendarCheck2,
     },
   ],
   menu2: [
     {
       name: "Produk Hukum",
-      url: "#",
+      url: "/dashboard/produk-hukum",
+      match: "/dashboard/produk-hukum",
       icon: Scale,
     },
     {
