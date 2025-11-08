@@ -18,6 +18,8 @@ const EditAnggotaDewanPage = async ({params}) => {
                 <ArrowLeft className='text-white group-hover:text-gray-300' />
                 <span>Kembali</span>
             </Link>
+
+            <span className='text-white group-hover:text-gray-300'>Edit Data Anggota Dewan</span>
         </div>
         <FormEditAnggotaDewan idDewan={id} />
     </div>

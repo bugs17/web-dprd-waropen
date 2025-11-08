@@ -266,10 +266,10 @@ const FormAddAnggotaDewan = () => {
                 {pendidikans.map((pendidikan, index) => (
                     <div key={pendidikan.id} className="flex gap-5 items-end">
                     <div className="flex flex-col gap-3 w-full">
-                        <Label htmlFor={`kerja-${pendidikan.id}`}>Pendidikan {index + 1}</Label>
+                        <Label htmlFor={`pendidikan-${pendidikan.id}`}>Pendidikan {index + 1}</Label>
                         <Input
                         disabled={isPending}
-                        id={`kerja-${pendidikan.id}`}
+                        id={`pendidikan-${pendidikan.id}`}
                         type="text"
                         placeholder="Pendidikan / Gelar"
                         value={pendidikan.kerja}

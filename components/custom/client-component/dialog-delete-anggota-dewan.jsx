@@ -49,7 +49,7 @@ const DialogDeleteAnggotaDewan = ({ namaPartai, idAnggotaDewan }) => {
           <DialogTitle>Warning!</DialogTitle>
 
           <div className="flex justify-center w-full mt-3">
-            <p>Apakah anda yakin akan menghapus Anggota dewan {nama}?</p>
+            <p>Apakah anda yakin akan menghapus Anggota dewan <span className="font-bold text-amber-200">{nama}</span>?</p>
           </div>
 
           <div className="flex justify-center w-full mt-3">

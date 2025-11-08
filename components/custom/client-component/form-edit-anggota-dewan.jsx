@@ -6,7 +6,7 @@ import { Calendar23 } from "./date-picker-add-anggota"
 import { useEffect, useId, useRef, useState, useTransition } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import { Save } from "lucide-react"
+import { Save, X } from "lucide-react"
 import ImagePickerAnggotaDewan from "./pilih-gambar-anggota-dewan"
 import PartaiDropdown from "./dropdown-list-partai"
 import JabatanAnggotaDewanDropdown from "./dropdown-list-jabatan-anggota-dewan"
@@ -17,6 +17,8 @@ import { useRouter } from "next/navigation"
 import { getPartaiList } from "@/action/get-partai-list"
 import { getBadanList } from "@/action/get-badan-list"
 import { getAnggotaDewanById } from "@/action/get-instance-dewan"
+import { editAnggotaDewan } from "@/action/edit-anggota-dewan"
+import Link from "next/link"
 
 
 // constant list jabatan
@@ -110,10 +112,24 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             setJabatanAnggota(dewan.peranDewan || "")
             setJabatanFraksi(dewan.jabatanFraksi || "")
             setBadanID(dewan.badanId || null)
-            setJabatanBadan(dewan.jabatanBadan || "")
-            setPreview(dewan.fotoURL || null)
-            setPendidikans(dewan.riwayatPendidikan || [{ id: `${uid}-2`, nama: "", tahun: "" }])
-            setJobs(dewan.riwayatPekerjaan || [{ id: `${uid}-1`, kerja: "", tahun: "" }])
+            setJabatanBadan(dewan.peranBadan || "")
+            setPreview(`/api/anggota-dewan/image/${dewan.imageUrl}` || null)
+
+            // state yang menampung data riwayat pendidikan dari DB
+            setPendidikans((dewan.riwayatPendidikan || []).map((p, index) => ({
+                id: `${uid}-pendidikan-${index}`,
+                nama: p.namaSekolah,
+                tahun: p.tahunLulus
+            })) 
+            || [{ id: `${uid}-2`, nama: "", tahun: "" }])
+
+            // state yang menampung data riwayat pekerjaan dari DB
+            setJobs((dewan.riwayatPekerjaan || []).map((j, index) => ({
+                id: `${uid}-pekerjaan-${index}`,
+                kerja: j.jabatanPekerjaan,
+                tahun: j.tahunMenjabat
+            })) 
+            || [{ id: `${uid}-1`, kerja: "", tahun: "" }])
         }
 
         fetchData()
@@ -193,7 +209,6 @@ const FormEditAnggotaDewan = ({idDewan}) => {
     // handle submit all input here
     const handleSubmit = async () => {
         if (
-            imgFile === null ||
             !nama ||
             !tmptLahir ||
             !date ||
@@ -215,7 +230,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
         const loadingToast = toast.loading("Saving...");
 
         try {
-            const result = await addAnggotaDewan(
+            const result = await editAnggotaDewan(
             nama,
             tmptLahir,
             new Date(date).toISOString(),
@@ -226,14 +241,15 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             jabatanFraksi,
             badanID,
             jabatanBadan,
-            imgFile
+            imgFile,
+            idDewan
             );
 
             if (result === true) {
-            toast.success("Anggota Dewan berhasil disimpan!");
+            toast.success("Perubahan berhasil disimpan!");
             setTimeout(() => router.push("/dashboard/anggota-dewan"), 800);
             } else {
-            toast.error("Gagal menyimpan data");
+            toast.error("Gagal mengubah data");
             }
         } catch (err) {
             toast.error(err.message || "Terjadi kesalahan");
@@ -282,10 +298,10 @@ const FormEditAnggotaDewan = ({idDewan}) => {
                         <Label htmlFor={`kerja-${pendidikan.id}`}>Pendidikan {index + 1}</Label>
                         <Input
                         disabled={isPending}
-                        id={`kerja-${pendidikan.id}`}
+                        id={`pendidikan-${pendidikan.id}`}
                         type="text"
                         placeholder="Pendidikan / Gelar"
-                        value={pendidikan.kerja}
+                        value={pendidikan.nama}
                         onChange={(e) => handleChangePendidikans(pendidikan.id, "nama", e.target.value)}
                         />
                     </div>
@@ -302,7 +318,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
                         />
                     </div>
 
-                    {pendidikans.length > 1 && (
+                    {pendidikans.length > 0 && (
                         <Button
                         disabled={isPending}
                         type="button"
@@ -355,7 +371,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
                         />
                     </div>
 
-                    {jobs.length > 1 && (
+                    {jobs.length > 0 && (
                         <Button
                         disabled={isPending}
                         type="button"
@@ -411,7 +427,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
                 </div>
                 <div className="flex flex-col gap-3 w-full">
                     <Label>Jabatan Dalam Badan DPRK <span className="text-red-500"> *</span></Label>
-                    <BadanDropdown disabled={isPending} options={listJabatanBadan} onSelect={handleSelectJabatanBadan} placeholder={"Pilih Jabatan"} />
+                    <BadanDropdown value={listJabatanBadan.find((p) => p.nama === jabatanBadan)} disabled={isPending} options={listJabatanBadan} onSelect={handleSelectJabatanBadan} placeholder={"Pilih Jabatan"} />
                 </div>
             </div>
 
@@ -425,11 +441,17 @@ const FormEditAnggotaDewan = ({idDewan}) => {
 
             <Separator className={""} />
 
-            <div className="w-full flex flex-col items-center">
+            <div className="w-full flex flex-row gap-5 justify-center items-center">
                 <Button disabled={isPending} onClick={handleSubmit} className={"cursor-pointer text-black bg-amber-400 hover:bg-amber-500"}>
                     <Save className="" />
                     <span>{isPending ? 'Menyimpan...' : 'Simpan'}</span>
                 </Button>
+                <Link href={"/dashboard/anggota-dewan"}>
+                    <Button disabled={isPending} className={"cursor-pointer text-black bg-neutral-300"}>
+                        <X className="" />
+                        <span>{"Batal"}</span>
+                    </Button>
+                </Link>
             </div>
             
 
