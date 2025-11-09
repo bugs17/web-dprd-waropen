@@ -33,26 +33,25 @@ export default function JadwalSidangInputs() {
 
   // 🔹 simpan jadwal baru
   const handleSave = async () => {
-    if (!judul || !date || !time) {
-        toast('Lengkapi semua field wajib (judul, tanggal, waktu)!',
-            {
-                icon: <Ban className="text-red-500" />,
-                style: {
-                    borderRadius: "12px",
-                    background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                    color: "#f5f5f5",
-                    border: "1px solid #3a3a3a",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-                    padding: "14px 18px",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    },
-                duration: 3500,
-            }
-            );
-        return;
-    }
+  if (!judul || !date || !time) {
+    toast("Lengkapi semua field wajib (judul, tanggal, waktu)!", {
+      icon: <Ban className="text-red-500" />,
+      style: {
+        borderRadius: "12px",
+        background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
+        color: "#f5f5f5",
+        border: "1px solid #3a3a3a",
+        boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+        padding: "14px 18px",
+        fontSize: "14px",
+        fontWeight: 500,
+      },
+      duration: 3500,
+    });
+    return;
+  }
 
+  startTransition(async () => {
     const tanggal = new Date(
       `${date.toISOString().split("T")[0]}T${time}`
     ).toISOString();
@@ -70,7 +69,8 @@ export default function JadwalSidangInputs() {
       setLokasi("");
       setDeskripsi("");
     }
-  };
+  });
+};
 
   // 🔹 hapus jadwal
   const handleDelete = async (id) => {
@@ -112,7 +112,7 @@ export default function JadwalSidangInputs() {
         },
         duration: 5000, // biar ada waktu baca sebelum auto dismiss
     });
-    };
+  };
 
   return (
     <div className="space-y-5 p-4 rounded-lg">

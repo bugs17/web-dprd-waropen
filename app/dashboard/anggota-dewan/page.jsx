@@ -1,5 +1,6 @@
 import DialogDeleteAnggotaDewan from '@/components/custom/client-component/dialog-delete-anggota-dewan'
 import FancyButton from '@/components/custom/client-component/fancyButton'
+import ProfileCard from '@/components/custom/client-component/profile-card'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { prisma } from '@/lib/db'
@@ -29,7 +30,19 @@ const page = async () => {
             <div className="flex flex-wrap w-full pb-6 pt-6 gap-4 justify-center">
             {anggotaDewans.map((dewan, index) => (
                 
-                    <div
+                    
+
+                    <ProfileCard  key={index} name={dewan.nama} imageUrl={`/api/anggota-dewan/image/${dewan.imageUrl}`} role={dewan.peranDewan} urlEdit={`/dashboard/anggota-dewan/edit/${dewan.id}`} dewanId={dewan.id} />
+            ))}
+            </div>
+        </div>
+    )
+}
+
+export default page
+
+
+{/* <div
                     className="w-full lg:w-1/5 h-60 overflow-hidden group"
                     key={index}
                     >
@@ -61,11 +74,4 @@ const page = async () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-            ))}
-            </div>
-        </div>
-    )
-}
-
-export default page
+</div> */}

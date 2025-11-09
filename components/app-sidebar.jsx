@@ -14,7 +14,8 @@ import {
   Users,
   Vote,
   Phone,
-  Handshake
+  Handshake,
+  FileText
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -64,21 +65,12 @@ const data = {
   ],
   menu2: [
     {
-      name: "Produk Hukum",
-      url: "/dashboard/produk-hukum",
-      match: "/dashboard/produk-hukum",
-      icon: Scale,
+      name: "Dokumen",
+      url: "/dashboard/docs",
+      match: "/dashboard/docs",
+      icon: FileText,
     },
-    {
-      name: "Renstra",
-      url: "#",
-      icon: Notebook,
-    },
-    {
-      name: "Dokumen Keuangan",
-      url: "#",
-      icon: ChartColumnIncreasing,
-    },
+    
   ],
   menu3: [
     {

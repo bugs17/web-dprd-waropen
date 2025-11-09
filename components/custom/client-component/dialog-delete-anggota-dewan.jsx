@@ -41,11 +41,8 @@ const DialogDeleteAnggotaDewan = ({ namaPartai, idAnggotaDewan }) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <Trash 
-        onClick={() => setOpen(true)} 
-        size={15} 
-        className='cursor-pointer hover:text-red-500 text-red-700' 
-      />
+      
+      <Trash2 onClick={() => setOpen(true)}  size={16} className="text-red-400" /> 
       <DialogContent
         className="!max-w-2xl !w-full"
         style={{
