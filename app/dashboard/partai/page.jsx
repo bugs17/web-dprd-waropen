@@ -2,14 +2,16 @@ import ButtonOpenDialogAddPartai from '@/components/custom/client-component/butt
 import DialogAddPartai from '@/components/custom/client-component/dialog-add-partai'
 import DialogDeletePartai from '@/components/custom/client-component/dialog-delete-partai'
 import DialogEditPartai from '@/components/custom/client-component/dialog-edit-partai'
-import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { prisma } from '@/lib/db'
-import { Pencil, Trash } from 'lucide-react'
-import React from 'react'
+
+export const generateMetadata = () => {
+    return {
+        title: 'Partai | DPRK WAROPEN',
+    };
+};
 
 const page = async () => {
-
 
   const partaiList = await prisma.partai.findMany({
     orderBy:{
@@ -24,7 +26,6 @@ const page = async () => {
     <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min p-6">
         <div className="w-full flex justify-between">
             <h4>List Partai</h4>
-
             
             <DialogAddPartai>
                 <ButtonOpenDialogAddPartai />
@@ -75,8 +76,6 @@ const page = async () => {
           </Table>
         </div>
         
-
-
     </div>
   )
 }

@@ -138,3 +138,39 @@
   box-sizing: border-box;
 }
 
+
+/* Warna dan tinggi bar */
+#nprogress .bar {
+  background: #fdc700 !important;
+  height: 2px !important;
+}
+
+/* Efek glow di ujung bar */
+#nprogress .peg {
+  box-shadow: 0 0 10px #fdc700, 0 0 5px #fdc700 !important;
+}
+
+/* Posisi dan background untuk spinner (kalau diaktifkan) */
+#nprogress .spinner-icon {
+  border-top-color: #fdc700 !important;
+  border-left-color: #fdc700 !important;
+}
+
+/* Supaya smooth */
+#nprogress .bar {
+  transition: all 0.3s ease-in-out;
+}
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  opacity: 1;
+}
+
+#nprogress.done .bar {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+

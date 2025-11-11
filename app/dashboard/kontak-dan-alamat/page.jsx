@@ -1,5 +1,11 @@
 import ContactInfoCard from "@/components/custom/client-component/contactInfoCard"
 
+export const generateMetadata = () => {
+    return {
+        title: 'Kontak & Alamat | DPRK WAROPEN',
+    };
+};
+
 const KontakPage = () => {
   return (
     <div className="p-6">

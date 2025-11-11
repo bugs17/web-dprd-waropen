@@ -2,10 +2,13 @@ import FormAddAnggotaDewan from "@/components/custom/client-component/form-add-a
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
+export const generateMetadata = () => {
+    return {
+        title: 'Anggota Dewan | DPRK WAROPEN',
+    };
+};
 
 const page = async () => {
-
-  
 
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">

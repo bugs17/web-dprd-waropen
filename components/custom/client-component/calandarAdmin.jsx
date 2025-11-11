@@ -119,7 +119,7 @@ export default function JadwalSidangInputs() {
       <div className="space-y-3">
         <input
           type="text"
-          placeholder="Judul Sidang"
+          placeholder="Judul Kegiatan/Agenda"
           value={judul}
           onChange={(e) => setJudul(e.target.value)}
           className="border rounded-md w-full p-2"
@@ -130,7 +130,7 @@ export default function JadwalSidangInputs() {
 
         <input
           type="text"
-          placeholder="Lokasi Sidang"
+          placeholder="Lokasi"
           value={lokasi}
           onChange={(e) => setLokasi(e.target.value)}
           className="border rounded-md w-full p-2"
@@ -164,7 +164,7 @@ export default function JadwalSidangInputs() {
 
       {/* 🔹 daftar jadwal sidang */}
       <div className="border-t pt-4">
-        <h3 className="font-semibold mb-2">Daftar Jadwal Sidang</h3>
+        <h3 className="font-semibold mb-2">Daftar Jadwal Kegiatan</h3>
         {isPending ? (
           <div className="flex items-center justify-center text-gray-500 py-6">
             <Loader className="w-5 h-5 text-amber-500 animate-spin mr-2" />

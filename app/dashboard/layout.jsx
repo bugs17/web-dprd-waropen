@@ -7,6 +7,12 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
+export const generateMetadata = () => {
+  return {
+    title: 'Dashboard | DPRK WAROPEN',
+  };
+};
+
 const DashboardLayout = ({children}) => {
   return (
     <SidebarProvider>

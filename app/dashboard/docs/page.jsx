@@ -1,5 +1,10 @@
 import FileUploader from '@/components/custom/client-component/form-upload-docs'
-import React from 'react'
+
+export const generateMetadata = () => {
+    return {
+        title: 'Dokumen | DPRK WAROPEN',
+    };
+};
 
 const DocsPage = () => {
   return (

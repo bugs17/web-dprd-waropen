@@ -2,6 +2,13 @@ import FormEditBerita from "@/components/custom/client-component/form-edit-berit
 import { prisma } from "@/lib/db";
 import { slugToText } from "@/lib/toSlug";
 
+
+export const generateMetadata = () => {
+  return {
+    title: 'Berita | DPRK WAROPEN',
+  };
+};
+
 const EditBeritaPage = async ({params}) => {
     const { slug } = await params;
 

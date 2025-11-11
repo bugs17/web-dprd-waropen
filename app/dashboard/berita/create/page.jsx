@@ -9,10 +9,14 @@ import { Input } from '@/components/ui/input'
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 const CreateBeritaPage = () => {
+
+  useEffect(() => {
+    document.title = "Berita | DPRK WAROPEN";
+  }, []);
 
   const route = useRouter()
 
@@ -22,6 +26,7 @@ const CreateBeritaPage = () => {
   const [judul, setJudul] = useState("")
   const [loading, setLoading] = useState(false)
 
+  
 
 
   const onChange = (content) => {

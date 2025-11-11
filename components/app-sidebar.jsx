@@ -57,9 +57,9 @@ const data = {
       icon: SquareUserRound,
     },
     {
-      name: "Jadwan Sidang",
-      url: "/dashboard/jadwal-sidang",
-      match: "/dashboard/jadwal-sidang",
+      name: "Jadwan",
+      url: "/dashboard/jadwal",
+      match: "/dashboard/jadwal",
       icon: CalendarCheck2,
     },
     {

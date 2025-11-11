@@ -8,6 +8,13 @@ import Link from "next/link"
 import { prisma } from "@/lib/db"
 import DeleteBerita from "@/components/custom/client-component/button-delete-berita"
 
+
+export const generateMetadata = () => {
+  return {
+    title: 'Berita | DPRK WAROPEN',
+  };
+};
+
 const TabelListBerita = async () => {
 
     const beritas = await prisma.berita.findMany({

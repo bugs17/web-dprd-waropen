@@ -1,5 +1,10 @@
 import CalendarAdmin from "@/components/custom/client-component/calandarAdmin"
 
+export const generateMetadata = () => {
+    return {
+        title: 'Jadwal | DPRK WAROPEN',
+    };
+};
 
 const JadwalSidangPage = () => {
   return (

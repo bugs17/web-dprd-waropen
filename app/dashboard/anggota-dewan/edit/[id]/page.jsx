@@ -1,7 +1,12 @@
 import FormEditAnggotaDewan from '@/components/custom/client-component/form-edit-anggota-dewan';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react'
+
+export const generateMetadata = () => {
+    return {
+        title: 'Anggota Dewan | DPRK WAROPEN',
+    };
+};
 
 const EditAnggotaDewanPage = async ({params}) => {
     const { id } = await params;
