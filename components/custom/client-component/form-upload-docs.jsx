@@ -193,13 +193,6 @@ export default function FileUploader() {
         }
 
 
-        // contoh kirim data (misal ke API)
-        console.log({
-        fileName,
-        category,
-        file,
-        });
-
         startTransition( async () => {
             const created = await addDocument(fileName,category, file)
             setFiles((prev) =>
@@ -353,7 +346,7 @@ export default function FileUploader() {
                     ))
                 :
 
-                <p className="text-sm text-gray-500 text-center">Belum ada jadwal.</p>
+                <p className="text-sm text-gray-500 text-center">Belum ada dokumen yang diupload.</p>
                 )
                 }
             </div>

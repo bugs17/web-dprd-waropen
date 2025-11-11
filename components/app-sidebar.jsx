@@ -62,27 +62,28 @@ const data = {
       match: "/dashboard/jadwal-sidang",
       icon: CalendarCheck2,
     },
-  ],
-  menu2: [
     {
       name: "Dokumen",
       url: "/dashboard/docs",
       match: "/dashboard/docs",
       icon: FileText,
     },
-    
   ],
+  // menu2: [
+    
+    
+  // ],
   menu3: [
-    {
-      name: "Komisi",
-      url: "#",
-      icon: Users,
-    },
-    {
-      name: "Badan",
-      url: "#",
-      icon: Puzzle,
-    },
+    // {
+    //   name: "Komisi",
+    //   url: "#",
+    //   icon: Users,
+    // },
+    // {
+    //   name: "Badan",
+    //   url: "#",
+    //   icon: Puzzle,
+    // },
     {
       name: "Fraksi",
       url: "/dashboard/fraksi",
@@ -98,8 +99,9 @@ const data = {
   ],
   menu4: [
     {
-      name: "Kontak",
-      url: "#",
+      name: "Kontak & Alamat",
+      url: "/dashboard/kontak-dan-alamat",
+      match: "/dashboard/kontak-dan-alamat",
       icon: Phone,
     },
   ],
@@ -115,7 +117,7 @@ export function AppSidebar({
       </SidebarHeader>
       <SidebarContent>
         <NavProjects projects={data.menu1} />
-        <NavProjects projects={data.menu2} />
+        {/* <NavProjects projects={data.menu2} /> */}
         <NavProjects projects={data.menu3} />
         <NavProjects projects={data.menu4} />
       </SidebarContent>

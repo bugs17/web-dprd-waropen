@@ -17,6 +17,8 @@ const page = async () => {
     }
   })
 
+  const fraksis = await prisma.fraksi.findMany()
+
 
   return (
     <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min p-6">
@@ -41,24 +43,24 @@ const page = async () => {
             </TableHeader>
             <TableBody>
               {partaiList.length > 0 ?
-              partaiList.map((p) => (
-                <TableRow key={p.id} className="">
-                  <TableCell>
-                    <img
-                      src={`/api/partai/image/${p.imageUrl}`}
-                      alt={p.nama}
-                      className="w-10 h-10 object-cover rounded-md border "
-                    />
-                  </TableCell>
-                  <TableCell className="font-medium">{p.nama}</TableCell>
-                  <TableCell className="text-right space-x-2">
-                    <DialogEditPartai idPartaiState={p.id} namaPartaiState={p.nama} urlPreviewState={`/api/partai/image/${p.imageUrl}`} />
-                    <DialogDeletePartai key={p.id} idPartai={p.id} namaPartai={p.nama} />
-                  </TableCell>
-                </TableRow>
-              ))
+                partaiList.map((p) => (
+                  <TableRow key={p.id} className="">
+                    <TableCell>
+                      <img
+                        src={`/api/partai/image/${p.imageUrl}`}
+                        alt={p.nama}
+                        className="w-10 h-10 object-cover rounded-md border "
+                      />
+                    </TableCell>
+                    <TableCell className="font-medium">{p.nama}</TableCell>
+                    <TableCell className="text-right space-x-2">
+                      <DialogEditPartai idPartaiState={p.id} namaPartaiState={p.nama} urlPreviewState={`/api/partai/image/${p.imageUrl}`} fraksiSelectedState={p.fraksiId} fraksisState={fraksis} />
+                      <DialogDeletePartai key={p.id} idPartai={p.id} namaPartai={p.nama} />
+                    </TableCell>
+                  </TableRow>
+                ))
               :
-              <TableRow >
+                <TableRow >
                   <TableCell>
                     <span>---</span>
                   </TableCell>

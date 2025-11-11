@@ -34,8 +34,8 @@ model AnggotaDewan {
 
   imageUrl String
 
-  partaiId           Int                // Foreign key
-  partai             Partai             @relation(fields: [partaiId], references: [id])
+  partaiId           Int?              // Foreign key
+  partai             Partai?             @relation(fields: [partaiId], references: [id])
 
 
   komisiId           Int?                // Foreign key

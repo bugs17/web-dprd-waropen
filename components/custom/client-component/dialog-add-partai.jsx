@@ -7,13 +7,15 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useState, useTransition } from "react"
+import { useEffect, useState, useTransition } from "react"
 import ImagePickerPartai from "./pilih-gambar-partai"
 import { Button } from "@/components/ui/button"
 import { useAtom } from "jotai"
 import { openDialogPartaiAtom } from "@/lib/globalState"
 import { createPartai } from "@/action/create-partai"
 import { Loader } from "lucide-react"
+import BadanDropdown from "./dropdown-badan"
+import { getAllFraksi } from "@/action/get-list-fraksi"
 
 const DialogAddPartai = ({children}) => {
 
@@ -22,8 +24,23 @@ const DialogAddPartai = ({children}) => {
   const [imgFile, setImgFile] = useState(null)
   const [preview, setPreview] = useState(null)
   const [namaPartai, setNamaPartai] = useState("")
+  const [idFraksi, setIdFraksi] = useState(null)
+  const [fraksis, setFraksis] = useState([])
 
   const [isPending, startTransition] = useTransition()
+
+
+  useEffect(() => {
+    const fetchData = () => {
+      startTransition(async() => {
+        const data = await getAllFraksi()
+        if (data) {
+          setFraksis(data)
+        }
+      })
+    }
+    fetchData()
+  }, [])
 
   const handleSubmit = () => {
 
@@ -63,6 +80,10 @@ const DialogAddPartai = ({children}) => {
     }
   }
 
+  const handleSelectFraksi = (fraksi) => {
+        setIdFraksi(fraksi.id)
+    };
+
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
         {children}
@@ -71,11 +92,17 @@ const DialogAddPartai = ({children}) => {
               <DialogTitle>Tambah Partai</DialogTitle>
               
               <div className="flex gap-5 mt-10">
-                  <div className="flex flex-row gap-3 w-full">
+                  <div className="flex flex-col gap-3 w-full">
                       <Label htmlFor="nama-partai">Partai</Label>
                       <Input disabled={isPending} onChange={(e) => setNamaPartai(e.target.value)} id="nama-partai" type="text" placeholder="nama partai" />
                   </div>
-                  
+              </div>
+              
+              <div className="flex gap-5 mt-5">
+                  <div className="flex flex-col gap-3 w-full">
+                      <Label>Fraksi</Label>
+                      <BadanDropdown options={fraksis} onSelect={handleSelectFraksi} placeholder={"Pilih Fraksi"} disabled={isPending}/>
+                  </div>
               </div>
 
               <div className='flex justify-center w-full mt-3'>

@@ -12,25 +12,29 @@ import ImagePickerPartai from "./pilih-gambar-partai"
 import { Button } from "@/components/ui/button"
 import { Loader, Pencil } from "lucide-react"
 import { editPartai } from "@/action/edit-partai"
+import BadanDropdown from "./dropdown-badan"
+import FraksiDropdown from "./dropdown-fraksi"
 
-const DialogEditPartai = ({namaPartaiState, idPartaiState, urlPreviewState}) => {
+const DialogEditPartai = ({namaPartaiState, idPartaiState, urlPreviewState, fraksisState, fraksiSelectedState}) => {
 
 
   const [open, setOpen] = useState(false)
   const [imgFile, setImgFile] = useState(null)
   const [preview, setPreview] = useState(null)
   const [namaPartai, setNamaPartai] = useState("")
+  const [selectedFraksi, setSelectedFraksi] = useState(null) // ID fraksi yang dipilih
 
   const [isPending, startTransition] = useTransition()
 
 
+  // set data ketika dialog dibuka
   useEffect(() => {
-      if (open) {
-        
-        setNamaPartai(namaPartaiState)
-        setPreview(urlPreviewState)
-      } 
-    }, [namaPartaiState, urlPreviewState,open])
+    if (open) {
+      setNamaPartai(namaPartaiState)
+      setPreview(urlPreviewState)
+      setSelectedFraksi(fraksiSelectedState || null) // nilai awal dropdown
+    } 
+  }, [namaPartaiState, urlPreviewState, fraksiSelectedState, open])
 
   const handleSubmit = () => {
 
@@ -40,26 +44,32 @@ const DialogEditPartai = ({namaPartaiState, idPartaiState, urlPreviewState}) => 
       return
     }
 
-    // kalau lolos validasi, lanjut ke proses async
-    startTransition(async () => {
-      await editPartai(namaPartai, imgFile, idPartaiState)
+    if (!selectedFraksi) {
+      alert("Fraksi harus dipilih!")
+      return
+    }
 
-      // reset state setelah data berhasil di record di backend
+     // proses async
+    startTransition(async () => {
+      await editPartai(namaPartai, imgFile, idPartaiState, selectedFraksi)
+
+      // reset state
       setNamaPartai("")
       setImgFile(null)
       setPreview(null)
+      setSelectedFraksi(null)
       setOpen(false)
     })
   }
 
   const handleOpenChange = (isOpen) => {
-    // Kalau user mau menutup dan input tidak kosong
     if (!isOpen && namaPartai.trim() === "") {
       const userWantsToClose = confirm("Nama Partai tidak boleh kosong!")
       if (userWantsToClose) {
         setNamaPartai("")
         setPreview(null)
         setImgFile(null)
+        setSelectedFraksi(null)
         setOpen(false)
       } else {
         setOpen(true)
@@ -79,12 +89,22 @@ const DialogEditPartai = ({namaPartaiState, idPartaiState, urlPreviewState}) => 
             <DialogHeader>
               <DialogTitle>Edit Partai</DialogTitle>
               
-              <div className="flex gap-5 mt-10">
-                  <div className="flex flex-row gap-3 w-full">
+              <div className="flex flex-col gap-5 mt-10">
+                  <div className="flex flex-col gap-3 w-full">
                       <Label htmlFor="nama-partai">Partai</Label>
                       <Input value={namaPartai} disabled={isPending} onChange={(e) => setNamaPartai(e.target.value)} id="nama-partai" type="text" placeholder="nama partai" />
                   </div>
-                  
+                  {/* Dropdown Fraksi */}
+                  <div className="flex flex-col gap-3 w-full">
+                    <Label htmlFor="fraksi-dropdown">Fraksi</Label>
+                    <FraksiDropdown
+                      options={fraksisState}          // array semua fraksi {id, nama}
+                      value={selectedFraksi}          // ID fraksi yang dipilih
+                      onSelect={(item) => setSelectedFraksi(item.id)}
+                      placeholder="Pilih Fraksi"
+                      disabled={isPending}
+                    />
+                  </div>
               </div>
 
               <div className='flex justify-center w-full mt-3'>

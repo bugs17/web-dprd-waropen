@@ -39,6 +39,7 @@ export const addDocument = async (nama, kategori, file) => {
 
     } catch (error) {
         console.error("Terjadi kesalahan saat menambahkan file ke DB", error.message)
+        return false
     }
 
 }

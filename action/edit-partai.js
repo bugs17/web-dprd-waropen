@@ -4,7 +4,7 @@ import { writeFile } from "fs/promises";
 import path from "path";
 import { prisma } from "@/lib/db";
 
-export const editPartai = async (namaPartai, image, idPartai) => {
+export const editPartai = async (namaPartai, image, idPartai, selectedFraksi) => {
   try {
 
     let namaFileDiDb = null; 
@@ -39,6 +39,7 @@ export const editPartai = async (namaPartai, image, idPartai) => {
         },
       data:{
             nama: namaPartai,
+            fraksiId: selectedFraksi,
             ...(namaFileDiDb && { imageUrl: namaFileDiDb }),
         }
     })
