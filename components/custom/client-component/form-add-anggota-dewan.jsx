@@ -6,7 +6,7 @@ import { Calendar23 } from "./date-picker-add-anggota"
 import { useEffect, useId, useRef, useState, useTransition } from "react"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
-import { Ban, Save } from "lucide-react"
+import { Ban, Save, ThumbsUp } from "lucide-react"
 import ImagePickerAnggotaDewan from "./pilih-gambar-anggota-dewan"
 import PartaiDropdown from "./dropdown-list-partai"
 import JabatanAnggotaDewanDropdown from "./dropdown-list-jabatan-anggota-dewan"
@@ -231,10 +231,36 @@ const FormAddAnggotaDewan = () => {
             );
 
             if (result === true) {
-            toast.success("Anggota Dewan berhasil disimpan!");
+            toast('Berhasil menyimpan data hero.', {
+            icon: <ThumbsUp className="text-green-500" />,
+            style: {
+                borderRadius: '12px',
+                background: 'linear-gradient(135deg, #1a1a1a, #2a2a2a)',
+                color: '#f5f5f5',
+                border: '1px solid #3a3a3a',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                padding: '14px 18px',
+                fontSize: '14px',
+                fontWeight: 500,
+            },
+            duration: 3500,
+            })
             setTimeout(() => router.push("/dashboard/anggota-dewan"), 800);
             } else {
-            toast.error("Gagal menyimpan data");
+            toast('Gagal menyimpan data hero.', {
+                icon: <Ban className="text-red-500" />,
+                style: {
+                    borderRadius: '12px',
+                    background: 'linear-gradient(135deg, #1a1a1a, #2a2a2a)',
+                    color: '#f5f5f5',
+                    border: '1px solid #3a3a3a',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                    padding: '14px 18px',
+                    fontSize: '14px',
+                    fontWeight: 500,
+                },
+                duration: 3500,
+                })
             }
         } catch (err) {
             toast.error(err.message || "Terjadi kesalahan");

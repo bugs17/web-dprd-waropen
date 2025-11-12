@@ -1,23 +1,36 @@
-"use client";
-
 import React from "react";
-import { Calendar, FileText, Users, DollarSign, Book, CalendarCheck } from "lucide-react";
-import GetStartedButton from "@/components/custom/client-component/secondaryButton";
+import {  FileText, Users, DollarSign, Book, CalendarCheck } from "lucide-react";
+import { prisma } from "@/lib/db";
+import Link from "next/link";
 
 
 
 
 
-const DashboardPage = () => {
+const DashboardPage = async () => {
+  
+  const jumlahBerita =  (await prisma.berita.findMany()).length
+  const jumlahAnggotaDewan =  (await prisma.anggotaDewan.findMany()).length
+  const docs =  await prisma.dokumen.findMany()
+
+  const produkHukum = docs.filter((p) => p.jenisDokumen === "Produk Hukum").length
+  const dokumenKeuangan = docs.filter((p) => p.jenisDokumen === "Laporan Keuangan DPRK").length
+  const renstra = docs.filter((p) => p.jenisDokumen === "Rencana Strategis DPRK").length
+
+  const agenda = (await prisma.jadwalSidang.findMany()).length
+
   // 🔹 Contoh data statistik, nanti bisa diganti dengan fetch dari backend
   const stats = [
-    { label: "Berita", count: 23, icon: <FileText className="w-6 h-6" />, color: "text-amber-400" },
-    { label: "Anggota Dewan", count: 12, icon: <Users className="w-6 h-6" />, color: "text-blue-400" },
-    { label: "Produk Hukum", count: 15, icon: <Book className="w-6 h-6" />, color: "text-green-400" },
-    { label: "Dokumen Keuangan", count: 8, icon: <DollarSign className="w-6 h-6" />, color: "text-red-400" },
-    { label: "Dokumen Renstra", count: 5, icon: <Book className="w-6 h-6" />, color: "text-purple-400" },
-    { label: "Agenda Sidang", count: 10, icon: <CalendarCheck className="w-6 h-6" />, color: "text-yellow-400" },
+    { label: "Berita", count: jumlahBerita, icon: <FileText className="w-6 h-6" />, color: "text-amber-400", url: "/dashboard/berita" },
+    { label: "Anggota Dewan", count: jumlahAnggotaDewan, icon: <Users className="w-6 h-6" />, color: "text-blue-400", url: "/dashboard/anggota-dewan" },
+    { label: "Produk Hukum", count: produkHukum, icon: <Book className="w-6 h-6" />, color: "text-green-400", url: "/dashboard/docs" },
+    { label: "Dokumen Keuangan", count: dokumenKeuangan, icon: <DollarSign className="w-6 h-6" />, color: "text-red-400", url: "/dashboard/docs" },
+    { label: "Dokumen Renstra", count: renstra, icon: <Book className="w-6 h-6" />, color: "text-purple-400", url: "/dashboard/docs" },
+    { label: "Agenda", count: agenda, icon: <CalendarCheck className="w-6 h-6" />, color: "text-yellow-400", url: "/dashboard/jadwal" },
   ];
+
+
+  
 
   return (
     <div className="space-y-6 p-4">
@@ -52,21 +65,14 @@ const DashboardPage = () => {
         <h3 className="text-xl font-semibold mb-4">Akses Cepat</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           {stats.map((s, idx) => (
-            <button
-              key={idx}
-              className="flex flex-col items-center justify-center bg-gray-800/30 hover:bg-gray-700/40 p-4 rounded-lg transition"
-            >
+            <Link key={idx} href={s.url} className="flex flex-col items-center justify-center bg-gray-800/30 hover:bg-gray-700/40 p-4 rounded-lg transition">
               <div className={`${s.color} mb-2`}>{s.icon}</div>
               <span className="text-sm text-gray-200">{s.label}</span>
-            </button>
+            </Link>
           ))}
         </div>
       </div>
 
-      {/* 🔹 Placeholder untuk konten tambahan */}
-      <div className="bg-muted/50 min-h-[300px] rounded-xl flex items-center justify-center text-gray-500">
-        <GetStartedButton>Tambah</GetStartedButton>
-      </div>
     </div>
   );
 };

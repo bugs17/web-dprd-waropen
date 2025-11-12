@@ -4,18 +4,15 @@ import * as React from "react"
 import {
   
   Frame,
-  Scale,
-  Notebook,
   Newspaper,
   SquareUserRound,
-  ChartColumnIncreasing,
   CalendarCheck2,
-  Puzzle,
-  Users,
+  Bandage,
   Vote,
   Phone,
   Handshake,
-  FileText
+  FileText,
+  ImagePlus
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -49,12 +46,6 @@ const data = {
       url: "/dashboard/berita",
       match: "/dashboard/berita",
       icon: Newspaper,
-    },
-    {
-      name: "Anggota Dewan",
-      url: "/dashboard/anggota-dewan",
-      match: "/dashboard/anggota-dewan",
-      icon: SquareUserRound,
     },
     {
       name: "Jadwan",
@@ -96,13 +87,31 @@ const data = {
       match: "/dashboard/partai",
       icon: Handshake,
     },
+    {
+      name: "Anggota Dewan",
+      url: "/dashboard/anggota-dewan",
+      match: "/dashboard/anggota-dewan",
+      icon: SquareUserRound,
+    },
   ],
   menu4: [
+    {
+      name: "Galery",
+      url: "/dashboard/galery",
+      match: "/dashboard/galery",
+      icon: ImagePlus,
+    },
     {
       name: "Kontak & Alamat",
       url: "/dashboard/kontak-dan-alamat",
       match: "/dashboard/kontak-dan-alamat",
       icon: Phone,
+    },
+    {
+      name: "Pengaturan Hero",
+      url: "/dashboard/hero-setting",
+      match: "/dashboard/hero-setting",
+      icon: Bandage,
     },
   ],
 }

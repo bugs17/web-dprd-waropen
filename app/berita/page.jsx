@@ -12,7 +12,6 @@ const ListBerita = async () => {
 
 
   const beritas = await prisma.berita.findMany()
-
   return (
     <>
         <HeaderPages title={"Berita"} />

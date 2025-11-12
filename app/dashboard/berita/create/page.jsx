@@ -6,7 +6,7 @@ import ImagePicker from '@/components/custom/client-component/pilih-gambar'
 import TextEditor from '@/components/custom/client-component/text-editor'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Ban, ThumbsUp } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -36,14 +36,44 @@ const CreateBeritaPage = () => {
   const handlePublish = async () => {
     setLoading(true);
     if (!post || !imgFile || !judul || !date ) {
-      toast.error("Mohon mengisi semua kolom sebelum publish")
+      toast('Mohon mengisi semua kolom sebelum publish',
+                  {
+                      icon: <Ban className="text-red-500" />,
+                      style: {
+                          borderRadius: "12px",
+                          background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
+                          color: "#f5f5f5",
+                          border: "1px solid #3a3a3a",
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                          padding: "14px 18px",
+                          fontSize: "14px",
+                          fontWeight: 500,
+                          },
+                      duration: 3500,
+                  }
+              );
       setLoading(false);
       return;
     }
 
     try {
       await createBerita(judul, imgFile, post, date)
-      toast.success("Sukses")
+      toast('Sukses Terbitkan Berita',
+            {
+                icon: <ThumbsUp className="text-green-500" />,
+                style: {
+                    borderRadius: "12px",
+                    background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
+                    color: "#f5f5f5",
+                    border: "1px solid #3a3a3a",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                    padding: "14px 18px",
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    },
+                duration: 3500,
+            }
+        );
       setLoading(false)
       route.push("/dashboard/berita")
     } catch (error) {
