@@ -174,3 +174,25 @@
   transition: opacity 0.4s ease-out;
 }
 
+
+/* calandar */
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+.react-datepicker {
+  z-index: 9999 !important;
+}
+
+.react-datepicker__triangle {
+  display: none !important; /* opsional: hilangkan segitiga kecil di atas kalender */
+}
+
+.datepicker-wrapper {
+  position: relative;
+  overflow: visible !important;
+}
+
+
+/*  */
+

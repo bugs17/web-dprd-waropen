@@ -1,4 +1,5 @@
 
+import Link from 'next/link'
 import { Button } from '../ui/button'
 import { MoveRight } from 'lucide-react'
 
@@ -19,10 +20,12 @@ const Devider = ({title, bg, btn, underLine}) => {
 
         {btn && (
 
-        <Button size={'lg'} className={`bg-transparent border-[1px] border-amber-500 hover:border-white cursor-pointer hover:bg-amber-500 rounded-none flex flex-row items-center gap-5 group/btn`}>
-            <span className='text-amber-500 text-sm lg:text-xl group-hover/btn:text-white'>Lainnya</span>
-            <MoveRight size={18} className='text-amber-500 group-hover/btn:text-white' />
-        </Button>
+        <Link href={"/berita"}>
+          <Button size={'lg'} className={`bg-transparent border-[1px] border-amber-500 hover:border-white cursor-pointer hover:bg-amber-500 rounded-none flex flex-row items-center gap-5 group/btn`}>
+              <span className='text-amber-500 text-sm lg:text-xl group-hover/btn:text-white'>Lainnya</span>
+              <MoveRight size={18} className='text-amber-500 group-hover/btn:text-white' />
+          </Button>
+        </Link>
         )}
     </div>
   )

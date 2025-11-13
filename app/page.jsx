@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <>
-      {/* <BackToTop /> */}
+      <BackToTop />
       <Hero />
       <Devider title={'Layanan Cepat'} bg={false} btn={false} underLine={false} />
       <LayananCepat />

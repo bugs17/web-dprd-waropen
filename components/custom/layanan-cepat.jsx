@@ -1,6 +1,7 @@
 import { BookText, FolderOpenDot, HandCoins, Headset, Landmark, MoveUpRight, Newspaper, Users } from 'lucide-react'
 import React from 'react'
 import { Button } from '../ui/button'
+import Link from 'next/link'
 
 
 
@@ -42,10 +43,12 @@ const ItemComponen = ({title, desc, icon, link, imgUrl}) => {
                     {icon}
                 </div>
 
-                <Button className="mt-3 rounded-none cursor-pointer hover:bg-amber-500 group/btn1 flex flex-row items-center gap-4">
-                    <span className='text-amber-500 group-hover/btn1:text-white'>Selengkapnya</span>
-                    <MoveUpRight size={18} className='text-amber-500 group-hover/btn1:text-white' />
-                </Button>
+                <Link href={link} >
+                    <Button className="mt-3 rounded-none cursor-pointer hover:bg-amber-500 group/btn1 flex flex-row items-center gap-4">
+                        <span className='text-amber-500 group-hover/btn1:text-white'>Selengkapnya</span>
+                        <MoveUpRight size={18} className='text-amber-500 group-hover/btn1:text-white' />
+                    </Button>
+                </Link>
             </div>
         </div>
     )
@@ -57,42 +60,42 @@ const data = [
         "desc": "Informasi Berita Kegiatan DPR Terkini",
         "icon" : <Newspaper size={24}  className='group-hover:text-amber-500 text-white'/>,
         "imgUrl":"/news.jpeg",
-        "link": "link",
+        "link": "/berita",
     },
     {
         "titile": "Anggota DPRK",
         "desc": "Informasi Anggota DPRK Waropen",
         "icon" : <Users size={24}  className='group-hover:text-amber-500 text-white'/>,
         "imgUrl":"/2.jpeg",
-        "link": "link",
+        "link": "/tentang-dprd/informasi-anggota-dprd",
     },
     {
         "titile": "Produk Hukum",
         "desc": "Informasi Tentang Produk Hukum",
         "icon" : <FolderOpenDot size={24}  className='group-hover:text-amber-500 text-white'/>,
         "imgUrl":"/3.jpeg",
-        "link": "link",
+        "link": "/dokumen/produk-hukum",
     },
     {
         "titile": "Pengaduan ke Wakil Anda",
         "desc": "Layanan Pengaduan Langsung ke DPRK",
         "icon" : <Headset size={24}  className='group-hover:text-amber-500 text-white'/>,
         "imgUrl":"/5.jpeg",
-        "link": "link",
+        "link": "#",
     },
     {
         "titile": "Sekretariat DPRK",
         "desc": "Profil Sekretariat DPRK",
         "icon" : <Landmark size={24}  className='group-hover:text-amber-500 text-white'/>,
         "imgUrl":"/4.jpeg",
-        "link": "link",
+        "link": "/tentang-setwan/profil-sekretariat-dprk",
     },
     {
         "titile": "Laporan Keuangan",
         "desc": "Akses Dokumen Laporan Keuangan DPRK",
         "icon" : <HandCoins size={24}  className='group-hover:text-amber-500 text-white'/>,
         "imgUrl":"/6.jpeg",
-        "link": "link",
+        "link": "/dokumen/laporan-keuangan",
     },
     
 ]
@@ -101,7 +104,7 @@ const LayananCepat = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ">
         {data.map((item, index) => (
-            <ItemComponen key={index} title={item.titile} desc={item.desc} icon={item.icon} imgUrl={item.imgUrl} />
+            <ItemComponen link={item.link} key={index} title={item.titile} desc={item.desc} icon={item.icon} imgUrl={item.imgUrl} />
         ))}
     </div>
   )

@@ -18,7 +18,7 @@ const Navbar = () => {
 
         <div className="justify-between items-end px-3 pb-4 hidden lg:flex lg:flex-row w-full h-full">
           <div className="hidden w-full h-full lg:flex items-end pb-2">
-            <NamaKetuaWithTooltip />
+            {/* <NamaKetuaWithTooltip /> */}
           </div>
           <NavMenu />
         </div>

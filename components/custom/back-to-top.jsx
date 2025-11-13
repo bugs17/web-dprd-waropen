@@ -38,7 +38,7 @@ const BackToTop = () => {
                 duration:1.2
             }}
             onClick={scrollToTop}
-            className="fixed bottom-4 right-4 bg-violet-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-violet-700 transition duration-300"
+            className="fixed bottom-4 z-50 right-4 bg-amber-600 text-white px-4 py-2 rounded-full shadow-md hover:bg-violet-700 transition duration-300"
           >
             {/* ↑ */}
             
