@@ -1,33 +1,52 @@
+
+"use client"
+import { getContactInfo } from '@/action/get-info-kontak'
 import { Facebook, Instagram, Mail, Phone, Pin, Twitter, Youtube } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 
-const sosialMedia = [
+
+
+const Footer = () => {
+
+
+    const [data, setData] = useState({})
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const newData = await getContactInfo()
+            if (newData) {
+                setData(newData)
+            }
+        }
+        fetchData()
+    },[])
+
+    const sosialMedia = [
     {
         nama: "Facebook",
-        link: "#",
+        link: data?.facebook || "#",
         icon: <Facebook size={14} className="text-white" />
     },
     {
         nama: "Instagram",
-        link: "#",
+        link: data?.instagram || "#",
         icon: <Instagram size={14} className="text-white" />
     },
     {
         nama: "Twitter",
-        link: "#",
+        link: data?.twitter || "#",
         icon: <Twitter size={14} className="text-white" />
     },
     {
         nama: "Youtube",
-        link: "#",
+        link: data?.youtube || "#",
         icon: <Youtube size={14} className="text-white" />
     }
     
 ]
-
-const Footer = () => {
   return (
     <div className='relative w-full min-h-96 overflow-hidden'>
         <div className="absolute left-[-60px] bottom-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#c92aa9] opacity-20 blur-[100px]"></div>
@@ -69,15 +88,15 @@ const Footer = () => {
                     <div className='flex flex-col gap-3'>
                         <div className='flex flex-row gap-2 items-center'>
                             <Mail size={18} className='text-gray-200' />
-                            <span className='text-gray-200'>dprk@waropenkab.go.id</span>
+                            <span className='text-gray-200'>{data.email}</span>
                         </div>
                         <div className='flex flex-row gap-2 items-center'>
                             <Phone size={18} className='text-gray-200' />
-                            <span className='text-gray-200'>0821-4444-5678</span>
+                            <span className='text-gray-200'>{data.telp}</span>
                         </div>
                         <div className='flex flex-row gap-2 items-center'>
                             <Pin size={18} className='text-gray-200' />
-                            <span className='text-gray-200'>Jl. Samratulangi depan masjid agung</span>
+                            <span className='text-gray-200'>{data.alamat}</span>
                         </div>
                     </div>
                 </div>
