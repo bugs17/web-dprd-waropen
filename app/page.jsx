@@ -28,7 +28,7 @@ export default function Home() {
       <BeritaHome />
       <Devider title={'Dokumen Terbaru'} bg={false} btn={false} underLine={true} />
       <DokumenTerbaru />
-      <Devider title={'Kalender Sidang'} bg={true} btn={false} underLine={false} />
+      <Devider title={'Agenda'} bg={true} btn={false} underLine={false} />
       <KalenderSection />
       <AgendaAndSosialMedia />
     </>

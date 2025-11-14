@@ -22,8 +22,11 @@ const page = async ({ params }) => {
 
     const dewan = await prisma.anggotaDewan.findFirst({
         where:{
-            nama:slugToText(slug)
+            nama:{
+                contains:slugToText(slug),
+            },
         },
+        
         include:{
             badan:true,
             komisi:true,
@@ -36,6 +39,12 @@ const page = async ({ params }) => {
             riwayatPendidikan:true
         }
     })
+
+    if (!dewan) {
+        return (
+            <span>Tidak ada dewan dengan nama: {slugToText(slug)}</span>
+        )
+    }
 
   return (
     

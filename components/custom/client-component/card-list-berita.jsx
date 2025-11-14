@@ -182,7 +182,7 @@ export default function NewsList() {
               </Link>
               <p
                 className="text-sm text-zinc-400 mt-1 line-clamp-2"
-                dangerouslySetInnerHTML={{ __html: truncateHtml(item.isi, 20) }}
+                dangerouslySetInnerHTML={{ __html: truncateHtml(item.isi, 5) }}
               />
               <p className="text-xs text-zinc-500 mt-2">
                 {new Date(item.createdAt).toLocaleDateString('id-ID', {

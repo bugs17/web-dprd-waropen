@@ -1,6 +1,13 @@
 import CardPerson from "@/components/custom/cardPerson";
 import HeaderPages from "@/components/custom/header-pages";
 
+
+export const generateMetadata = () => {
+    return {
+        title: 'Anggota DPRK | DPRK WAROPEN',
+    };
+};
+
 const page = () => {
 
 

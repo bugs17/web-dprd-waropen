@@ -1,12 +1,25 @@
-import HeaderPages from '@/components/custom/header-pages'
+import ShareBeritaComponent from '@/components/custom/client-component/share-berita'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { prisma } from '@/lib/db'
 import { formatTanggalIndo } from '@/lib/formatDate'
+import { slugToText } from '@/lib/toSlug'
 import { truncateText } from '@/lib/trunc-kalimat'
-import { Clock, Facebook, Link2, Twitter } from 'lucide-react'
+import { Clock } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import toast from 'react-hot-toast'
+
+
+export const generateMetadata = async ({params}) => {
+    const {slug} = await params
+
+    const title = slugToText(slug) + " " + "| DPRK WAROPEN"
+        return {
+            title: title,
+        };
+    };
+
+    
 
 const DetailBerita = async ({params}) => {
   // const params = useParams()
@@ -57,19 +70,7 @@ const DetailBerita = async ({params}) => {
               <span className='text-white text-sm'>{formatTanggalIndo(berita.createdAt)}</span>
             </div>
 
-            <div className='flex flex-row gap-2 items-center'>
-              <span className='text-white text-sm'>Bagikan melalui</span>
-              <div className='border border-white rounded-full p-1'>
-                <Link2 className='text-white' size={18} />
-              </div>
-              <div className='border border-white rounded-full p-1'>
-                <Facebook className='text-white' size={18} />
-              </div>
-              <div className='border border-white rounded-full p-1'>
-                <Twitter className='text-white' size={18} />
-              </div>
-              
-            </div>
+            <ShareBeritaComponent />
           </div>
 
           <h1 className='text-white font-bold text-center mb-8 text-3xl'>{berita.judul}</h1>

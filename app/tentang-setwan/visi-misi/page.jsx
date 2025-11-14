@@ -1,12 +1,19 @@
 import HeaderPages from '@/components/custom/header-pages'
 
+
+export const generateMetadata = () => {
+    return {
+        title: 'Visi-Misi | DPRK WAROPEN',
+    };
+};
+
 const VisiMisiPage = () => {
   return (
     <>
         <HeaderPages title={"Visi dan Misi"} />
         <div className="lg:px-28 lg:text-xl flex flex-col gap-3">
             <p className="text-white text-left">
-                Visi dan Misi Sekretariat Dewan Perwakilan Rakyat Daerah Kabupaten Kendal adalah sebagai berikut:
+                Visi dan Misi Sekretariat Dewan Perwakilan Rakyat Daerah Kabupaten Waropen adalah sebagai berikut:
             </p>
             
             <span className='text-amber-300 text-left text-lg font-bold mt-5'>A. VISI</span>

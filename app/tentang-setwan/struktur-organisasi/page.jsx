@@ -1,5 +1,12 @@
 import HeaderPages from '@/components/custom/header-pages'
 
+
+export const generateMetadata = () => {
+    return {
+        title: 'Struktur Organisasi | DPRK WAROPEN',
+    };
+};
+
 const StrukturOragnisasiPage = () => {
   return (
     <>

@@ -1,52 +1,31 @@
 import FraksiComponent from '@/components/custom/client-component/fraksi-card';
-import FraksiSection from '@/components/custom/fraksi-section'
 import HeaderPages from '@/components/custom/header-pages'
+import { prisma } from '@/lib/db';
 
-const FraksiPage = () => {
 
-  const fraksiData = [
-        {
-            name: "Fraksi A",
-            parties: [
-            { name: "PDIP", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            { name: "Demokrat", logo: "/4.jpeg" },
-            ],
-            members: [
-            { name: "Nama 1", role: "Ketua Fraksi", party: "PDIP" },
-            { name: "Nama 2", role: "Wakil Ketua Fraksi", party: "Demokrat" },
-            { name: "Nama 3", role: "Anggota Fraksi", party: "PDIP" },
-            { name: "Nama 1", role: "Ketua Fraksi", party: "PDIP" },
-            { name: "Nama 2", role: "Wakil Ketua Fraksi", party: "Demokrat" },
-            { name: "Nama 3", role: "Anggota Fraksi", party: "PDIP" },
-            { name: "Nama 1", role: "Ketua Fraksi", party: "PDIP" },
-            { name: "Nama 2", role: "Wakil Ketua Fraksi", party: "Demokrat" },
-            { name: "Nama 3", role: "Anggota Fraksi", party: "PDIP" },
-            ],
-        },
-        {
-            name: "Fraksi B",
-            parties: [
-            { name: "Golkar", logo: "/4.jpeg" },
-            ],
-            members: [
-            { name: "Nama 4", role: "Ketua Fraksi", party: "Golkar" },
-            { name: "Nama 5", role: "Anggota Fraksi", party: "Golkar" },
-            ],
-        },
-    ];
+
+export const generateMetadata = () => {
+    return {
+        title: 'Fraksi | DPRK WAROPEN',
+    };
+};
+
+const FraksiPage = async () => {
+
+  const fraksis = await prisma.fraksi.findMany({
+    include:{
+      partai:{
+        include:{
+          anggotaDewan:true
+        }
+      }
+    }
+  })
 
   return (
     <>
         <HeaderPages title={"Fraksi-fraksi Dewan Perwakilan Rakyat Kabupaten Waropen"} />
-        {/* <FraksiSection /> */}
-        <FraksiComponent fraksiData={fraksiData} />
+        <FraksiComponent fraksiData={fraksis} />
     </>
   )
 }

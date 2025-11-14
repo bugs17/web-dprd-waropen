@@ -1,5 +1,11 @@
 import HeaderPages from "@/components/custom/header-pages"
 
+export const generateMetadata = () => {
+    return {
+        title: 'Profil Setwan | DPRK WAROPEN',
+    };
+};
+
 const ProfilSekretariat = () => {
   return (
     <>

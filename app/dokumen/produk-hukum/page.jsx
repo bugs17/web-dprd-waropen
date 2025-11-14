@@ -12,6 +12,13 @@ import {
 } from "@/components/ui/table"
 import { Input } from '@/components/ui/input'
 
+
+export const generateMetadata = () => {
+    return {
+        title: 'Produk Hukum | DPRK WAROPEN',
+    };
+};
+
 const leftMenu = [
     {
         title: "Laporan Keuangan DPRK",

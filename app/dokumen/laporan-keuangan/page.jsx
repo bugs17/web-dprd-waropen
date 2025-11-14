@@ -11,6 +11,12 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+export const generateMetadata = () => {
+    return {
+        title: 'Dokumen Keuangan | DPRK WAROPEN',
+    };
+};
+
 const leftMenu = [
     {
         title: "Laporan Keuangan DPRK",
