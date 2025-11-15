@@ -140,11 +140,11 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                 {!isUploadMode && (
                     <div className="w-full h-full flex flex-col gap-4">
                     <img
-                        src={`/api/struktur/image/${data?.urlImageStrukturOrganisasi}`}
-                        alt="Preview"
-                        className="w-full h-full object-cover"
-                        />
-                        <button
+                    src={`/api/struktur/image/${data?.urlImageStrukturOrganisasi}`}
+                    alt="Preview"
+                    className="w-full h-full object-cover"
+                    />
+                    <button
                         onClick={() => setIsUploadMode(true)}
                         className={`w-full py-2 rounded-md self-end text-white cursor-pointer flex items-center justify-center gap-2 font-medium transition-colors  bg-amber-600`}
                     >
