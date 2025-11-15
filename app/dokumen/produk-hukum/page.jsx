@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Input } from '@/components/ui/input'
+import { prisma } from '@/lib/db'
 
 
 export const generateMetadata = () => {
@@ -44,7 +45,8 @@ const leftMenu = [
 
 
 
-const TabelListProdukHukum = () => {
+const TabelListLaporanProdukHukum = ({docs}) => {
+
     return (
         <Table className="border border-white">
 
@@ -55,53 +57,75 @@ const TabelListProdukHukum = () => {
                     <TableHead className="w-[100px] text-right text-white">Dokumen</TableHead>
                 </TableRow>
             </TableHeader>
-
-            <TableBody>
-                <TableRow className={"hover:bg-[#110e12]"}>
-                    <TableCell className="font-medium w-[100px] text-left text-white">1</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">LKjlP No. 00/2022</TableCell>
-                    <TableCell className="flex justify-end text-white">
-                        <a href='#' className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
-                            <FileDown className="text-amber-700 group-hover:text-white" />
-                            <span>PDF</span>
-                        </a>
-                    </TableCell>
-                </TableRow>
-                
+            <TableBody >
+                    {docs.length > 0 ? (
+                        docs.map((d, i) => (
+                            <TableRow key={i} className={"hover:bg-[#110e12]"}>
+                                <TableCell className="font-medium w-[100px] text-left text-white">{i + 1}</TableCell>
+                                <TableCell className="font-medium w-[100px] text-center text-white">{d.namaDokumen}</TableCell>
+                                <TableCell className="flex justify-end text-white">
+                                    <Link href={`/api/download/${d.urlDokumen}`} download={true} className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
+                                        <FileDown className="text-amber-700 group-hover:text-white" />
+                                        <span>PDF</span>
+                                    </Link>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ):(
+                        <TableRow className={"hover:bg-[#110e12]"}>
+                        <TableCell className="font-medium w-[100px] text-left text-white">---</TableCell>
+                        <TableCell className="font-medium w-[100px] text-center text-white">---</TableCell>
+                        <TableCell className="flex justify-end text-white">
+                            ---
+                        </TableCell>
+                        </TableRow>
+                    )}
             </TableBody>
         </Table>
     )
 }
 
-const ProdukHukumPage = () => {
-  return (
-    <>
-        <HeaderPages title={"Produk Hukum"} />
-        
-        <div className='flex w-full p-20 gap-6'>
-            <div className='w-[25%] h-full bg-[#231c26] flex flex-col py-4'>
-                {leftMenu.map((item, index) => (
-                    <Link href={item.path} key={index} className={`flex flex-row gap-3 ${item.isActive && "bg-amber-100"} py-4 pl-4 items-center hover:bg-amber-100 group`}>
-                        <FileText className={`text-black ${item.isActive ? "text-black" : "text-white"} group-hover:text-black`} />
-                        {/* <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /> */}
-                        <span className={` ${item.isActive ? "text-black" : "text-white"} group-hover:text-black`}>{item.title}</span>
-                    </Link>
-                ))}
-            </div>
-            <div className='w-[75%]'>
-                <div className="relative w-full max-w-sm mb-5">
-                    <Input
-                        type="text"
-                        placeholder="Cari laporan..."
-                        className="pr-10 text-white"
-                    />
-                    <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-white h-5 w-5 pointer-events-none" />
+const ProdukHukumPage = async () => {
+
+
+        const docs = await prisma.dokumen.findMany({
+            where:{
+                jenisDokumen:"Produk Hukum"
+            },
+            orderBy:{
+                id:"desc"
+            }
+        })
+
+
+    return (
+        <>
+            <HeaderPages title={"Produk Hukum"} />
+            
+            <div className='flex w-full p-20 gap-6'>
+                <div className='w-[25%] h-full bg-[#231c26] flex flex-col py-4'>
+                    {leftMenu.map((item, index) => (
+                        <Link href={item.path} key={index} className={`flex flex-row gap-3 ${item.isActive && "bg-amber-100"} py-4 pl-4 items-center hover:bg-amber-100 group`}>
+                            <FileText className={`text-black ${item.isActive ? "text-black" : "text-white"} group-hover:text-black`} />
+                            {/* <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" /> */}
+                            <span className={` ${item.isActive ? "text-black" : "text-white"} group-hover:text-black`}>{item.title}</span>
+                        </Link>
+                    ))}
                 </div>
-                <TabelListProdukHukum />
+                <div className='w-[75%]'>
+                    <div className="relative w-full max-w-sm mb-5">
+                        <Input
+                            type="text"
+                            placeholder="Cari laporan..."
+                            className="pr-10 text-white"
+                        />
+                        <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-white h-5 w-5 pointer-events-none" />
+                    </div>
+                    <TabelListLaporanProdukHukum docs={docs} />
+                </div>
             </div>
-        </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default ProdukHukumPage

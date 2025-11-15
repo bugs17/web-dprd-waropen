@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Input } from '@/components/ui/input'
+import { prisma } from '@/lib/db'
 
 export const generateMetadata = () => {
     return {
@@ -43,7 +44,8 @@ const leftMenu = [
 
 
 
-const TabelListRencanaStrategis = () => {
+const TabelListLaporanRencanaStrategis = ({docs}) => {
+
     return (
         <Table className="border border-white">
 
@@ -54,55 +56,44 @@ const TabelListRencanaStrategis = () => {
                     <TableHead className="w-[100px] text-right text-white">Dokumen</TableHead>
                 </TableRow>
             </TableHeader>
-
-            <TableBody>
-                <TableRow className={"hover:bg-[#110e12]"}>
-                    <TableCell className="font-medium w-[100px] text-left text-white">1</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Program Strategis ..... 2024</TableCell>
-                    <TableCell className="flex justify-end text-white">
-                        <a href='#' className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
-                            <FileDown className="text-amber-700 group-hover:text-white" />
-                            <span>PDF</span>
-                        </a>
-                    </TableCell>
-                </TableRow>
-                <TableRow className={"hover:bg-[#110e12]"}>
-                    <TableCell className="font-medium w-[100px] text-left text-white">1</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Program Strategis ..... 2024</TableCell>
-                    <TableCell className="flex justify-end text-white">
-                        <a href='#' className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
-                            <FileDown className="text-amber-700 group-hover:text-white" />
-                            <span>PDF</span>
-                        </a>
-                    </TableCell>
-                </TableRow>
-                <TableRow className={"hover:bg-[#110e12]"}>
-                    <TableCell className="font-medium w-[100px] text-left text-white">1</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Program Strategis ..... 2024</TableCell>
-                    <TableCell className="flex justify-end text-white">
-                        <a href='#' className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
-                            <FileDown className="text-amber-700 group-hover:text-white" />
-                            <span>PDF</span>
-                        </a>
-                    </TableCell>
-                </TableRow>
-                <TableRow className={"hover:bg-[#110e12]"}>
-                    <TableCell className="font-medium w-[100px] text-left text-white">1</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Program Strategis ..... 2024</TableCell>
-                    <TableCell className="flex justify-end text-white">
-                        <a href='#' className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
-                            <FileDown className="text-amber-700 group-hover:text-white" />
-                            <span>PDF</span>
-                        </a>
-                    </TableCell>
-                </TableRow>
-                
+            <TableBody >
+                    {docs.length > 0 ? (
+                        docs.map((d, i) => (
+                            <TableRow key={i} className={"hover:bg-[#110e12]"}>
+                                <TableCell className="font-medium w-[100px] text-left text-white">{i + 1}</TableCell>
+                                <TableCell className="font-medium w-[100px] text-center text-white">{d.namaDokumen}</TableCell>
+                                <TableCell className="flex justify-end text-white">
+                                    <Link href={`/api/download/${d.urlDokumen}`} download={true} className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
+                                        <FileDown className="text-amber-700 group-hover:text-white" />
+                                        <span>PDF</span>
+                                    </Link>
+                                </TableCell>
+                            </TableRow>
+                        ))
+                    ):(
+                        <TableRow className={"hover:bg-[#110e12]"}>
+                        <TableCell className="font-medium w-[100px] text-left text-white">---</TableCell>
+                        <TableCell className="font-medium w-[100px] text-center text-white">---</TableCell>
+                        <TableCell className="flex justify-end text-white">
+                            ---
+                        </TableCell>
+                        </TableRow>
+                    )}
             </TableBody>
         </Table>
     )
 }
 
-const RencanaStrategisPage = () => {
+const RencanaStrategisPage = async () => {
+    
+        const docs = await prisma.dokumen.findMany({
+            where:{
+                jenisDokumen:"Rencana Strategis DPRK"
+            },
+            orderBy:{
+                id:"desc"
+            }
+        })
   return (
     <>
         <HeaderPages title={"Rencana Strategis DPRK"} />
@@ -126,7 +117,7 @@ const RencanaStrategisPage = () => {
                     />
                     <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-white h-5 w-5 pointer-events-none" />
                 </div>
-                <TabelListRencanaStrategis />
+                <TabelListLaporanRencanaStrategis docs={docs} />
             </div>
         </div>
     </>

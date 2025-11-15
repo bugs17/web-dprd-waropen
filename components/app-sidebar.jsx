@@ -12,7 +12,8 @@ import {
   Phone,
   Handshake,
   FileText,
-  ImagePlus
+  ImagePlus,
+  GitBranch
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -92,6 +93,12 @@ const data = {
       url: "/dashboard/anggota-dewan",
       match: "/dashboard/anggota-dewan",
       icon: SquareUserRound,
+    },
+    {
+      name: "Struktur Setwan",
+      url: "/dashboard/struktur-setwan",
+      match: "/dashboard/struktur-setwan",
+      icon: GitBranch,
     },
   ],
   menu4: [

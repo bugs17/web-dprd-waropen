@@ -69,7 +69,7 @@ const Footer = () => {
                     </div>
 
                     <div className='flex flex-row gap-5 items-center  '>
-                        <span className='text-white font-semibold'>Media Sosial :</span>
+                        <span className='text-white font-semibold hidden lg:block'>Media Sosial :</span>
                         <div className='flex flex-row gap-4'>
 
                         {

@@ -63,7 +63,7 @@ const DetailBerita = async ({params}) => {
       <div className='w-full px-16 py-10'>
 
         {/* berita */}
-        <div className='w-full bg-[#231c26] px-10 mb-10'>
+        <div className='w-full bg-[#231c26] pb-10 px-10 mb-10'>
           <div className='w-full border-b hidden  border-amber-300 lg:flex lg:flex-row justify-between py-2 mb-8'>
             <div className='flex flex-row gap-2 items-center'>
               <Clock className='text-white' size={16} />
