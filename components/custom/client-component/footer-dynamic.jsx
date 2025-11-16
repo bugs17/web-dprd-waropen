@@ -5,12 +5,11 @@ import Footer from '../footer'
 const FooterDinamic = () => {
     const pathname = usePathname()
 
-    const hideLayout = pathname.startsWith("/dashboard") // bisa disesuaikan
-  return (
-    <>
-        {!hideLayout && <Footer />}
-    </>
-  )
+    const isDashboard = pathname.startsWith("/dashboard");
+    const isLogin = pathname.startsWith("/login");
+    const hideFooter = isDashboard || isLogin;
+
+    return <>{!hideFooter && <Footer />}</>;
 }
 
 export default FooterDinamic

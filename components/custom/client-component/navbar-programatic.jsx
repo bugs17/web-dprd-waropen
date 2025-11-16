@@ -5,12 +5,12 @@ import Navbar from '../navbar'
 const NavbarDinamic = () => {
     const pathname = usePathname()
 
-    const hideLayout = pathname.startsWith("/dashboard") // bisa disesuaikan
-  return (
-    <>
-        {!hideLayout && <Navbar />}
-    </>
-  )
+    const isDashboard = pathname.startsWith("/dashboard");
+    const isLogin = pathname.startsWith("/login");
+    const hideFooter = isDashboard || isLogin;
+
+    return <>{!hideFooter && <Navbar />}</>;
+  
 }
 
 export default NavbarDinamic
