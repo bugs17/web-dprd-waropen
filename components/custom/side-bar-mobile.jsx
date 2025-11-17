@@ -25,23 +25,23 @@ const menuItems = [
       subMenu: [
           {
               title:'Informasi Anggota DPRK',
-              path:'#',
+              path:'/tentang-dprd/informasi-anggota-dprd',
               desc:'Informasi tentang jajaran anggota DPRK'
           },
           {
               title:'Komisi',
-              desc:'Informasi tentang komisi DPRK',
-              path:'#'
+              path:'/tentang-dprd/komisi',
+              desc:'Informasi tentang komisi DPRK'
           },
           {
               title:'Badan',
               desc:'Informasi tentang badan DPRK',
-              path:'#'
+              path:'/tentang-dprd/badan'
           },
           {
               title:'Fraksi',
               desc:'Informasi tentang fraksi DPRK',
-              path:'#'
+              path:'/tentang-dprd/fraksi'
           },
       ]
   },
@@ -50,18 +50,18 @@ const menuItems = [
       subMenu: [
           {
               title:'Profil Sekretariat DPRK',
-              path:'#',
+              path:'/tentang-setwan/profil-sekretariat-dprk',
               desc:'Informasi tentang profil sekretariat'
           },
           {
               title:'Visi & Misi',
               desc:'Informasi tentang visi-misi sekretariat dprk',
-              path:'#'
+              path:'/tentang-setwan/visi-misi'
           },
           {
               title:'Struktur Organisasi',
               desc:'Informasi tentang struktur organisasi sekretariat dprk',
-              path:'#'
+              path:'/tentang-setwan/struktur-organisasi'
           }
       ]
   },
@@ -70,52 +70,52 @@ const menuItems = [
       subMenu: [
           {
               title:'Laporan Keuangan DPRK',
-              path:'#',
+              path:'/dokumen/laporan-keuangan',
               desc:'Informasi tentang dokumen laporan keuangan DPRK'
           },
           {
               title:'Rencana Strategis DPRK',
               desc:'Informasi tentang rencana strategis dprk',
-              path:'#'
+              path:'/dokumen/rencana-strategis'
           },
           {
               title:'Dokumen Publikasi',
               desc:'Informasi tentang dokumen publikasi dprk',
-              path:'#'
+              path:'/dokumen/dokumen-publikasi'
           },
           {
               title:'Produk Hukum',
               desc:'Informasi tentang produk hukum dprk',
-              path:'#'
+              path:'/dokumen/produk-hukum'
           },
       ]
   },
   {
       title:'Berita',
-      path:'/'
+      path:'/berita'
   },
   {
       title:'Lainnya',
       subMenu: [
           {
               title:'Galery',
-              path:'#',
+              path:'/galery',
               desc:'Kumpulan file media tentang DPRK'
           },
           {
               title:'Kontak',
               desc:'Informasi kontak',
-              path:'#'
+              path:'/kontak'
           },
           {
               title:'Pengaduan ke DPRK',
               desc:'Aduan atau Aspirasi terkait dengan fungsi atau tugas DPRK',
-              path:'#'
+              path:'/pengaduan-dprk'
           },
           {
               title:'Pengaduan ke Pemerintah Daerah',
               desc:'Aduan ataupun Aspirasi kepada pemerintah daerah.',
-              path:'#'
+              path:'/pengaduan-pemda'
           },
       ]
   },

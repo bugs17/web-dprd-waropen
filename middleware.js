@@ -1,25 +1,32 @@
-import { NextResponse } from "next/server";
+import { clerkMiddleware } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
 
-export function middleware(req) {
-  const session = req.cookies.get("session")?.value;
-  const path = req.nextUrl.pathname;
 
-  const isDashboard = path.startsWith("/dashboard");
-  const isLogin = path.startsWith("/login");
 
-  // Belum login → tidak boleh akses dashboard
-  if (isDashboard && !session) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+const customMiddleware = clerkMiddleware((auth, req) => {
+    const res = NextResponse.next()
+    
+    // Tambahkan CORS headers
+    res.headers.set('Access-Control-Allow-Origin', '*')
+    res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+    res.headers.set('Access-Control-Allow-Headers', 'Content-Type')
 
-  // Sudah login → tidak boleh akses login
-  if (isLogin && session) {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
-  }
+    return res
+})
 
-  return NextResponse.next();
-}
+export default customMiddleware
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login"],
-};
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
+  ],
+
+}
+
+
+// export const config = {
+//   matcher: ['/dashboard/:path*', '/api/:path*'],
+// };
