@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3032:3000'
-      # - '5529:5555'
-    # volumes:
-    #   - ./realDb:/app/realDb
-    #   - ./uploads:/app/uploads
+      - '5517:5555'
+    volumes:
+      - ./realDb:/app/realDb
+      - ./uploads:/app/uploads
     command: "npm run start"
     restart: always
