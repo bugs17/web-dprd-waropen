@@ -1,8 +1,35 @@
+import { prisma } from "@/lib/db"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import CardAnggotaBadan from "./card--anggota-badan"
 
 
-const AcordComponent = () => {
+const sortBadan = (list) => {
+  return list.sort((a, b) => {
+    const j1 = a.peranBadan.toLowerCase();
+    const j2 = b.peranBadan.toLowerCase();
+
+    const rank = (jabatan) => {
+      if (jabatan.includes("ketua") && !jabatan.includes("wakil")) return 1;
+      if (jabatan.includes("wakil")) return 2;
+      if (jabatan.includes("anggota")) return 3;
+      return 99;
+    };
+
+    return rank(j1) - rank(j2);
+  });
+};
+
+const AcordComponent = async () => {
+
+  const badan = await prisma.badan.findMany({
+    include:{
+      anggotaDewan:true
+    },
+    orderBy:{
+      id:"desc"
+    }
+  })
+
   return (
     <Accordion
       type="single"
@@ -10,82 +37,35 @@ const AcordComponent = () => {
       className="w-full mb-5"
       defaultValue="item-1"
     >
-      <AccordionItem value="item-1">
+    {badan.length > 0 ? (
+      badan.map((b, i) => (
+
+      <AccordionItem key={i} value={`item-${i+1}`}>
         <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
-          <h1 className="text-amber-300 text-4xl font-extrabold ">BADAN MUSYAWARAH</h1>
+          <h1 className="text-amber-300 lg:text-4xl text-xl uppercase lg:font-extrabold font-bold">{b.nama}</h1>
         </AccordionTrigger>
         <AccordionContent className="flex flex-col justify-center">
-          <p className="text-white lg:text-center text-lg text-center">
-            PERIODE TAHUN 2024-2029
+          <p className=" lg:text-center lg:text-lg text-sm text-zinc-500 text-center">
+            PERIODE TAHUN {b.tahunPeriode}
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
+            {b.anggotaDewan.length > 0 ? (
+              
+              sortBadan(b.anggotaDewan).map((a, ai) => (
+                <CardAnggotaBadan key={ai} badan={b.nama} nama={a.nama} status={a.peranBadan} />
+              ))
+            ):(
+              <></>
+            )}
           </div>
         </AccordionContent>
       </AccordionItem>
 
-      <AccordionItem value="item-2">
-        <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
-          <h1 className="text-amber-300 text-4xl font-extrabold ">BADAN PEMBENTUK PERATURAN DAERAH</h1>
-        </AccordionTrigger>
-        <AccordionContent className="flex flex-col justify-center">
-          <p className="text-white lg:text-center text-lg text-center">
-            PERIODE TAHUN 2024-2029
-          </p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-          </div>
-        </AccordionContent>
-      </AccordionItem>
-      
-      <AccordionItem value="item-3">
-        <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
-          <h1 className="text-amber-300 text-4xl font-extrabold ">BADAN KEHORMATAN</h1>
-        </AccordionTrigger>
-        <AccordionContent className="flex flex-col justify-center">
-          <p className="text-white lg:text-center text-lg text-center">
-            PERIODE TAHUN 2024-2029
-          </p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-          </div>
-        </AccordionContent>
-      </AccordionItem>
-
-      <AccordionItem value="item-4">
-        <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
-          <h1 className="text-amber-300 text-4xl font-extrabold ">BADAN ANGGARAN</h1>
-        </AccordionTrigger>
-        <AccordionContent className="flex flex-col justify-center">
-          <p className="text-white lg:text-center text-lg text-center">
-            PERIODE TAHUN 2024-2029
-          </p>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"WAKIL KETUA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-            <CardAnggotaBadan badan={"Musyawarah"} nama={"John Doe"} status={"ANGGOTA"} />
-          </div>
-        </AccordionContent>
-      </AccordionItem>
-
+      ))
+    ) : (
+      <></>
+    )}
     </Accordion>
   )
 }
@@ -94,7 +74,7 @@ const BadanSection = () => {
   return (
     <div className="w-full h-full lg:px-8 px-5">
 
-        <p className="text-white lg:text-center text-balance lg:mb-4">
+        <p className="text-white lg:text-center text-balance text-base mb-8 lg:mb-4">
           Badan-badan sebagai alat kelengkapan Dewan Perwakilan Rakyat Kabupaten Waropen meliputi Badan Musyawarah, Badan Pembentuk Peraturan Daerah, Badan Kehormatan, dan Badan Anggaran.
         </p>
 

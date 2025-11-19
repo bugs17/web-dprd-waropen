@@ -1,21 +1,14 @@
+"use client";
+
 import HeaderPages from '@/components/custom/header-pages'
-import { FileDown, FileText, Search } from 'lucide-react'
+import { FileText, Search } from 'lucide-react'
 import Link from 'next/link'
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
+import { Input } from '@/components/ui/input'
+import { useEffect, useState } from 'react';
+import { getDok } from '@/action/get-dok';
+import TabelListDok from '@/components/custom/client-component/tabel-laporan-keuangan-home';
 
-export const generateMetadata = () => {
-    return {
-        title: 'Dokumen Keuangan | DPRK WAROPEN',
-    };
-};
 
 const leftMenu = [
     {
@@ -41,88 +34,76 @@ const leftMenu = [
 ]
 
 
-import { Input } from '@/components/ui/input'
-import { prisma } from '@/lib/db';
 
-const TabelListLaporanKeuangan = ({docs}) => {
+const LaporanKeuanganPage = () => {
+  const [docs, setDocs] = useState([]);
+  const [search, setSearch] = useState("");
 
-    return (
-        <Table className="border border-white">
+  useEffect(() => {
+    document.title = "Dokumen Keuangan | DPRK WAROPEN";
+    const getData = async () => {
+      const data = await getDok("keuangan");
+      if (data) setDocs(data);
+    };
+    getData();
+  }, []);
 
-            <TableHeader>
-                <TableRow className={"bg-gray-600 hover:bg-gray-600"}>
-                    <TableHead className="w-[100px] text-left text-white">No</TableHead>
-                    <TableHead className="w-[100px] text-center text-white">Nama</TableHead>
-                    <TableHead className="w-[100px] text-right text-white">Dokumen</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody >
-                    {docs.length > 0 ? (
-                        docs.map((d, i) => (
-                            <TableRow key={i} className={"hover:bg-[#110e12]"}>
-                                <TableCell className="font-medium w-[100px] text-left text-white">{i + 1}</TableCell>
-                                <TableCell className="font-medium w-[100px] text-center text-white">{d.namaDokumen}</TableCell>
-                                <TableCell className="flex justify-end text-white">
-                                    <Link href={`/api/download/${d.urlDokumen}`} download={true} className='border border-amber-700 rounded-sm cursor-pointer group hover:bg-amber-700 p-2 flex flex-row gap-2 items-center'>
-                                        <FileDown className="text-amber-700 group-hover:text-white" />
-                                        <span>PDF</span>
-                                    </Link>
-                                </TableCell>
-                            </TableRow>
-                        ))
-                    ):(
-                        <TableRow className={"hover:bg-[#110e12]"}>
-                            <TableCell className="font-medium w-[100px] text-left text-white">---</TableCell>
-                            <TableCell className="font-medium w-[100px] text-center text-white">---</TableCell>
-                            <TableCell className="flex justify-end text-white">
-                                ---
-                            </TableCell>
-                        </TableRow>
-                    )}
-            </TableBody>
-        </Table>
-    )
-}
-
-const LaporanKeuanganPage = async () => {
-
-    const docs = await prisma.dokumen.findMany({
-        where:{
-            jenisDokumen:"Laporan Keuangan DPRK"
-        },
-        orderBy:{
-            id:"desc"
-        }
-    })
-    
+  // Filter docs realtime
+  const filteredDocs = docs.filter((item) =>
+    item.namaDokumen.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <>
-        <HeaderPages title={"Laporan Keuangan DPRK"} />
-        
-        <div className='flex w-full p-20 gap-6'>
-            <div className='w-[25%] h-full bg-[#231c26] flex flex-col py-4'>
-                {leftMenu.map((item, index) => (
-                    <Link href={item.path} key={index} className={`flex flex-row gap-3 ${item.isActive && "bg-amber-100"} py-4 pl-4 items-center hover:bg-amber-100 group`}>
-                        <FileText className={`text-black ${item.isActive ? "text-black" : "text-white"} group-hover:text-black`} />
-                        <span className={` ${item.isActive ? "text-black" : "text-white"} group-hover:text-black`}>{item.title}</span>
-                    </Link>
-                ))}
-            </div>
-            <div className='w-[75%]'>
-                <div className="relative w-full max-w-sm mb-5">
-                    <Input
-                        type="text"
-                        placeholder="Cari laporan..."
-                        className="pr-10 text-white"
-                    />
-                    <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-white h-5 w-5 pointer-events-none" />
-                </div>
-                <TabelListLaporanKeuangan docs={docs} />
-            </div>
+      <HeaderPages title={"Laporan Keuangan DPRK"} />
+
+      <div className="flex w-full lg:p-20 p-5 gap-6">
+        {/* Sidebar */}
+        <div className="w-[25%] hidden h-full bg-[#231c26] lg:flex flex-col py-4">
+          {leftMenu.map((item, index) => (
+            <Link
+              href={item.path}
+              key={index}
+              className={`flex flex-row gap-3 ${
+                item.isActive && "bg-amber-100"
+              } py-4 pl-4 items-center hover:bg-amber-100 group`}
+            >
+              <FileText
+                className={`text-black ${
+                  item.isActive ? "text-black" : "text-white"
+                } group-hover:text-black`}
+              />
+              <span
+                className={`${
+                  item.isActive ? "text-black" : "text-white"
+                } group-hover:text-black`}
+              >
+                {item.title}
+              </span>
+            </Link>
+          ))}
         </div>
+
+        {/* Content */}
+        <div className="lg:w-[75%] w-full">
+          <div className="relative w-full max-w-sm mb-5">
+            <Input
+              type="text"
+              placeholder="Cari laporan keuangan"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="pr-10 text-white"
+            />
+            <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 h-5 w-5 pointer-events-none" />
+          </div>
+
+          {/* Kirim filteredDocs ke tabel */}
+          <TabelListDok docs={filteredDocs} />
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
+
 
 export default LaporanKeuanganPage

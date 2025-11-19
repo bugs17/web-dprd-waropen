@@ -10,7 +10,7 @@ const ProfilSekretariat = () => {
   return (
     <>
         <HeaderPages title={"Profil Sekretariat DPRK"} />
-        <div className="lg:px-28 lg:text-xl flex flex-col gap-3">
+        <div className="lg:px-28 px-8 lg:text-xl flex flex-col gap-3">
             <p className="text-white text-left">
                 Sekretariat Dewan Perkawilan Rakyat Kabupaten Waropen dipimpin oleh seorang Sekretaris Dewan yang secara teknis operasional berada dibawah dan bertanggung jawab kepada Pimpinan DPRK dan secara administratif bertanggung jawab kepada Bupati melalui Sekretaris Daerah.
             </p>
