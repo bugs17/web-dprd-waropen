@@ -11,5 +11,5 @@ services:
     volumes:
       - ./realDb:/app/realDb
       - ./uploads:/app/uploads
-    # command: ["./docker-entrypoint.sh"]
+    command: "npm run start"
     restart: always
