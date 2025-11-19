@@ -4,6 +4,7 @@ import NavbarDinamic from "@/components/custom/client-component/navbar-programat
 import FooterDinamic from "@/components/custom/client-component/footer-dynamic";
 import { Toaster } from "react-hot-toast";
 import ProgressBarClient from "@/context/ProgresBarProvider";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,8 +39,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${lora.variable} ${geistMono.variable} antialiased bg-[#110e12]`}
       >
       <NavbarDinamic />
-
+    <Suspense fallback={null}>
       <ProgressBarClient />
+    </Suspense>
           {children}
       <Toaster position="top-center" />
       <FooterDinamic />
