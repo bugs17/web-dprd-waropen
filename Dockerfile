@@ -10,13 +10,17 @@ COPY . .
 # Install dependencies
 RUN npm install
 
+# Pastikan entrypoint bisa dieksekusi
+RUN chmod +x docker-entrypoint.sh
+
+
 # COPY .env .
 
 # Generate Prisma Client
-RUN npx prisma generate
+# RUN npx prisma generate
 
 # Push schema ke database (akan bikin file .db untuk SQLite)
-RUN npx prisma db push
+# RUN npx prisma db push
 
 # Build aplikasi Next.js
 RUN rm -rf .next
@@ -28,3 +32,5 @@ ENV NEXT_TELEMETRY_DISABLED 1
 
 # Expose port 3000
 EXPOSE 3000
+
+ENTRYPOINT ["./docker-entrypoint.sh"]
