@@ -17,6 +17,11 @@ const BroadcumCustom = () => {
     const pathSegments = pathname.split("/").filter(Boolean);
 
     let fullPath = "";
+    // Cari index segment 'detail-anggota-dprk'
+    const stopIndex = pathSegments.findIndex(segment => segment === 'detail-anggota-dprk');
+    // Jika tidak ada, ambil semua segment
+    const segmentsToRender = stopIndex >= 0 ? pathSegments.slice(0, stopIndex + 1) : pathSegments;
+
 
 
   return (
@@ -27,24 +32,28 @@ const BroadcumCustom = () => {
                     <Link href={"/"} className={"text-gray-400 lg:text-base text-xs"}>Home</Link>
                 </BreadcrumbItem>
                 
-                {pathSegments.map((segment, index) => {
-                    fullPath += `/${segment}`;
-                    const isLast = index === pathSegments.length - 1;
+                
 
-                    // Capitalize dan ganti dash dengan spasi
-                    const label = segment
-                        .replace(/-/g, " ")
-                        .replace(/\b\w/g, (c) => c.toUpperCase());
+                {segmentsToRender.map((segment, index) => {
+                fullPath += `/${segment}`;
+                const isLast = index === segmentsToRender.length - 1;
 
-                    return(
-                        <React.Fragment key={index}>
-                            <BreadcrumbSeparator />
-                            <BreadcrumbItem>
-                                <BreadcrumbPage className={`${isLast ? "text-white font-semibold" : "text-gray-400 lg:text-base text-xs"}`}>{label}</BreadcrumbPage>
-                            </BreadcrumbItem>
-                        </React.Fragment>
-                    );
-                    })}
+                // Capitalize dan ganti dash dengan spasi
+                const label = segment
+                    .replace(/-/g, " ")
+                    .replace(/\b\w/g, (c) => c.toUpperCase());
+
+                return (
+                    <React.Fragment key={index}>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbPage className={`${isLast ? "text-white" : "text-gray-400 lg:text-base text-xs"}`}>
+                        {label}
+                        </BreadcrumbPage>
+                    </BreadcrumbItem>
+                    </React.Fragment>
+                );
+                })}
                 
             </BreadcrumbList>
         </Breadcrumb>

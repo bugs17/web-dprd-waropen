@@ -77,8 +77,8 @@ const CardPerson = async () => {
             anggotaDewanMapping.map((a, idx) => (
 
                 <Link key={idx} href={`/tentang-dprd/detail-anggota-dprk/${toSlug(a.nama)}`} className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded h-96 overflow-hidden">
-                    <div className="flex flex-row w-full h-full overflow-hidden">
-                        <div className="w-[40%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full overflow-hidden">
+                    <div className="flex lg:flex-row flex-col w-full h-full overflow-hidden">
+                        <div className="lg:w-[40%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full overflow-hidden">
                             <Image 
                                 alt={a.nama} 
                                 className="object-cover h-full w-full" 
@@ -90,7 +90,7 @@ const CardPerson = async () => {
                                 priority
                                 />
                         </div>
-                        <div className="w-[60%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full py-5 px-2 flex flex-col">
+                        <div className="lg:w-[60%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full py-5 px-2 flex flex-col">
 
                             <div className="w-full h-[50%] flex flex-col gap-2">
                                 <span className="text-white font-semibold text-lg">{a.nama}</span>

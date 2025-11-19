@@ -110,7 +110,7 @@ export default function BeritaClient() {
         <>
             {/* Search */}
             <div className="w-full mb-3 flex justify-center">
-                <div className="relative w-full max-w-sm">
+                <div className="relative lg:w-full max-w-sm">
                     <Input
                         type="text"
                         placeholder="Cari berita..."

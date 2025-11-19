@@ -31,7 +31,7 @@ const ShareBeritaComponent = () => {
     
   return (
     <div className='flex flex-row gap-2 items-center'>
-        <span className='text-white text-sm'>Bagikan melalui</span>
+        <span className='text-white hidden lg:flex text-sm'>Bagikan melalui</span>
         <div className='border border-white rounded-full p-1'>
             <Link2 onClick={copy} className='text-white hover:text-amber-400 cursor-pointer' size={18} />
         </div>
