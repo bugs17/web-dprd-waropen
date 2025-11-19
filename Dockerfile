@@ -17,10 +17,10 @@ RUN npm install
 # COPY .env .
 
 # Generate Prisma Client
-RUN npx prisma generate
+# RUN npx prisma generate
 
 # Push schema ke database (akan bikin file .db untuk SQLite)
-RUN npx prisma db push
+# RUN npx prisma db push
 
 # Build aplikasi Next.js
 RUN rm -rf .next
