@@ -16,7 +16,7 @@ RUN npm install
 
 # COPY .env .
 
-Generate Prisma Client
+# Generate Prisma Client
 RUN npx prisma generate
 
 # Push schema ke database (akan bikin file .db untuk SQLite)
