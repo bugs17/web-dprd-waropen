@@ -1,6 +1,7 @@
+
+export const dynamic = "force-dynamic";
 import FormEditBerita from "@/components/custom/client-component/form-edit-berita";
 import { prisma } from "@/lib/db";
-import { slugToText } from "@/lib/toSlug";
 
 
 export const generateMetadata = () => {

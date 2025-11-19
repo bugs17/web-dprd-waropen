@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { prisma } from '@/lib/db'
 import { toSlug } from '@/lib/toSlug'
 import Image from 'next/image'

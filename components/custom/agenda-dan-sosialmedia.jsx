@@ -1,5 +1,5 @@
-import { Facebook, icons, Instagram, Twitter, Youtube } from "lucide-react"
-import Agenda from "./client-component/agenda"
+export const dynamic = "force-dynamic";
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 import Link from "next/link"
 import { prisma } from "@/lib/db"
 

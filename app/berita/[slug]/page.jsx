@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import ShareBeritaComponent from '@/components/custom/client-component/share-berita'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { prisma } from '@/lib/db'
@@ -7,7 +8,6 @@ import { truncateText } from '@/lib/trunc-kalimat'
 import { Clock } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import toast from 'react-hot-toast'
 
 
 export const generateMetadata = async ({params}) => {
@@ -33,7 +33,7 @@ const DetailBerita = async ({params}) => {
       }
     })
   } catch (error) {
-    toast.error("Terjadi kesalahan, Coba lagi!")
+    
     console.log(error.message)
   }
 

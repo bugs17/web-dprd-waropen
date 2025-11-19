@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import React from "react";
 import {  FileText, Users, DollarSign, Book, CalendarCheck } from "lucide-react";
 import { prisma } from "@/lib/db";

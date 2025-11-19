@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import HeaderPages from '@/components/custom/header-pages'
 import { prisma } from '@/lib/db'
 import { headers } from 'next/headers'

@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import FormStrukturOrganisasiSetwan from "@/components/custom/client-component/form-struktur-organisasi-setwan";
 import { prisma } from "@/lib/db"
 
