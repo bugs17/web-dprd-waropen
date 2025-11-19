@@ -62,14 +62,14 @@ const AcordComponent = async () => {
 
       <AccordionItem key={idx} value={`item-${idx+1}`}>
         <AccordionTrigger className="items-center justify-center flex flex-row gap-3">
-          <h1 className="text-amber-300 text-4xl font-extrabold ">{kms.name}</h1>
+          <h1 className="text-amber-300 lg:text-4xl text-xl font-extrabold ">{kms.name}</h1>
         </AccordionTrigger>
         <AccordionContent className="flex flex-col justify-center">
-          <p className="text-white lg:text-center text-lg text-balance text-center">
+          <p className="text-white lg:text-center lg:text-lg text-sm text-balance text-center">
             {kms.deskripsi}
           </p>
           
-            <div  className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            <div  className="grid grid-cols-1 lg:grid-cols-3 lg:gap-8 gap-4 mt-8">
               {kms?.anggotaKomisi?.length > 0 ? (
                 kms?.anggotaKomisi?.map((agt, i) => (
                     <CardAnggotaKomisi key={i} komisi={kms.name} nama={agt.nama} status={agt.peranDewan} urlImage={agt.imageUrl} />
@@ -95,7 +95,7 @@ const KomisiSection = () => {
   return (
     <div className="w-full h-full lg:px-8 px-5">
 
-        <p className="text-white lg:text-center text-balance lg:mb-4">
+        <p className="text-white text-base lg:text-center text-balance lg:mb-4 mb-8">
           Komisi merupakan alat kelengkapan DPRK yang bersifat tetap dan dibentuk oleh DPRK pada awal masa jabatan keanggotaan DPRK. Setiap anggota DPRK kecuali pimpinan DPRK wajib menjadi anggota salah satu komisi.
           Komisi pada Dewan Perwakilan Rakyat Kabupaten Waropen meliputi Komisi A (Membidangi HUKUM DAN PEMERINTAHAN), Komisi B (Membidangi EKONOMI DAN KEUANGAN), Komisi C (Membidangi PEMBANGUNAN).
         </p>
