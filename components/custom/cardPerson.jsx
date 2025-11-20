@@ -4,6 +4,8 @@ import { toSlug } from '@/lib/toSlug'
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const revalidate = 0;
+
 const listJabatanAnggotaDewan = [
     { nama: "KETUA DPRK" },
     { nama: "WAKIL KETUA I" },

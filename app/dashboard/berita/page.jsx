@@ -6,6 +6,8 @@ import Link from "next/link"
 import { prisma } from "@/lib/db"
 import NewsList from "@/components/custom/client-component/card-list-berita"
 
+export const revalidate = 0;
+
 
 export const generateMetadata = () => {
   return {

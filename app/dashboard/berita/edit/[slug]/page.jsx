@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import FormEditBerita from "@/components/custom/client-component/form-edit-berita";
 import { prisma } from "@/lib/db";
 
+export const revalidate = 0;
 
 export const generateMetadata = () => {
   return {

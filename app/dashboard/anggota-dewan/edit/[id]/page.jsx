@@ -2,6 +2,7 @@ import FormEditAnggotaDewan from '@/components/custom/client-component/form-edit
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
+
 export const generateMetadata = () => {
     return {
         title: 'Anggota Dewan | DPRK WAROPEN',

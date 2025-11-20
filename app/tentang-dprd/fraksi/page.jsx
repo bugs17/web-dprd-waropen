@@ -3,6 +3,7 @@ import FraksiComponent from '@/components/custom/client-component/fraksi-card';
 import HeaderPages from '@/components/custom/header-pages'
 import { prisma } from '@/lib/db';
 
+export const revalidate = 0;
 
 
 export const generateMetadata = () => {

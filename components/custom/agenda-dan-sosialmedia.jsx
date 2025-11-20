@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
 import Link from "next/link"
 import { prisma } from "@/lib/db"
 
-
+export const revalidate = 0;
 
 
 const AgendaAndSosialMedia = async () => {

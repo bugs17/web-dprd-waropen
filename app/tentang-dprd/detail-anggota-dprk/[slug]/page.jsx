@@ -3,6 +3,7 @@ import { Calendar1, ChevronsUpDown, Facebook, Flag, Instagram, Landmark, Mail, T
 import Image from 'next/image';
 import Link from 'next/link';
 
+
 import {
     Collapsible,
     CollapsibleContent,
@@ -10,6 +11,8 @@ import {
   } from "@/components/ui/collapsible"
 import { prisma } from '@/lib/db';
 import { slugToText } from '@/lib/toSlug';
+
+export const revalidate = 0;
 
 
 export const generateMetadata = () => {

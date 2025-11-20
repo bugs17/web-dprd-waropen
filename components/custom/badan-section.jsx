@@ -3,6 +3,7 @@ import { prisma } from "@/lib/db"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import CardAnggotaBadan from "./card--anggota-badan"
 
+export const revalidate = 0;
 
 const sortBadan = (list) => {
   return list.sort((a, b) => {

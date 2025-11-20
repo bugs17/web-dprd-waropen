@@ -3,6 +3,9 @@ import HeaderPages from '@/components/custom/header-pages'
 import { prisma } from '@/lib/db'
 import { headers } from 'next/headers'
 
+export const revalidate = 0;
+
+
 const KontakPage = async () => {
   const host = headers().get('host')
   const kontak = await prisma.kontak.findFirst()

@@ -2,6 +2,9 @@ export const dynamic = "force-dynamic";
 import { prisma } from '@/lib/db'
 import Calendar from './kalender-component'
 
+export const revalidate = 0;
+
+
 const KalenderSection = async () => {
 
   const data = await prisma.jadwalSidang.findMany()

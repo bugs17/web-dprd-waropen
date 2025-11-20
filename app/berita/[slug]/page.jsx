@@ -9,6 +9,8 @@ import { Clock } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+export const revalidate = 0;
+
 
 export const generateMetadata = async ({params}) => {
     const {slug} = await params

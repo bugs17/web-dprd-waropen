@@ -6,6 +6,9 @@ import DialogEditPartai from '@/components/custom/client-component/dialog-edit-p
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { prisma } from '@/lib/db'
 
+export const revalidate = 0;
+
+
 export const generateMetadata = () => {
     return {
         title: 'Partai | DPRK WAROPEN',

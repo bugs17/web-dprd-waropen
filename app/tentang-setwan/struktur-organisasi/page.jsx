@@ -2,6 +2,8 @@ export const dynamic = "force-dynamic";
 import HeaderPages from '@/components/custom/header-pages'
 import { prisma } from '@/lib/db';
 
+export const revalidate = 0;
+
 
 export const generateMetadata = () => {
     return {
