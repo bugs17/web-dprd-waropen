@@ -40,7 +40,7 @@ export default function FraksiComponent({ fraksiData }) {
               {fraksi.partai.map((party, pIdx) => (
                 <div
                   key={pIdx}
-                  className="relative lg:w-12 lg:h-12 w-8 h-8 rounded-full overflow-hidden"
+                  className="relative bg-white lg:w-12 lg:h-12 w-8 h-8 rounded-full overflow-hidden"
                 >
                   <Image
                     src={`/api/partai/image/${party.imageUrl || "placeholder.png"}`}
