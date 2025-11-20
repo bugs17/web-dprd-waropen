@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { toSlug } from '@/lib/toSlug'
 
 
 // rank jabatan
@@ -41,7 +40,7 @@ export default function FraksiComponent({ fraksiData }) {
                       {(() => {
                         const sortedDewan = sortAnggotaDewan(party.anggotaDewan);
                         return sortedDewan.map((member, mIdx) => (
-                          <Link key={mIdx} href={`/tentang-dprd/detail-anggota-dprk/${toSlug(member.nama)}`} className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded lg:h-96 h-80 overflow-hidden">
+                          <Link key={mIdx} href={`/tentang-dprd/detail-anggota-dprk/${member.id}`} className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded lg:h-96 h-80 overflow-hidden">
                               <div className="flex lg:flex-row flex-col w-full h-full overflow-hidden">
                                   <div className="lg:w-[50%] md:lg:w-[50%] w-full lg:group-hover:w-[60%] lg:pt-0 pt-5 transition-all duration-300 ease-in-out h-full overflow-hidden">
                                       <Image 

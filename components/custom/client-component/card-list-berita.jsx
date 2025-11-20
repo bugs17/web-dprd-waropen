@@ -174,7 +174,7 @@ export default function NewsList() {
             {/* Konten tengah */}
             <div className="flex-1 px-4 overflow-hidden">
               <Link
-                href={`/berita/${item.slug}`}
+                href={`/berita/${item.id}`}
                 target="_blank"
                 className="text-base hover:text-amber-400 font-semibold text-zinc-100 truncate"
               >
@@ -195,7 +195,7 @@ export default function NewsList() {
 
             {/* Aksi kanan */}
             <div className="flex flex-col gap-4">
-              <Link href={`/dashboard/berita/edit/${item.slug}`}>
+              <Link href={`/dashboard/berita/edit/${item.id}`}>
                 <Edit className="text-amber-500 hover:text-amber-400 cursor-pointer" size={16} />
               </Link>
               <Trash2

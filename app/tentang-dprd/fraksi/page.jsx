@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import FraksiComponent from '@/components/custom/client-component/fraksi-card';
 import HeaderPages from '@/components/custom/header-pages'
 import { prisma } from '@/lib/db';

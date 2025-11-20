@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { Calendar1, ChevronsUpDown, Facebook, Flag, Instagram, Landmark, Mail, Twitter, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +9,6 @@ import {
     CollapsibleTrigger,
   } from "@/components/ui/collapsible"
 import { prisma } from '@/lib/db';
-import { slugToText } from '@/lib/toSlug';
 
 export const revalidate = 0;
 
@@ -22,13 +20,11 @@ export const generateMetadata = () => {
 };
 
 const page = async ({ params }) => {
-    const { slug } = await params;
+    const { id } = await params;
 
     const dewan = await prisma.anggotaDewan.findFirst({
         where:{
-            nama:{
-                contains:slugToText(slug),
-            },
+            id:parseInt(id),
         },
         
         include:{
@@ -46,7 +42,7 @@ const page = async ({ params }) => {
 
     if (!dewan) {
         return (
-            <span>Tidak ada dewan dengan nama: {slugToText(slug)}</span>
+            <span>Data tidak di temukan!</span>
         )
     }
 

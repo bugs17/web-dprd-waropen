@@ -1,9 +1,8 @@
-export const dynamic = "force-dynamic";
+
 import ShareBeritaComponent from '@/components/custom/client-component/share-berita'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { prisma } from '@/lib/db'
 import { formatTanggalIndo } from '@/lib/formatDate'
-import { slugToText } from '@/lib/toSlug'
 import { truncateText } from '@/lib/trunc-kalimat'
 import { Clock } from 'lucide-react'
 import Image from 'next/image'
@@ -12,10 +11,9 @@ import Link from 'next/link'
 export const revalidate = 0;
 
 
-export const generateMetadata = async ({params}) => {
-    const {slug} = await params
+export const generateMetadata = async () => {
 
-    const title = slugToText(slug) + " " + "| DPRK WAROPEN"
+    const title = "Berita | DPRK WAROPEN"
         return {
             title: title,
         };
@@ -25,17 +23,16 @@ export const generateMetadata = async ({params}) => {
 
 const DetailBerita = async ({params}) => {
   // const params = useParams()
-  const {slug} = await params
+  const {id} = await params
 
   let berita;
   try {
     berita = await prisma.berita.findFirst({
       where:{
-        slug:slug
+        id:parseInt(id)
       }
     })
   } catch (error) {
-    
     console.log(error.message)
   }
 
@@ -86,9 +83,7 @@ const DetailBerita = async ({params}) => {
             />
           </div>
 
-          {/* <div className='flex flex-col gap-5 w-full'>
-            
-          </div> */}
+          
           <div
               dangerouslySetInnerHTML={{ __html: berita.isi }}
               className="[&>p]:mb-4 [&>p]:leading-relaxed"
@@ -107,7 +102,7 @@ const DetailBerita = async ({params}) => {
               {beritas.map((b, i) => (
                 <Link
                   key={i}
-                  href={`/berita/${b.slug}`}
+                  href={`/berita/${b.id}`}
                   className="w-full lg:w-1/3 h-60 p-4 overflow-hidden group"
                 >
                   <div className="relative w-full h-full overflow-hidden rounded-lg">

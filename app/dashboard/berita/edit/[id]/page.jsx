@@ -1,5 +1,5 @@
 
-export const dynamic = "force-dynamic";
+
 import FormEditBerita from "@/components/custom/client-component/form-edit-berita";
 import { prisma } from "@/lib/db";
 
@@ -12,9 +12,9 @@ export const generateMetadata = () => {
 };
 
 const EditBeritaPage = async ({params}) => {
-    const { slug } = await params;
+    const { id } = await params;
 
-    if (!slug) {
+    if (!id) {
     return <p>Not found</p>;
     }
     
@@ -23,7 +23,7 @@ const EditBeritaPage = async ({params}) => {
     try {
         berita = await prisma.berita.findFirst({
             where:{
-                slug:slug
+                id:parseInt(id)
             }
         })
     } catch (error) {

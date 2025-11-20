@@ -131,7 +131,7 @@ export default function BeritaClient() {
                 {beritas.map((berita, index) => (
                     <Link
                         key={index}
-                        href={`/berita/${berita.slug}`}
+                        href={`/berita/${berita.id}`}
                         className="w-full lg:w-1/3 h-60 p-4 overflow-hidden group"
                     >
                         <div className="relative w-full h-full overflow-hidden rounded-lg">

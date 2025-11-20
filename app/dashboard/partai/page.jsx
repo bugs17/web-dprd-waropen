@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import ButtonOpenDialogAddPartai from '@/components/custom/client-component/button-open-dialog-add-partai'
 import DialogAddPartai from '@/components/custom/client-component/dialog-add-partai'
 import DialogDeletePartai from '@/components/custom/client-component/dialog-delete-partai'

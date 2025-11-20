@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic";
 import { prisma } from "@/lib/db"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import CardAnggotaBadan from "./card--anggota-badan"
@@ -55,7 +54,7 @@ const AcordComponent = async () => {
             {b.anggotaDewan.length > 0 ? (
               
               sortBadan(b.anggotaDewan).map((a, ai) => (
-                <CardAnggotaBadan key={ai} badan={b.nama} nama={a.nama} status={a.peranBadan} />
+                <CardAnggotaBadan urlImage={a.imageUrl} key={ai} badan={b.nama} nama={a.nama} status={a.peranBadan} />
               ))
             ):(
               <></>

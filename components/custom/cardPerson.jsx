@@ -1,6 +1,4 @@
-export const dynamic = "force-dynamic";
 import { prisma } from '@/lib/db'
-import { toSlug } from '@/lib/toSlug'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -55,6 +53,7 @@ const CardPerson = async () => {
 
         if (orang) {
         anggotaDewanMapping.push({
+            id:orang.id,
             nama: orang.nama,
             jabatan: orang?.peranDewan || "-",
             fraksi_partai: orang?.jabatanFraksi || "-",
@@ -79,7 +78,7 @@ const CardPerson = async () => {
     return (
             anggotaDewanMapping.map((a, idx) => (
 
-                <Link key={idx} href={`/tentang-dprd/detail-anggota-dprk/${toSlug(a.nama)}`} className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded h-96 overflow-hidden">
+                <Link key={idx} href={`/tentang-dprd/detail-anggota-dprk/${a.id}`} className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded h-96 overflow-hidden">
                     <div className="flex lg:flex-row flex-col w-full h-full overflow-hidden">
                         <div className="lg:w-[40%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full overflow-hidden">
                             <Image 
