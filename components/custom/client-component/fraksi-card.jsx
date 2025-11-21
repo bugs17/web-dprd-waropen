@@ -61,9 +61,8 @@ export default function FraksiComponent({ fraksiData }) {
               key={pIdx}
               className="w-full flex flex-col justify-center items-center"  // ← FIXED HERE
             >
-              <div className="flex flex-col gap-8 items-center">
-                
-                <div className="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-8 gap-4">
+              
+              <div className="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-8 gap-4">
                   {(() => {
                     const sortedDewan = sortAnggotaDewan(party.anggotaDewan);
                     return sortedDewan.map((member, mIdx) => (
@@ -109,8 +108,6 @@ export default function FraksiComponent({ fraksiData }) {
                     ));
                   })()}
                 </div>
-
-              </div>
             </div>
           ))}
         </div>
