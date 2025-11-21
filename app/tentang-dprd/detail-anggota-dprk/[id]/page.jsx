@@ -73,15 +73,15 @@ const page = async ({ params }) => {
                     <div className='w-full lg:h-[50%] lg:pl-8 lg:justify-normal justify-center flex'>
                         <div className='flex flex-col gap-3'>
                             <div className='flex flex-row gap-3 items-center'>
-                                <Calendar1 className='text-zinc-400 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'  />
+                                <Calendar1 className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                                 <span className='text-white text-sm lg:text-base'>{dewan?.tempatLahir},{new Date(dewan?.tanggalLahir).toLocaleString('id-ID', {day: 'numeric',month: 'long',year: 'numeric'})}</span>
                             </div>
                             <div className='flex flex-row gap-3 items-center'>
-                                <Landmark className='text-zinc-400 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'  />
+                                <Landmark className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                                 <span className='text-white text-sm lg:text-base'>{dewan?.komisi?.nama || ""} - {dewan?.komisi?.deskripsi || ""}</span>
                             </div>
                             <div className='flex flex-row gap-3 items-center'>
-                                <Flag className='text-zinc-400 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'  />
+                                <Flag className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                                 <span className='text-white text-sm lg:text-base'>{dewan?.partai?.fraksi?.nama || ""}</span>
                             </div>
                         </div>
@@ -94,25 +94,25 @@ const page = async ({ params }) => {
             </div>
 
             <div className='lg:w-[50%] flex flex-col gap-5 justify-center lg:items-start items-center w-full lg:h-96 lg:px-12 lg:pt-16'>
-                <span className='text-white hidden lg:flex md:flex font-semibold lg:text-2xl text-base'>Kontak</span>
+                <span className='text-white hidden lg:flex md:flex font-semibold lg:text-xl text-base'>Kontak</span>
                 <div className='w-[90%] h-[1px] rounded-sm  lg:hidden bg-zinc-400' />
                 <div className='flex flex-col gap-3'>
                     <div className='flex flex-row gap-3 items-center'>
-                        <Mail className='text-zinc-400 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'  />
+                        <Mail className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                         <span className='text-white text-sm lg:text-base'>{dewan?.email || "-"}</span>
                     </div>
                 </div>
 
-                <span className='text-white font-semibold lg:text-2xl text-base'>Sosial Media</span>
+                <span className='text-white font-semibold lg:text-xl text-base'>Sosial Media</span>
                 <div className='flex flex-row gap-6 '>
                     <Link href={dewan?.facebookUrl || "#"} target='_blank' className='flex flex-row gap-3 items-center'>
-                        <Facebook className='text-zinc-400 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'  />
+                        <Facebook className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                     </Link>
                     <Link  href={dewan?.instagramUrl || "#"} target='_blank'className='flex flex-row gap-3 items-center'>
-                        <Instagram className='text-zinc-400 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'  />
+                        <Instagram className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                     </Link>
                     <Link href={dewan?.youtubeUrl || "#"} target='_blank' className='flex flex-row gap-3 items-center'>
-                        <Youtube className='text-zinc-400 w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10'  />
+                        <Youtube className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                     </Link>
                 </div>
             </div>
@@ -122,10 +122,10 @@ const page = async ({ params }) => {
             <div className='w-full bg-[#231c26] rounded-md px-10 py-10'>
                 <Collapsible>
                     <div className='flex flex-row justify-between w-full mb-12'>
-                        <span className='lg:text-2xl text-xl text-gray-400 font-bold'>Riwayat Pendidikan</span>
+                        <span className='lg:text-xl text-base text-gray-400 font-bold'>Riwayat Pendidikan</span>
                         <CollapsibleTrigger asChild>
                             <ChevronsUpDown 
-                                className="text-white w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10"
+                                className="text-white w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7"
                             />
                         </CollapsibleTrigger>
                     </div>
@@ -140,8 +140,8 @@ const page = async ({ params }) => {
                                         <div className='lg:h-16 lg:w-[2px] h-8 w-[1.5%] bg-amber-200'></div>
                                     </div>
                                     <div className='w-[90%] flex flex-col gap-3'>
-                                        <span className='text-gray-100 text-sm'>- {p.tahunLulus}</span>
-                                        <span className='text-white lg:text-xl text-base font-semibold'>{p.namaSekolah}</span>
+                                        <span className='text-gray-100 lg:text-base text-sm'>- {p.tahunLulus}</span>
+                                        <span className='text-white lg:text-base text-sm font-semibold'>{p.namaSekolah}</span>
                                     </div>
                                 </div>
                             ))
@@ -167,9 +167,9 @@ const page = async ({ params }) => {
             <div className='w-full bg-[#231c26] rounded-md px-10 py-10'>
                 <Collapsible>
                     <div className='flex flex-row justify-between w-full mb-12'>
-                        <span className='lg:text-2xl text-xl text-gray-400 font-bold'>Riwayat Pekerjaan</span>
+                        <span className='lg:text-xl text-base text-gray-400 font-bold'>Riwayat Pekerjaan</span>
                         <CollapsibleTrigger asChild>
-                            <ChevronsUpDown className="text-white w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                            <ChevronsUpDown className="text-white w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7" />
                         </CollapsibleTrigger>
                     </div>
 
@@ -182,8 +182,8 @@ const page = async ({ params }) => {
                                         <div className='lg:h-16 lg:w-[2px] h-8 w-[1.5%] bg-amber-200'></div>
                                     </div>
                                     <div className='w-[90%] flex flex-col gap-3'>
-                                        <span className='text-gray-100 text-sm'>- {p.tahunMenjabat}</span>
-                                        <span className='text-white lg:text-xl text-base font-semibold'>{p.jabatanPekerjaan}</span>
+                                        <span className='text-gray-100 lg:text-base text-sm'>- {p.tahunMenjabat}</span>
+                                        <span className='text-white lg:text-base text-sm font-semibold'>{p.jabatanPekerjaan}</span>
                                     </div>
                                 </div>
                             ))

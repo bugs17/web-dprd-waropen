@@ -1,8 +1,10 @@
-import { prisma } from '@/lib/db'
+"use client"
+import { getAllAnggotaDewan } from '@/action/get-list-anggota-dewan';
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
 
-export const revalidate = 0;
+// export const revalidate = 0; 
 
 const listJabatanAnggotaDewan = [
     { nama: "KETUA DPRK" },
@@ -20,14 +22,18 @@ const listJabatanAnggotaDewan = [
     { nama: "ANGGOTA KOMISI C" },
 ];
 
-const CardPerson = async () => {
+const CardPerson = () => {
+    const [anggotaDewans, setAnggotaDewans] = useState([])
 
-    const anggotaDewans = await prisma.anggotaDewan.findMany({
-        include:{
-            komisi:true,
-            
+    useEffect(() => {
+        const getDewans = async () => {
+            const data = await getAllAnggotaDewan()
+            if (data) {
+                setAnggotaDewans(data)
+            }
         }
-    })
+        getDewans()
+    },[])
 
 
     const anggotaDewanMapping = [];
@@ -63,17 +69,7 @@ const CardPerson = async () => {
     }
     }
 
-    // const ketua = anggotaDewans.find(p => p.peranDewan === "KETUA DPRK")
 
-    // const anggotaDewanMapping = [
-    // {
-    //     nama: ketua.nama,
-    //     komisi: ketua?.komisi?.nama || "-",
-    //     fraksi_partai: ketua?.jabatanFraksi || "-",
-    //     url_photo: `/api/anggota-dewan/image/${ketua.imageUrl}`,
-    //     },
-        
-    // ];
 
     return (
             anggotaDewanMapping.map((a, idx) => (
