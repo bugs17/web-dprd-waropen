@@ -71,7 +71,7 @@ const page = async ({ params }) => {
                     
 
                     <div className='w-full lg:h-[50%] lg:pl-8 lg:justify-normal justify-center flex'>
-                        <div className='flex flex-col gap-3'>
+                        <div className='flex flex-col gap-3 lg:justify-normal justify-center'>
                             <div className='flex flex-row gap-3 items-center'>
                                 <Calendar1 className='text-zinc-400 w-5 h-5 md:w-7 md:h-7 lg:w-7 lg:h-7'  />
                                 <span className='text-white text-sm lg:text-base'>{dewan?.tempatLahir},{new Date(dewan?.tanggalLahir).toLocaleString('id-ID', {day: 'numeric',month: 'long',year: 'numeric'})}</span>
