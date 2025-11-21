@@ -8,6 +8,13 @@ export const getAllAnggotaDewan = async () => {
         const data = await prisma.anggotaDewan.findMany({
             orderBy:{
                 id:"desc"
+            },
+            include:{
+                partai:{
+                    include:{
+                        fraksi:true
+                    }
+                }
             }
         })
         return data
