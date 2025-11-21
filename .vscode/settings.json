@@ -1,3 +1,11 @@
 {
-    "postman.settings.dotenv-detection-notification-visibility": false
+    "postman.settings.dotenv-detection-notification-visibility": false,
+
+    // Enable class suggestions inside strings (penting untuk JSX/TSX)
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+
+  // Biar IntelliSense tahu lokasi CSS utama Tailwind v4
+  "tailwindCSS.experimental.configFile": "app/globals.css"
 }
