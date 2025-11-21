@@ -59,7 +59,7 @@ export default function FraksiComponent({ fraksiData }) {
           {fraksi.partai.map((party, pIdx) => (
             <div
               key={pIdx}
-              className="w-full flex-col justify-center items-center"
+              className="w-full flex flex-col justify-center items-center"  // ← FIXED HERE
             >
               <div className="flex flex-col gap-8 items-center">
                 
@@ -70,10 +70,12 @@ export default function FraksiComponent({ fraksiData }) {
                       <Link
                         key={mIdx}
                         href={`/tentang-dprd/detail-anggota-dprk/${member.id}`}
-                        className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded lg:h-96 h-80 overflow-hidden"
+                        className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200 shadow rounded lg:h-96 h-80 overflow-hidden"
                       >
                         <div className="flex lg:flex-row flex-col w-full h-full overflow-hidden">
-                          <div className="lg:w-[50%] md:lg:w-[50%] w-full lg:group-hover:w-[60%] lg:pt-0 pt-5 transition-all duration-300 ease-in-out h-full overflow-hidden">
+                          
+                          {/* Foto */}
+                          <div className="lg:w-[50%] md:w-[50%] w-full lg:group-hover:w-[60%] lg:pt-0 pt-5 transition-all duration-300 ease-in-out h-full overflow-hidden min-w-0">
                             <Image
                               alt={member.nama}
                               className="lg:object-cover object-contain h-full w-full"
@@ -85,6 +87,8 @@ export default function FraksiComponent({ fraksiData }) {
                               priority
                             />
                           </div>
+
+                          {/* Nama & Jabatan */}
                           <div className="lg:w-[50%] md:w-[50%] w-full lg:group-hover:w-[40%] transition-all duration-300 ease-in-out h-full py-5 px-2 flex flex-col">
 
                             <div className="w-full lg:h-[50%] h-[40%] flex flex-col items-center lg:items-start gap-2">
