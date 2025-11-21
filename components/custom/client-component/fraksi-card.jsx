@@ -62,7 +62,7 @@ export default function FraksiComponent({ fraksiData }) {
               className="w-full flex-col justify-center items-center"
             >
               <div className="flex flex-col gap-8 items-center">
-
+                
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 lg:gap-8 gap-4">
                   {(() => {
                     const sortedDewan = sortAnggotaDewan(party.anggotaDewan);
@@ -85,7 +85,7 @@ export default function FraksiComponent({ fraksiData }) {
                               priority
                             />
                           </div>
-                          <div className="lg:w-[50%] md:lg:w-[50%] w-full lg:group-hover:w-[40%] transition-all duration-300 ease-in-out h-full py-5 px-2 flex flex-col">
+                          <div className="lg:w-[50%] md:w-[50%] w-full lg:group-hover:w-[40%] transition-all duration-300 ease-in-out h-full py-5 px-2 flex flex-col">
 
                             <div className="w-full lg:h-[50%] h-[40%] flex flex-col items-center lg:items-start gap-2">
                               <span className="text-white font-semibold text-base lg:text-lg">
