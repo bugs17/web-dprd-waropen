@@ -35,7 +35,7 @@ const DialogDeleteAnggotaDewan = ({ namaPartai, idAnggotaDewan }) => {
             } catch (err) {
                 toast.error(err.message || "Terjadi kesalahan saat menghapus");
             }
-        });
+    });
     };
 
 
