@@ -1,4 +1,5 @@
 "use client"
+import { getBadanList } from "@/action/get-badan-list";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import CardAnggotaBadan from "./card--anggota-badan"
 import { useEffect, useState } from "react";
@@ -34,6 +35,7 @@ const AcordComponent = () => {
       }
       fetchData()
   },[])
+
 
 
 
