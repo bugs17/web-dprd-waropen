@@ -1,6 +1,7 @@
-import { prisma } from "@/lib/db"
+"use client"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import CardAnggotaBadan from "./card--anggota-badan"
+import { useEffect, useState } from "react";
 
 export const revalidate = 0;
 
@@ -20,16 +21,21 @@ const sortBadan = (list) => {
   });
 };
 
-const AcordComponent = async () => {
+const AcordComponent = () => {
 
-  const badan = await prisma.badan.findMany({
-    include:{
-      anggotaDewan:true
-    },
-    orderBy:{
-      id:"desc"
-    }
-  })
+  const [badan, setBadan] = useState([])
+
+  useEffect(() => {
+      const fetchData = async () => {
+        const data = await getBadanList()
+        if (data) {
+          setBadan(data)
+        }
+      }
+      fetchData()
+  },[])
+
+
 
   return (
     <Accordion
