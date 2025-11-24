@@ -4,19 +4,35 @@ import { createViewMonthGrid } from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/calendar.css'
 import { createEventModalPlugin } from '@schedule-x/event-modal'
 import { formatDateCalander } from '@/lib/formatDate'
+import { useEffect, useState } from 'react'
+import { getAgendaList } from '@/action/get-agenda'
 
-const Calendar = ({ instances }) => {
+const Calendar = () => {
   
+  const [instances, setInstances] = useState([])
+
+  const fetchData = async () => {
+    const data = await getAgendaList()
+    if (data) {
+      setInstances(data)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+
 
   const kalender = useCalendarApp({
     locale: 'id-ID',
     views: [createViewMonthGrid()],
     events: instances.map((event) => ({
-          id: event.id,
-          title: event.tentang,
-          start: formatDateCalander(event.date),
-          end: formatDateCalander(event.date),
-          description: event.deskripsi
+          id: event?.id,
+          title: event?.tentang,
+          start: formatDateCalander(event?.date),
+          end: formatDateCalander(event?.date),
+          description: event?.deskripsi
         })), // selalu ada, bisa kosong dulu
     plugins: [
       typeof window !== 'undefined' &&
@@ -24,7 +40,9 @@ const Calendar = ({ instances }) => {
     ].filter(Boolean),
   })
 
-  return <ScheduleXCalendar calendarApp={kalender} />
+  return (
+    <ScheduleXCalendar calendarApp={kalender} />
+  )
 }
 
 export default Calendar
