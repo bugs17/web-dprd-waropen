@@ -5,8 +5,6 @@ import { Newspaper, Search } from "lucide-react"
 import Link from "next/link"
 import NewsList from "@/components/custom/client-component/card-list-berita"
 
-export const revalidate = 0;
-
 
 export const generateMetadata = () => {
   return {
@@ -15,7 +13,6 @@ export const generateMetadata = () => {
 };
 
 const Beritas = async () => {
-
 
     return (
         <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min p-6" >
