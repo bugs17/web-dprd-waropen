@@ -93,13 +93,13 @@ const CardPerson = () => {
                             <div className="w-full h-[50%] flex flex-col gap-2">
                                 <span className="text-white font-semibold text-lg">{a.nama}</span>
                                 <div className="flex flex-row items-center gap-1">
-                                    <span className="text-sm text-amber-400">{a.jabatan}</span>
+                                    <span className="text-xs text-zinc-500">{a.fraksi_partai}</span>
                                 </div>
                             </div>
 
                             <div className="w-full h-[50%] flex items-end">
-                                <div className="w-full py-5 border-t-2 border-t-amber-500 text-white text-sm">
-                                    {a.fraksi_partai}
+                                <div className="w-full py-5 text-amber-400 border-t-2 border-t-zinc-500  text-sm">
+                                    {a.jabatan}
                                 </div>
                             </div>
 

@@ -14,7 +14,11 @@ export const getAnggotaDewanById = async (id) => {
             },
             include:{
                 komisi:true,
-                partai:true,
+                partai:{
+                    include:{
+                        fraksi:true
+                    }
+                },
                 riwayatPekerjaan:true,
                 riwayatPendidikan:true,
             }

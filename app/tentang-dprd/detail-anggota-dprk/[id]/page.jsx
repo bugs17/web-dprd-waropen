@@ -1,3 +1,4 @@
+"use client"
 import { Calendar1, ChevronsUpDown, Facebook, Flag, Instagram, Landmark, Mail, Twitter, Youtube } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,41 +9,33 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
   } from "@/components/ui/collapsible"
-import { prisma } from '@/lib/db';
+import { useEffect, useState } from 'react';
+import { getAnggotaDewanById } from '@/action/get-instance-dewan';
+import { useParams } from 'next/navigation';
 
-export const revalidate = 0;
 
 
-export const generateMetadata = () => {
-    return {
-        title: 'Anggota Dewan | DPRK WAROPEN',
-    };
-};
 
-const page = async ({ params }) => {
-    const { id } = await params;
+const page = () => {
+    const params = useParams();
 
-    const dewan = await prisma.anggotaDewan.findFirst({
-        where:{
-            id:parseInt(id),
-        },
-        
-        include:{
-            badan:true,
-            komisi:true,
-            partai:{
-                include:{
-                    fraksi:true
-                }
-            },
-            riwayatPekerjaan:true,
-            riwayatPendidikan:true
+    const [dewan, setDewan] = useState(null)
+
+    const fetchData = async () => {
+        const data = await getAnggotaDewanById(params.id)
+        if (data) {
+            setDewan(data)
         }
-    })
+    }
+
+    useEffect(() => {
+        document.title = 'Anggota Dewan | DPRK WAROPEN'
+        fetchData()
+    },[])
 
     if (!dewan) {
         return (
-            <span>Data tidak di temukan!</span>
+            <span>Memuat data</span>
         )
     }
 
