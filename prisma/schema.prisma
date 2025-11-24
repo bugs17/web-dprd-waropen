@@ -165,15 +165,15 @@ urlDokumen   String?
 }
 
 model Berita {
-id Int @id @default(autoincrement())
-createdAt DateTime @default(now())
-updatedAt DateTime @updatedAt
+    id Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-judul String
-isi   String
-slug  String
-isDraft Boolean @default(false)
-imageUrl String?
+    judul String
+    isi   String
+    slug  String
+    isDraft Boolean @default(false)
+    imageUrl String?
 }
 
 model Galery {

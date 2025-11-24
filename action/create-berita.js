@@ -12,8 +12,7 @@ export const createBerita = async (judul, image, content, date) => {
       throw new Error("File gambar tidak valid");
     }
 
-    const stringDate = new Date(date)
-    const formatedDate = stringDate.toISOString()
+    const formatedDate = new Date(date)
 
     const slug = createSlug(judul)
 

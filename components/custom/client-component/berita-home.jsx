@@ -49,7 +49,7 @@ const BeritaHomeComponent = () => {
         {data.length > 0 ? 
             
             data.map((item, index) => (
-                <Card key={index} imgUrl={`/api/berita/image/${item.imageUrl}`} judul={item.judul} update={new Date(item.updatedAt).toLocaleString('id-ID', {day: 'numeric',month: 'long',year: 'numeric'})} urlBerita={`/berita/${item.id}`} />
+                <Card key={index} imgUrl={`/api/berita/image/${item.imageUrl}`} judul={item.judul} update={new Date(item.createdAt).toLocaleString('id-ID', {day: 'numeric',month: 'long',year: 'numeric'})} urlBerita={`/berita/${item.id}`} />
             ))
         :
         (
