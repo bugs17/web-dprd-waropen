@@ -3,6 +3,7 @@
 "use client";
 import { getDetailBerita } from "@/action/get-detail-berita";
 import FormEditBerita from "@/components/custom/client-component/form-edit-berita";
+import { Loader } from "lucide-react";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
