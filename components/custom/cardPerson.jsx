@@ -48,7 +48,7 @@ const CardPerson = () => {
             id: a.id,
             nama: a.nama,
             jabatan: a?.peranDewan || "-",
-            fraksi_partai: a?.partai?.fraksi?.nama || "-",
+            fraksi_partai: a?.partai?.fraksi?.nama || "Pengangkatan Adat",
             url_photo: `/api/anggota-dewan/image/${a.imageUrl}`,
         });
         });
@@ -62,7 +62,7 @@ const CardPerson = () => {
             id:orang.id,
             nama: orang.nama,
             jabatan: orang?.peranDewan || "-",
-            fraksi_partai: orang?.partai?.fraksi?.nama || "-",
+            fraksi_partai: orang?.partai?.fraksi?.nama || "Pengangkatan Adat",
             url_photo: `/api/anggota-dewan/image/${orang.imageUrl}`,
         });
         }
