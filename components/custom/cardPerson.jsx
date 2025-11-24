@@ -1,5 +1,6 @@
 "use client"
 import { getAllAnggotaDewan } from '@/action/get-list-anggota-dewan';
+import { id } from 'date-fns/locale';
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react';
@@ -46,6 +47,7 @@ const CardPerson = () => {
 
         listAnggota.forEach(a => {
         anggotaDewanMapping.push({
+            id: a.id,
             nama: a.nama,
             jabatan: a?.peranDewan || "-",
             fraksi_partai: a?.partai?.fraksi?.nama || "-",

@@ -1,15 +1,15 @@
+"use client";
 import CardPerson from "@/components/custom/cardPerson";
 import HeaderPages from "@/components/custom/header-pages";
+import { useEffect } from "react";
 
 
-export const generateMetadata = () => {
-    return {
-        title: 'Anggota DPRK | DPRK WAROPEN',
-    };
-};
 
 const page = () => {
-
+    
+    useEffect(() => {
+        document.title = 'Anggota DPRK | DPRK WAROPEN'
+    }, [])
 
   return (
     <>
