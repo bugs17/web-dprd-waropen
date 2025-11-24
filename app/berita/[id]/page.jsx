@@ -1,57 +1,51 @@
 
+"use client"
+import { getDetailBerita } from '@/action/get-detail-berita'
 import ShareBeritaComponent from '@/components/custom/client-component/share-berita'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { prisma } from '@/lib/db'
 import { formatTanggalIndo } from '@/lib/formatDate'
 import { truncateText } from '@/lib/trunc-kalimat'
-import { Clock } from 'lucide-react'
+import { Clock, Loader } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
-export const revalidate = 0;
 
 
-export const generateMetadata = async () => {
 
-    const title = "Berita | DPRK WAROPEN"
-        return {
-            title: title,
-        };
-    };
+const DetailBerita = () => {
+  const params = useParams()
+  const id =  params.id
 
-    
+  const [beritaState, setBeritaState] = useState(null)
+  const [beritasState, setBeritasState] = useState([])
 
-const DetailBerita = async ({params}) => {
-  // const params = useParams()
-  const {id} = await params
 
-  let berita;
-  try {
-    berita = await prisma.berita.findFirst({
-      where:{
-        id:parseInt(id)
-      }
-    })
-  } catch (error) {
-    console.log(error.message)
+  const fecthData = async () => {
+    const {berita, beritas} = await getDetailBerita(id)
+    if (berita) {
+      setBeritaState(berita)
+    }
+    if (beritas.length > 0) {
+      setBeritasState(beritas)
+    }
   }
 
-  let beritas;
-  try {
-    beritas = await prisma.berita.findMany({
-      where:{
-        NOT:{
-          id: berita.id
-        }
-      },
-      orderBy:{
-        createdAt:'desc'
-      },
-      take: 3
-    })
-  } catch (error) {
-    
+  useEffect(() => {
+    document.title = "Berita | DPRK WAROPEN"
+    fecthData()
+  },[])
+
+  if (beritaState === null) {
+    return (
+      <div className='w-full justify-center items-center'>
+          <Loader className='text-amber-500 animate-spin' />
+      </div>
+    )
   }
+
+  
   
   return (
     <>
@@ -66,18 +60,18 @@ const DetailBerita = async ({params}) => {
           <div className='w-full border-b  border-amber-300 flex flex-row justify-between py-2 mb-8'>
             <div className='flex flex-row gap-2 items-center'>
               <Clock className='text-white' size={16} />
-              <span className='text-white lg:text-sm text-xs'>{formatTanggalIndo(berita.createdAt)}</span>
+              <span className='text-white lg:text-sm text-xs'>{formatTanggalIndo(beritaState.createdAt)}</span>
             </div>
 
             <ShareBeritaComponent />
           </div>
 
-          <h1 className='text-white font-bold text-center mb-8 text-2xl lg:text-5xl'>{berita.judul}</h1>
+          <h1 className='text-white font-bold text-center mb-8 text-2xl lg:text-5xl'>{beritaState.judul}</h1>
 
           <div className="w-full relative overflow-hidden mb-8 aspect-[3/2] md:aspect-[16/9] lg:aspect-[16/9]" >
             <Image
-              src={`/api/berita/image/${berita.imageUrl}`}
-              alt={berita.judul}
+              src={`/api/berita/image/${beritaState.imageUrl}`}
+              alt={beritaState.judul}
               fill
               style={{ objectFit: 'contain' }} // atau 'cover'
             />
@@ -85,21 +79,21 @@ const DetailBerita = async ({params}) => {
 
           
           <div
-              dangerouslySetInnerHTML={{ __html: berita.isi }}
+              dangerouslySetInnerHTML={{ __html: beritaState.isi }}
               className="[&>p]:mb-4 [&>p]:leading-relaxed"
             ></div>
         </div>
 
 
         
-        {beritas.length > 0  && (
+        {beritasState.length > 0  && (
           <>
             <div className='w-full border-b-2 border-amber-300'>
               <span className='font-bold text-lg text-amber-300'>BERITA LAINNYA</span>
             </div>
 
             <div className="flex flex-wrap w-full">
-              {beritas.map((b, i) => (
+              {beritasState.map((b, i) => (
                 <Link
                   key={i}
                   href={`/berita/${b.id}`}

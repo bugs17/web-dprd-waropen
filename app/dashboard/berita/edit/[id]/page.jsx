@@ -1,41 +1,50 @@
 
 
+"use client";
+import { getDetailBerita } from "@/action/get-detail-berita";
 import FormEditBerita from "@/components/custom/client-component/form-edit-berita";
-import { prisma } from "@/lib/db";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export const revalidate = 0;
 
-export const generateMetadata = () => {
-  return {
-    title: 'Berita | DPRK WAROPEN',
-  };
-};
 
-const EditBeritaPage = async ({params}) => {
-    const { id } = await params;
+const EditBeritaPage = () => {
+    const params = useParams()
+    const id = params.id
 
     if (!id) {
-    return <p>Not found</p>;
+      return <p>Not found</p>;
     }
-    
 
-    let berita;
-    try {
-        berita = await prisma.berita.findFirst({
-            where:{
-                id:parseInt(id)
-            }
-        })
-    } catch (error) {
-        console.error(error.message)
+    const [beritaState, setBeritaState] = useState(null)
+
+    const fetchData = async () => {
+      const {berita, beritas} = await getDetailBerita(id)
+      if (berita) {
+        setBeritaState(berita)
+      }
     }
+
+    useEffect(() => {
+      document.title = 'Berita | DPRK WAROPEN'
+      fetchData()
+    },[])
+
+
+  if (beritaState === null) {
+    return (
+      <div className='w-full justify-center items-center'>
+          <Loader className='text-amber-500 animate-spin' />
+      </div>
+    )
+  }
 
 
 
 
 
   return (
-        <FormEditBerita  judulProps={berita.judul} dateProps={berita.createdAt} postProps={berita.isi} imgUrlProps={berita.imageUrl} idProps={berita.id}/>
+        <FormEditBerita  judulProps={beritaState.judul} dateProps={beritaState.createdAt} postProps={beritaState.isi} imgUrlProps={beritaState.imageUrl} idProps={beritaState.id}/>
   )
 }
 
