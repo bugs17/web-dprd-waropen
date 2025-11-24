@@ -60,7 +60,11 @@ const DetailBerita = () => {
           <div className='w-full border-b  border-amber-300 flex flex-row justify-between py-2 mb-8'>
             <div className='flex flex-row gap-2 items-center'>
               <Clock className='text-white' size={16} />
-              <span className='text-white lg:text-sm text-xs'>{formatTanggalIndo(beritaState.createdAt)}</span>
+              <span className='text-white lg:text-sm text-xs'>{new Date(beritaState.createdAt).toLocaleDateString('id-ID', {
+                  day: '2-digit',
+                  month: 'short',
+                  year: 'numeric',
+                })}</span>
             </div>
 
             <ShareBeritaComponent />
@@ -120,7 +124,11 @@ const DetailBerita = () => {
                         </Tooltip>
                       </div>
                       <span className="text-white text-xs font-mono">
-                        {formatTanggalIndo(b.createdAt)}
+                        {new Date(b.createdAt).toLocaleDateString('id-ID', {
+                          day: '2-digit',
+                          month: 'short',
+                          year: 'numeric',
+                        })}
                       </span>
                     </div>
                   </div>
