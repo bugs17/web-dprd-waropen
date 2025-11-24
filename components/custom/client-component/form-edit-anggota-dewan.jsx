@@ -38,20 +38,14 @@ const listJabatanAnggotaDewan = [
     { id: 13, nama: "ANGGOTA KOMISI C" },
 ];
 
-// constant list jabatan in Badan
-const listJabatanBadan = [
-    { id: 1, nama: "KETUA" },
-    { id: 2, nama: "WAKIL" },
-    { id: 3, nama: "ANGGOTA" },
-    
-];
+
 
 // constant list jabatan in Fraksi
 const listJabatanFraksi = [
     { id: 1, nama: "KETUA FRAKSI" },
     { id: 2, nama: "WAKIL KETUA FRAKSI" },
     { id: 3, nama: "ANGGOTA FRAKSI" },
-    
+    { id: 4, nama: "BUKAN ANGGOTA FRAKSI"}
 ];
 
 
@@ -61,7 +55,6 @@ const FormEditAnggotaDewan = ({idDewan}) => {
 
     // state
     const [partaiList, setPartaiList] = useState([])
-    const [badanList, setBadanList] = useState([])
     const [instanceDewan, setInstanceDewan] = useState({})
 
 
