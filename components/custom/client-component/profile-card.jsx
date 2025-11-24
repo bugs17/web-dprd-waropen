@@ -18,10 +18,16 @@ const getRank = (jabatan) => {
   if (lower === "wakil ketua ii") return 3;
   if (lower === "wakil ketua iii") return 4;
 
-  if (lower.startsWith("ketua komisi")) return 5;
-  if (lower.startsWith("wakil ketua komisi")) return 6;
+  if (lower.startsWith("ketua komisi a")) return 5;
+  if (lower.startsWith("ketua komisi b")) return 6;
+  if (lower.startsWith("ketua komisi c")) return 7;
+  if (lower.startsWith("wakil ketua komisi a")) return 8;
+  if (lower.startsWith("wakil ketua komisi b")) return 9;
+  if (lower.startsWith("wakil ketua komisi c")) return 10;
+  if (lower.startsWith("anggota komisi a")) return 11;
+  if (lower.startsWith("anggota komisi b")) return 12;
+  if (lower.startsWith("anggota komisi c")) return 13;
 
-  if (lower.startsWith("anggota")) return 7;
 
   return 999;
 };

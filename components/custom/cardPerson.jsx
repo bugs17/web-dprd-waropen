@@ -1,11 +1,9 @@
 "use client"
 import { getAllAnggotaDewan } from '@/action/get-list-anggota-dewan';
-import { id } from 'date-fns/locale';
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react';
 
-// export const revalidate = 0; 
 
 const listJabatanAnggotaDewan = [
     { nama: "KETUA DPRK" },
@@ -13,13 +11,13 @@ const listJabatanAnggotaDewan = [
     { nama: "WAKIL KETUA II" },
     { nama: "WAKIL KETUA III" },
     { nama: "KETUA KOMISI A" },
-    {  nama: "WAKIL KETUA KOMISI A" },
-    {nama: "ANGGOTA KOMISI A" },
     {nama: "KETUA KOMISI B" },
-    {nama: "WAKIL KETUA KOMISI B" },
-    { nama: "ANGGOTA KOMISI B" },
     { nama: "KETUA KOMISI C" },
+    {  nama: "WAKIL KETUA KOMISI A" },
+    {nama: "WAKIL KETUA KOMISI B" },
     { nama: "WAKIL KETUA KOMISI C" },
+    {nama: "ANGGOTA KOMISI A" },
+    { nama: "ANGGOTA KOMISI B" },
     { nama: "ANGGOTA KOMISI C" },
 ];
 
