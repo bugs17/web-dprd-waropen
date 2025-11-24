@@ -25,7 +25,7 @@ const Beritas = async () => {
 
     return (
         <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min p-6" >
-            <div className={`w-full flex ${beritas.length > 0 ? "justify-between" : "justify-end"} justify-between`}>
+            <div className={`w-full flex ${beritas.length > 0 ? "justify-between" : "justify-end"} justify-between mb-8`}>
                 {beritas.length > 0 && (<div className="relative hidden w-full max-w-sm mb-5">
                     <Input
                         type="text"
