@@ -1,215 +1,247 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client-js"
-  // output   = "../lib/generated/prisma"
+provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+provider = "sqlite"
+url      = env("DATABASE_URL")
 }
 
+model PejabatSetwan {
+    id         Int      @id @default(autoincrement())
+    nama       String
+    jabatan    String?
+    nip        String?
+    createdAt  DateTime @default(now())
+    updatedAt  DateTime @updatedAt
+
+    badanKeanggotaan BadanAnggota[]
+}
 
 model AnggotaDewan {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  nama String
-  tempatLahir String @default("-")
-  tanggalLahir DateTime
-  email String?
-  facebookUrl String @default("-")
-  instagramUrl String @default("-")
-  youtubeUrl String @default("-")
-  peranDewan String @default("ANGGOTA")
-  peranKomisi        String    @default("ANGGOTA") // bisa: KETUA, WAKIL, ANGGOTA, BUKAN ANGGOTA
-  peranBadan        String    @default("ANGGOTA") // bisa: KETUA, WAKIL, ANGGOTA, BUKAN ANGGOTA
+    id Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  jabatanFraksi String @default("-")
+    nama String
+    tempatLahir String @default("-")
+    tanggalLahir DateTime
+    email String?
+    facebookUrl String @default("-")
+    instagramUrl String @default("-")
+    youtubeUrl String @default("-")
 
-  imageUrl String
+    peranDewan  String  @default("ANGGOTA")
+    peranKomisi String  @default("ANGGOTA")
+    peranBadan  String  @default("ANGGOTA")
 
-  partaiId           Int?              // Foreign key
-  partai             Partai?             @relation(fields: [partaiId], references: [id])
+    jabatanFraksi String @default("-")
+    imageUrl String
 
+    // Optional Partai
+    partaiId Int?
+    partai   Partai? @relation(fields: [partaiId], references: [id])
 
-  komisiId           Int?                // Foreign key
-  komisi             Komisi?             @relation(fields: [komisiId], references: [id])
-  
-  badanId           Int                // Foreign key
-  badan             Badan             @relation(fields: [badanId], references: [id])
+    // Optional Komisi
+    komisiId Int?
+    komisi   Komisi? @relation(fields: [komisiId], references: [id])
 
-  riwayatPendidikan RiwayatPendidikan[]
-  riwayatPekerjaan RiwayatPekerjaan[]
+    badanAnggota BadanAnggota[]
+
+    riwayatPendidikan RiwayatPendidikan[]
+    riwayatPekerjaan  RiwayatPekerjaan[]
+}
+
+model BadanAnggota {
+    id Int @id @default(autoincrement())
+
+    // relasi ke anggota dewan (opsional)
+    anggotaDewanId Int?
+    anggotaDewan   AnggotaDewan? @relation(fields: [anggotaDewanId], references: [id], onDelete: Cascade)
+    nama String?
+    // relasi ke pejabat setwan (opsional)
+    pejabatSetwanId Int?
+    pejabatSetwan   PejabatSetwan? @relation(fields: [pejabatSetwanId], references: [id], onDelete: Cascade)
+
+    // fallback jika bukan dari tabel manapun
+    namaManual String?
+
+    // JABATAN DALAM BADAN !!
+    jabatan String @default("-")
+
+    badanId Int
+    badan   Badan @relation(fields: [badanId], references: [id])
+}
+
+model Badan {
+    id Int @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+
+    nama         String
+    deskripsi    String @default("-")
+    tahunPeriode String @default("-")
+
+    anggota BadanAnggota[]
 }
 
 model RiwayatPendidikan {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  namaSekolah String @default("-")
-  tahunLulus String @default("-")
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
 
-  anggotaDewanId Int
-  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id], onDelete: Cascade)
+namaSekolah String @default("-")
+tahunLulus  String @default("-")
+
+anggotaDewanId Int
+anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id], onDelete: Cascade)
 }
 
 model RiwayatPekerjaan {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  jabatanPekerjaan String @default("-")
-  tahunMenjabat String @default("-")
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
 
-  anggotaDewanId Int
-  anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id], onDelete: Cascade)
+jabatanPekerjaan String @default("-")
+tahunMenjabat    String @default("-")
+
+anggotaDewanId Int
+anggotaDewan AnggotaDewan @relation(fields: [anggotaDewanId], references: [id], onDelete: Cascade)
 }
 
 model Partai {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  nama String
-  imageUrl String
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
 
-  anggotaDewan AnggotaDewan[]
+nama String
+imageUrl String
 
-  fraksiId  String?
-  fraksi    Fraksi?   @relation(fields: [fraksiId], references: [id])
+anggotaDewan AnggotaDewan[]
+
+fraksiId String?
+fraksi   Fraksi? @relation(fields: [fraksiId], references: [id])
 }
 
 model Fraksi {
-  id       String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  nama     String
-  partai   Partai[] // satu fraksi memiliki banyak partai
+id String @id @default(uuid())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+nama   String
+partai Partai[]
 }
 
-model Komisi{
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  nama String
-  deskripsi String @default("-")
-  tahunPeriode String @default("-")
+model Komisi {
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
 
-  anggotaDewan AnggotaDewan[]
+nama         String
+deskripsi    String @default("-")
+tahunPeriode String @default("-")
+
+anggotaDewan AnggotaDewan[]
 }
-
-
-model Badan{
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  nama String
-  deskripsi String @default("-")
-  tahunPeriode String @default("-")
-
-  anggotaDewan AnggotaDewan[]
-}
-
 
 model Setwan {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  visi String @default("-")
-  misi String @default("-")
-  urlImageStrukturOrganisasi String @default("-")
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+visi String @default("-")
+misi String @default("-")
+urlImageStrukturOrganisasi String @default("-")
 }
 
 model Dokumen {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  jenisDokumen String //contohnya laporan keuangan, rencana strategis, dokumen publikasi, produk hukum
-  namaDokumen String
-  urlDokumen String?
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+jenisDokumen String
+namaDokumen  String
+urlDokumen   String?
 }
 
 model Berita {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  judul String
-  isi String
-  slug String
-  isDraft Boolean @default(false)
-  imageUrl String?
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+judul String
+isi   String
+slug  String
+isDraft Boolean @default(false)
+imageUrl String?
 }
 
 model Galery {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @default(now())
 
-  judul String @default("-")
-  imageUrl String
+judul String @default("-")
+imageUrl String
 }
 
 model JadwalSidang {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  date DateTime
-  tentang String
-  deskripsi String
-  lokasi String
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @default(now())
+
+date DateTime
+tentang String
+deskripsi String
+lokasi String
 }
 
 model Agenda {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
 
-  date DateTime
-  judulAgenda String
-  deskripsi String
+date DateTime
+judulAgenda String
+deskripsi String
 }
 
-
 model Kontak {
-  id Int @id @default(autoincrement())
-  email String @default("-") @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  telp String @default("-")
-  alamat String @default("-")
-  facebook String @default("-")
-  instagram String @default("-")
-  twitter String @default("-")
-  youtube String @default("-")
+id Int @id @default(autoincrement())
+email String @default("-") @unique
+createdAt DateTime @default(now())
+updatedAt DateTime @default(now())
 
+telp     String @default("-")
+alamat   String @default("-")
+facebook String @default("-")
+instagram String @default("-")
+twitter  String @default("-")
+youtube  String @default("-")
 }
 
 model Hero {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  tagline String @default("-")
-  description String @default("-")
-  urlImage String @default("-")
+id Int @id @default(autoincrement())
+createdAt DateTime @default(now())
+updatedAt DateTime @updatedAt
+
+tagline    String @default("-")
+description String @default("-")
+urlImage   String @default("-")
 }
 
-
 model User {
-  id        String   @id @default(cuid())
-  username  String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  sessions  Session[]
+id        String   @id @default(cuid())
+username  String   @unique
+password  String
+createdAt DateTime @default(now())
+sessions  Session[]
 }
 
 model Session {
-  id        String   @id
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  expiresAt DateTime
-  createdAt DateTime @default(now())
+id        String   @id
+userId    String
+user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+expiresAt DateTime
+createdAt DateTime @default(now())
 }

@@ -7,7 +7,11 @@ export const getAllFraksi = async () => {
     try {
         const datas = await prisma.fraksi.findMany({
             include:{
-                partai:true
+                partai:{
+                    include:{
+                        anggotaDewan:true
+                    }
+                }
             }
         })
         return datas

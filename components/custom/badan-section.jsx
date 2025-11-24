@@ -1,18 +1,16 @@
 "use client"
-import { getBadanList } from "@/action/get-badan-list";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion"
 import CardAnggotaBadan from "./card--anggota-badan"
 import { useEffect, useState } from "react";
-
-export const revalidate = 0;
+import { getBadanListGrouped } from "@/action/get-badan-list-for-landing";
 
 const sortBadan = (list) => {
   return list.sort((a, b) => {
-    const j1 = a.peranBadan.toLowerCase();
-    const j2 = b.peranBadan.toLowerCase();
+    const j1 = a.jabatan.toLowerCase();
+    const j2 = b.jabatan.toLowerCase();
 
     const rank = (jabatan) => {
-      if (jabatan.includes("ketua") && !jabatan.includes("wakil")) return 1;
+      if (jabatan.includes("ketua")) return 1;
       if (jabatan.includes("wakil")) return 2;
       if (jabatan.includes("anggota")) return 3;
       return 99;
@@ -28,7 +26,7 @@ const AcordComponent = () => {
 
   useEffect(() => {
       const fetchData = async () => {
-        const data = await getBadanList()
+        const data = await getBadanListGrouped()
         if (data) {
           setBadan(data)
         }
@@ -59,10 +57,10 @@ const AcordComponent = () => {
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
-            {b.anggotaDewan.length > 0 ? (
+            {b.anggota.length > 0 ? (
               
-              sortBadan(b.anggotaDewan).map((a, ai) => (
-                <CardAnggotaBadan urlImage={a.imageUrl} key={ai} badan={b.nama} nama={a.nama} status={a.peranBadan} />
+              sortBadan(b.anggota).map((a, ai) => (
+                <CardAnggotaBadan urlImage={a.source === "dewan" ? `/api/anggota-dewan/image/${a.profile.imageUrl}` : '/person.jpg'} key={ai} badan={b.nama} nama={a.nama} status={a.jabatan} />
               ))
             ):(
               <></>

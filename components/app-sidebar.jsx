@@ -13,7 +13,8 @@ import {
   Handshake,
   FileText,
   ImagePlus,
-  GitBranch
+  GitBranch,
+  Building
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -93,6 +94,12 @@ const data = {
       url: "/dashboard/anggota-dewan",
       match: "/dashboard/anggota-dewan",
       icon: SquareUserRound,
+    },
+    {
+      name: "Badan",
+      url: "/dashboard/badan",
+      match: "/dashboard/badan",
+      icon: Building,
     },
     {
       name: "Struktur Setwan",

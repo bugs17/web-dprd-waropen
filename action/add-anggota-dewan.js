@@ -3,13 +3,12 @@
 import { prisma } from "@/lib/db";
 import path from "path";
 import { writeFile } from "fs/promises";
-import { console } from "inspector";
 import { revalidatePath } from "next/cache";
 
 
 
 
-export const addAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidikan, riwayatPekerjaan, partaiID, jabatanDewan, jabatanFraksi, badanID, jabatanBadan, fotoProfil) => {
+export const addAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidikan, riwayatPekerjaan, partaiID, jabatanDewan, jabatanFraksi, fotoProfil) => {
     try {
 
         // ####### proses handle foto profil anggota dewan ##########
@@ -40,21 +39,22 @@ export const addAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidik
             tanggalLahir: tglLahir,
             peranDewan: jabatanDewan,
             peranKomisi: jabatanDewan,
-            peranBadan: jabatanBadan,
             jabatanFraksi: jabatanFraksi,
             partaiId: parseInt(partaiID) ,
-            badanId: parseInt(badanID),
             imageUrl: namaFileDiDb
         }
 
 
+
+
+
         // mapping data riwayat pendidikan
         const dataRiwayatPendidikanMapped = riwayatPendidikan
-            .filter(item => item.nama.trim() !== "" && item.tahun)
-            .map(item => ({
-                namaSekolah: item.nama,
-                tahunLulus: item.tahun
-            }))
+        .filter(item => item.nama.trim() !== "" && item.tahun)
+        .map(item => ({
+            namaSekolah: item.nama,
+            tahunLulus: item.tahun
+        }))
 
         // mapping data riwayat pekerjaan
         const dataRiwayatPekerjaanMapped = riwayatPekerjaan
@@ -83,7 +83,6 @@ export const addAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidik
             }
         }
 
-
         await prisma.anggotaDewan.create({
             data:dataAnggotaDewan
         })
@@ -91,10 +90,9 @@ export const addAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidik
         revalidatePath('/dashboard/anggota-dewan')
         return true
 
-
     } catch (error) {
         console.error("Error detail:", error);
-
+        console.log("Error", error.mesage)
         return false
     }
 }

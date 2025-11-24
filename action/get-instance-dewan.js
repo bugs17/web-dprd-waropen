@@ -13,11 +13,10 @@ export const getAnggotaDewanById = async (id) => {
                 id:parseInt(id)
             },
             include:{
-                badan:true,
                 komisi:true,
                 partai:true,
                 riwayatPekerjaan:true,
-                riwayatPendidikan:true
+                riwayatPendidikan:true,
             }
         })
 

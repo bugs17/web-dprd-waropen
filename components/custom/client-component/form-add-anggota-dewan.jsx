@@ -15,7 +15,6 @@ import toast from "react-hot-toast"
 import { addAnggotaDewan } from "@/action/add-anggota-dewan"
 import { useRouter } from "next/navigation"
 import { getPartaiList } from "@/action/get-partai-list"
-import { getBadanList } from "@/action/get-badan-list"
 
 
 // constant list jabatan
@@ -48,7 +47,7 @@ const listJabatanFraksi = [
     { id: 1, nama: "KETUA FRAKSI" },
     { id: 2, nama: "WAKIL KETUA FRAKSI" },
     { id: 3, nama: "ANGGOTA FRAKSI" },
-    
+    { id: 4, nama: "BUKAN ANGGOTA FRAKSI"}
 ];
 
 
@@ -58,7 +57,6 @@ const FormAddAnggotaDewan = () => {
 
     // state
     const [partaiList, setPartaiList] = useState([])
-    const [badanList, setBadanList] = useState([])
 
 
     const [nama, setNama] = useState("")
@@ -68,8 +66,7 @@ const FormAddAnggotaDewan = () => {
     const [partaiID, setPartaiID] = useState(null)
     const [jabatanAnggota, setJabatanAnggota] = useState("")
     const [jabatanFraksi, setJabatanFraksi] = useState("")
-    const [badanID, setBadanID] = useState(null)
-    const [jabatanBadan, setJabatanBadan] = useState("")
+    
 
 
 
@@ -96,13 +93,9 @@ const FormAddAnggotaDewan = () => {
             const partai = await getPartaiList()
             setPartaiList(partai)
         }
-        const getDataBadan = async () => {
-            const badan = await getBadanList()
-            setBadanList(badan)
-        }
+        
 
         getDataPartai()
-        getDataBadan()
 
     }, [])
 
@@ -166,15 +159,6 @@ const FormAddAnggotaDewan = () => {
         setJabatanFraksi(jabatanFraksi.nama)
     };
     
-    // handle on select badan
-    const handleSelectBadan = (badan) => {
-        setBadanID(badan.id)
-    };
-    
-    // handle on select jabatan badan
-    const handleSelectJabatanBadan = (jabatanBadan) => {
-        setJabatanBadan(jabatanBadan.nama)
-    };
 
 
     // handle submit all input here
@@ -184,11 +168,8 @@ const FormAddAnggotaDewan = () => {
             !nama ||
             !tmptLahir ||
             !date ||
-            !partaiID ||
             !jabatanAnggota ||
-            !jabatanFraksi ||
-            !badanID ||
-            !jabatanBadan
+            !jabatanFraksi
         ) {
             toast(
                 <span>
@@ -225,13 +206,13 @@ const FormAddAnggotaDewan = () => {
             partaiID,
             jabatanAnggota,
             jabatanFraksi,
-            badanID,
-            jabatanBadan,
             imgFile
             );
+            
+
 
             if (result === true) {
-            toast('Berhasil menyimpan data hero.', {
+            toast('Berhasil di tambahkan.', {
             icon: <ThumbsUp className="text-green-500" />,
             style: {
                 borderRadius: '12px',
@@ -247,7 +228,7 @@ const FormAddAnggotaDewan = () => {
             })
             setTimeout(() => router.push("/dashboard/anggota-dewan"), 800);
             } else {
-            toast('Gagal menyimpan data hero.', {
+            toast('Gagal ditambahkan.', {
                 icon: <Ban className="text-red-500" />,
                 style: {
                     borderRadius: '12px',
@@ -428,19 +409,20 @@ const FormAddAnggotaDewan = () => {
                 </div>
             </div>
             
-            <span className="text-slate-500 mt-3">Badan</span>
-            <Separator className={""} />
+                {/* tidak lagi memilih badan dalam form input anggota dean */}
+                {/* <span className="text-slate-500 mt-3">Badan</span>
+                <Separator className={""} />
 
-            <div className="w-full flex flex-col gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label>Badan <span className="text-red-500"> *</span></Label>
-                    <BadanDropdown disabled={isPending} options={badanList} onSelect={handleSelectBadan} placeholder={"Pilih badan"} />
-                </div>
-                <div className="flex flex-col gap-3 w-full">
-                    <Label>Jabatan Dalam Badan DPRK <span className="text-red-500"> *</span></Label>
-                    <BadanDropdown disabled={isPending} options={listJabatanBadan} onSelect={handleSelectJabatanBadan} placeholder={"Pilih Jabatan"} />
-                </div>
-            </div>
+                <div className="w-full flex flex-col gap-5">
+                    <div className="flex flex-col gap-3 w-full">
+                        <Label>Badan <span className="text-red-500"> *</span></Label>
+                        <BadanDropdown disabled={isPending} options={badanList} onSelect={handleSelectBadan} placeholder={"Pilih badan"} />
+                    </div>
+                    <div className="flex flex-col gap-3 w-full">
+                        <Label>Jabatan Dalam Badan DPRK <span className="text-red-500"> *</span></Label>
+                        <BadanDropdown disabled={isPending} options={listJabatanBadan} onSelect={handleSelectJabatanBadan} placeholder={"Pilih Jabatan"} />
+                    </div>
+                </div> */}
 
             <span className="text-slate-500 mt-3">Foto Anggota Dewan</span>
             <Separator className={""} />

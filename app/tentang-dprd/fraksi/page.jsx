@@ -1,27 +1,23 @@
+"use client"
+import { getAllFraksi } from '@/action/get-list-fraksi';
 import FraksiComponent from '@/components/custom/client-component/fraksi-card';
 import HeaderPages from '@/components/custom/header-pages'
-import { prisma } from '@/lib/db';
-
-export const revalidate = 0;
+import { useEffect, useState } from 'react';
 
 
-export const generateMetadata = () => {
-    return {
-        title: 'Fraksi | DPRK WAROPEN',
-    };
-};
+const FraksiPage = () => {
+  const [ fraksis, setFraksis] = useState([])
 
-const FraksiPage = async () => {
 
-  const fraksis = await prisma.fraksi.findMany({
-    include:{
-      partai:{
-        include:{
-          anggotaDewan:true
-        }
-      }
-    }
-  })
+  const fetchData = async () => {
+    const data = await getAllFraksi()
+    setFraksis(data)
+  }
+
+  useEffect(() => {
+    document.title = 'Fraksi | DPRK WAROPEN',
+    fetchData()
+  }, [])
 
   return (
     <>

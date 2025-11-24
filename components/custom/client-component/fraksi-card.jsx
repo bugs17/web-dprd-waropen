@@ -95,7 +95,7 @@ export default function FraksiComponent({ fraksiData }) {
                       </div>
 
                       <div className="w-full lg:h-[50%] h-[20%] flex lg:items-end items-center lg:justify-start justify-center">
-                        <div className="w-full lg:items-start items-center justify-center lg:justify-start flex lg:block py-5 border-t-2 lg:border-t-amber-500 border-t-zinc-500 text-white text-sm">
+                        <div className="w-full lg:items-start items-center justify-center lg:justify-start flex lg:block py-5 border-t-2 lg:border-t-zinc-500 border-t-zinc-500 text-white text-sm">
                           {member.jabatanFraksi}
                         </div>
                       </div>

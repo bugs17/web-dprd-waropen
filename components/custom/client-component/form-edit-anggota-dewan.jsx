@@ -72,8 +72,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
     const [partaiID, setPartaiID] = useState(null)
     const [jabatanAnggota, setJabatanAnggota] = useState("")
     const [jabatanFraksi, setJabatanFraksi] = useState("")
-    const [badanID, setBadanID] = useState(null)
-    const [jabatanBadan, setJabatanBadan] = useState("")
+    
 
 
 
@@ -97,11 +96,9 @@ const FormEditAnggotaDewan = ({idDewan}) => {
     useEffect(() => {
         const fetchData = async () => {
             const partai = await getPartaiList()
-            const badan = await getBadanList()
             const dewan = await getAnggotaDewanById(idDewan)
 
             setPartaiList(partai)
-            setBadanList(badan)
             setInstanceDewan(dewan)
 
             // langsung isi field form-nya
@@ -111,8 +108,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             setPartaiID(dewan.partaiId || null)
             setJabatanAnggota(dewan.peranDewan || "")
             setJabatanFraksi(dewan.jabatanFraksi || "")
-            setBadanID(dewan.badanId || null)
-            setJabatanBadan(dewan.peranBadan || "")
+            
             setPreview(`/api/anggota-dewan/image/${dewan.imageUrl}` || null)
 
             // state yang menampung data riwayat pendidikan dari DB
@@ -195,15 +191,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
         setJabatanFraksi(jabatanFraksi.nama)
     };
     
-    // handle on select badan
-    const handleSelectBadan = (badan) => {
-        setBadanID(badan.id)
-    };
     
-    // handle on select jabatan badan
-    const handleSelectJabatanBadan = (jabatanBadan) => {
-        setJabatanBadan(jabatanBadan.nama)
-    };
 
 
     // handle submit all input here
@@ -214,9 +202,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             !date ||
             !partaiID ||
             !jabatanAnggota ||
-            !jabatanFraksi ||
-            !badanID ||
-            !jabatanBadan
+            !jabatanFraksi
         ) {
             toast.error(
             <span>
@@ -239,8 +225,6 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             partaiID,
             jabatanAnggota,
             jabatanFraksi,
-            badanID,
-            jabatanBadan,
             imgFile,
             idDewan
             );
@@ -417,19 +401,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
                 </div>
             </div>
             
-            <span className="text-slate-500 mt-3">Badan</span>
-            <Separator className={""} />
 
-            <div className="w-full flex flex-col gap-5">
-                <div className="flex flex-col gap-3 w-full">
-                    <Label>Badan <span className="text-red-500"> *</span></Label>
-                    <BadanDropdown value={badanList.find((p) => p.id === badanID || null)} disabled={isPending} options={badanList} onSelect={handleSelectBadan} placeholder={"Pilih badan"} />
-                </div>
-                <div className="flex flex-col gap-3 w-full">
-                    <Label>Jabatan Dalam Badan DPRK <span className="text-red-500"> *</span></Label>
-                    <BadanDropdown value={listJabatanBadan.find((p) => p.nama === jabatanBadan)} disabled={isPending} options={listJabatanBadan} onSelect={handleSelectJabatanBadan} placeholder={"Pilih Jabatan"} />
-                </div>
-            </div>
 
             <span className="text-slate-500 mt-3">Foto Anggota Dewan</span>
             <Separator className={""} />
