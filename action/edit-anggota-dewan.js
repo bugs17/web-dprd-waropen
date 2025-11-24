@@ -18,10 +18,8 @@ export const editAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidi
             tanggalLahir: tglLahir,
             peranDewan: jabatanDewan,
             peranKomisi: jabatanDewan,
-            peranBadan: jabatanBadan,
             jabatanFraksi: jabatanFraksi,
             partaiId: parseInt(partaiID) ,
-            badanId: parseInt(badanID),
         }
 
         const anggotaDewan = await prisma.anggotaDewan.findFirst({
