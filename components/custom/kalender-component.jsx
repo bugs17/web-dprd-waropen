@@ -3,7 +3,6 @@ import { ScheduleXCalendar, useCalendarApp } from '@schedule-x/react'
 import { createViewMonthGrid } from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/calendar.css'
 import { createEventModalPlugin } from '@schedule-x/event-modal'
-import { formatDateCalander } from '@/lib/formatDate'
 
 const Calendar = ({instances}) => {
 
@@ -15,8 +14,8 @@ const Calendar = ({instances}) => {
     events: instances.map((event) => ({
           id: event?.id,
           title: event?.tentang,
-          start: formatDateCalander(event?.date),
-          end: formatDateCalander(event?.date),
+          start: new Date(event?.date),
+          end: new Date(event?.date),
           description: event?.deskripsi
         })), // selalu ada, bisa kosong dulu
     plugins: [
