@@ -15,8 +15,8 @@ const Calendar = ({instances}) => {
     events: instances.map((event) => ({
           id: event?.id,
           title: event?.tentang,
-          start: formatDateCalander(event?.createdAt),
-          end: formatDateCalander(event?.createdAt),
+          start: formatDateCalander(event?.date),
+          end: formatDateCalander(event?.date),
           description: event?.deskripsi
         })), // selalu ada, bisa kosong dulu
     plugins: [
