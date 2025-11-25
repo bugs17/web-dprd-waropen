@@ -14,8 +14,8 @@ const Calendar = ({instances}) => {
     events: instances.map((event) => ({
           id: event?.id,
           title: event?.tentang,
-          start: new Date(event?.date),
-          end: new Date(event?.date),
+          start: new Date(event?.date).toISOString().slice(0, 16),
+          end: new Date(event?.date).toISOString().slice(0, 16),
           description: event?.deskripsi
         })), // selalu ada, bisa kosong dulu
     plugins: [
