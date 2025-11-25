@@ -52,9 +52,7 @@ export default function JadwalSidangInputs() {
   }
 
   startTransition(async () => {
-    const tanggal = new Date(
-      `${date.toISOString().split("T")[0]}T${time}`
-    ).toISOString();
+    const tanggal = new Date(date)
 
     const payload = { judul, tanggal, lokasi, deskripsi };
 
