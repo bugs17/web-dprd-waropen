@@ -18,6 +18,7 @@ export const addJadwalSidang = async (data) => {
     });
 
     revalidatePath("/dashboard/jadwal-sidang");
+    revalidatePath("/");
     return newEvent;
   } catch (error) {
     console.error("❌ Gagal menambah jadwal sidang:", error);
