@@ -1,16 +1,18 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
-import { Loader, Trash2, Ban } from "lucide-react";
+import { Loader, Trash2, FileWarning, Ban } from "lucide-react";
 import { getJadwalSidangs } from "@/action/get-list-jadwal-sidang";
 import { addJadwalSidang } from "@/action/add-jadwal-sidang";
 import { deleteJadwalSidang } from "@/action/delete-jadwal-sidang";
 import { CalendarInput } from "./calandarInput";
+import { TimeInput } from "./timeInput";
 import toast from "react-hot-toast";
 
 export default function JadwalSidangInputs() {
   const [judul, setJudul] = useState("");
   const [date, setDate] = useState(null);
+  const [time, setTime] = useState("");
   const [lokasi, setLokasi] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
   const [jadwals, setJadwals] = useState([]);
@@ -31,7 +33,7 @@ export default function JadwalSidangInputs() {
 
   // 🔹 simpan jadwal baru
   const handleSave = async () => {
-  if (!judul || !date ) {
+  if (!judul || !date || !time) {
     toast("Lengkapi semua field wajib (judul, tanggal, waktu)!", {
       icon: <Ban className="text-red-500" />,
       style: {
@@ -50,7 +52,9 @@ export default function JadwalSidangInputs() {
   }
 
   startTransition(async () => {
-    const tanggal = new Date(date)
+    const tanggal = new Date(
+      `${date.toISOString().split("T")[0]}T${time}`
+    )
 
     const payload = { judul, tanggal, lokasi, deskripsi };
 
@@ -61,6 +65,7 @@ export default function JadwalSidangInputs() {
       );
       setJudul("");
       setDate(null);
+      setTime("");
       setLokasi("");
       setDeskripsi("");
     }
@@ -121,6 +126,7 @@ export default function JadwalSidangInputs() {
         />
 
         <CalendarInput date={date} setDate={setDate} />
+        <TimeInput time={time} setTime={setTime} />
 
         <input
           type="text"
@@ -176,7 +182,10 @@ export default function JadwalSidangInputs() {
                 <div>
                   <p className="font-medium text-white">{j.tentang}</p>
                   <p className="text-sm text-gray-300">
-                    {new Date(j.date).toLocaleString("id-ID")}
+                    {new Date(j.date).toLocaleString("id-ID", {
+                      dateStyle: "medium",
+                      timeStyle: "short",
+                    })}
                     {j.lokasi && ` • ${j.lokasi}`}
                   </p>
                   {j.deskripsi && (
