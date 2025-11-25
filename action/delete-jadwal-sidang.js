@@ -14,6 +14,7 @@ export const deleteJadwalSidang = async (id) => {
     });
 
     revalidatePath("/dashboard/jadwal-sidang");
+    revalidatePath("/");
     return true;
   } catch (error) {
     console.error("❌ Gagal menghapus jadwal sidang:", error);

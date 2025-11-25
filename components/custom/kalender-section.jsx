@@ -1,7 +1,7 @@
 import { getAgendaList } from '@/action/get-agenda'
 import Calendar from './kalender-component'
 
-
+export const revalidate = 0
 
 const KalenderSection = async () => {
 
