@@ -1,14 +1,16 @@
 # Menggunakan base image Node.js
-FROM node:22-alpine
+FROM node:22
 
 # Set working directory
 WORKDIR /app
 
+# Salin package dulu untuk efisiensi layer
+COPY package*.json ./
+RUN npm install
+
 # Menyalin seluruh direktori proyek ke dalam container
 COPY . .
 
-# Install dependencies
-RUN npm install
 
 # Pastikan entrypoint bisa dieksekusi
 # RUN chmod +x docker-entrypoint.sh
