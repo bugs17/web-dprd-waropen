@@ -9,16 +9,40 @@ export const revalidate = 0;
 
 
 const DashboardPage = async () => {
+  let jumlahBerita;
+  let jumlahAnggotaDewan;
+  let docs = [];
+  let agenda;
   
-  const jumlahBerita =  (await prisma.berita.findMany()).length
-  const jumlahAnggotaDewan =  (await prisma.anggotaDewan.findMany()).length
-  const docs =  await prisma.dokumen.findMany()
+  try {
+    jumlahBerita =  (await prisma.berita.findMany()).length
+  } catch (error) {
+  }
 
-  const produkHukum = docs.filter((p) => p.jenisDokumen === "Produk Hukum").length
-  const dokumenKeuangan = docs.filter((p) => p.jenisDokumen === "Laporan Keuangan DPRK").length
-  const renstra = docs.filter((p) => p.jenisDokumen === "Rencana Strategis DPRK").length
+  try {
+    jumlahAnggotaDewan =  (await prisma.anggotaDewan.findMany()).length
+  } catch (error) {
+  }
+  try {
+    docs =  await prisma.dokumen.findMany()
+  } catch (error) {
+  }
 
-  const agenda = (await prisma.jadwalSidang.findMany()).length
+  let produkHukum = 0
+  let dokumenKeuangan = 0
+  let renstra = 0
+
+  if (docs.length > 0) {
+    produkHukum = docs.filter((p) => p.jenisDokumen === "Produk Hukum").length
+    dokumenKeuangan = docs.filter((p) => p.jenisDokumen === "Laporan Keuangan DPRK").length
+    renstra = docs.filter((p) => p.jenisDokumen === "Rencana Strategis DPRK").length
+  }
+
+
+  try {
+    agenda = (await prisma.jadwalSidang.findMany()).length
+  } catch (error) {
+  }
 
   // 🔹 Contoh data statistik, nanti bisa diganti dengan fetch dari backend
   const stats = [

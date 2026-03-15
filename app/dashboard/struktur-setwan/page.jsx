@@ -11,8 +11,12 @@ export const generateMetadata = () => {
 };
 
 const StrukturSetwanPage = async () => {
+    let data;
 
-    const data = await prisma.setwan.findFirst()
+    try {
+        data = await prisma.setwan.findFirst()
+    } catch (error) {
+    }
 
 
     return (

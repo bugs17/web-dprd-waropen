@@ -7,8 +7,14 @@ export const revalidate = 0;
 
 
 const AgendaAndSosialMedia = async () => {
-
-    const data = await prisma.kontak.findFirst()
+    let data = {};
+    
+    try {
+        data = await prisma.kontak.findFirst()
+    } catch (error) {
+        
+    }
+    
     const sosialMedia = [
     {
         nama: "Facebook",

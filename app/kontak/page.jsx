@@ -7,7 +7,12 @@ export const revalidate = 0;
 
 const KontakPage = async () => {
   const host = headers().get('host')
-  const kontak = await prisma.kontak.findFirst()
+
+  let kontak = {};
+  try {
+    kontak = await prisma.kontak.findFirst()
+  } catch (error) {
+  }
 
   return (
 

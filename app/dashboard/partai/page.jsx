@@ -15,14 +15,23 @@ export const generateMetadata = () => {
 };
 
 const page = async () => {
+  let partaiList = [];
+  let fraksis = [];
 
-  const partaiList = await prisma.partai.findMany({
-    orderBy:{
-      id:'desc'
-    }
-  })
+  try {
+    partaiList = await prisma.partai.findMany({
+      orderBy:{
+        id:'desc'
+      }
+    })
+  } catch (error) {
+  }
 
-  const fraksis = await prisma.fraksi.findMany()
+  try {
+    fraksis = await prisma.fraksi.findMany()
+  } catch (error) {
+  }
+
 
 
   return (
