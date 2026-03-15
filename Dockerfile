@@ -8,6 +8,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
+# PAKSA instalasi binary lightningcss untuk linux x64 gnu
+RUN npm install lightningcss-linux-x64-gnu
+
 # Menyalin seluruh direktori proyek ke dalam container
 COPY . .
 
