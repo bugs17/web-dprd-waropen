@@ -22,7 +22,7 @@ COPY . .
 # COPY .env .
 
 # Generate Prisma Client
-# RUN npx prisma generate
+RUN npx prisma generate
 
 # Push schema ke database (akan bikin file .db untuk SQLite)
 # RUN npx prisma db push
