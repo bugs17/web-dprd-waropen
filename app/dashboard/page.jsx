@@ -12,7 +12,7 @@ const DashboardPage = async () => {
   let jumlahBerita;
   let jumlahAnggotaDewan;
   let docs = [];
-  let agenda;
+  let agenda = 0;
   
   try {
     jumlahBerita =  (await prisma.berita.findMany()).length
