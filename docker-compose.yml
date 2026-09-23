@@ -11,5 +11,7 @@ services:
     volumes:
       - ./realDb:/app/realDb
       - ./uploads:/app/uploads
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
     command: "npm run start"
     restart: always
