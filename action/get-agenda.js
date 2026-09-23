@@ -10,6 +10,6 @@ export const getAgendaList = async () => {
         return data
     } catch (error) {
         console.log("Terjadi error saat mengambil data agenda", error.message)
-        return null
+        return []
     }
 }

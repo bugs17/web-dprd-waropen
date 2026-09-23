@@ -10,5 +10,6 @@ export const getJadwalSidangs = async () => {
         return sidangs
     } catch (error) {
         console.error("Terjadi kesalahan saat mengambil list jadwal sidang", error.message)
+        return []
     }
 }
