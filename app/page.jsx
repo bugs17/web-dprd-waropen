@@ -5,6 +5,7 @@ import Devider from "@/components/custom/devider";
 import DokumenTerbaru from "@/components/custom/dokumen-terbaru-home";
 import Hero from "@/components/custom/hero-section";
 import KalenderSection from "@/components/custom/kalender-section";
+import KartuUcapan from "@/components/custom/kartu-ucapan";
 import LayananCepat from "@/components/custom/layanan-cepat";
 import Navbar from "@/components/custom/navbar";
 
@@ -22,6 +23,7 @@ export default function Home() {
     <>
       <BackToTop />
       <Hero />
+      <KartuUcapan />
       <Devider title={'Layanan Cepat'} bg={false} btn={false} underLine={false} />
       <LayananCepat />
       <Devider title={'Berita Terkini'} bg={true} btn={true} underLine={false} />
