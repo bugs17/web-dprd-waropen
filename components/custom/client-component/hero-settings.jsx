@@ -4,50 +4,48 @@ import { useEffect, useState, useTransition } from 'react'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/components/ui/dialog'
 import toast from 'react-hot-toast'
-import { Ban, Loader, Pencil } from 'lucide-react'
-import { getHero } from '@/action/get-hero'
-import { updateHero } from '@/action/edit-hero'
+import { Ban, Loader, Pencil, Plus, Trash2 } from 'lucide-react'
+import {  getHero } from '@/action/get-hero' // Asumsikan diubah dari getHero ke getAllHero (findMany)
 import { createHero } from '@/action/create-hero'
+import { updateHero } from '@/action/edit-hero'
+import { deleteHero } from './delete-hero'
 
 export default function HeroAdminPage() {
-  const [heroData, setHeroData] = useState(null)
+  const [heroList, setHeroList] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [isPending, startTransition] = useTransition()
+
+  // State untuk Dialog Modal (Tambah / Edit)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [editingId, setEditingId] = useState(null)
   const [formData, setFormData] = useState({
     tagline: '',
     description: '',
-    urlImage: '',
     file: null,
   })
   const [preview, setPreview] = useState(null)
-  const [isPending, startTransition] = useTransition()
-  const [isEditing, setIsEditing] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+
+  // State untuk Dialog Hapus
+  const [deleteId, setDeleteId] = useState(null)
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+
+  // Ambil data saat pertama load
+  const fetchHeroes = async () => {
+    try {
+      const res = await getHero()
+      setHeroList(res || [])
+    } catch {
+      toast('Gagal memuat data hero.', { icon: <Ban className="text-red-500" /> })
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   useEffect(() => {
-    const fetchHero = async () => {
-      try {
-        const res = await getHero()
-        if (res) {
-          const imageUrl = `/api/hero/image/${res.urlImage}`
-          setHeroData(res)
-          setFormData({
-            tagline: res.tagline,
-            description: res.description,
-            urlImage: imageUrl,
-            file: null,
-          })
-        }
-      } catch {
-        toast('Gagal memuat data hero.', {
-          icon: <Ban className="text-red-500" />,
-        })
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchHero()
+    fetchHeroes()
   }, [])
 
   const handleChange = (e) => {
@@ -58,91 +56,74 @@ export default function HeroAdminPage() {
   const handleImageChange = (e) => {
     const file = e.target.files?.[0]
     if (file) {
-      const previewURL = URL.createObjectURL(file)
-      setPreview(previewURL)
+      setPreview(URL.createObjectURL(file))
       setFormData((prev) => ({ ...prev, file }))
     }
   }
 
+  // Buka modal untuk tambah data baru
+  const handleOpenAdd = () => {
+    setEditingId(null)
+    setFormData({ tagline: '', description: '', file: null })
+    setPreview(null)
+    setIsDialogOpen(true)
+  }
+
+  // Buka modal untuk edit data
+  const handleOpenEdit = (item) => {
+    setEditingId(item.id)
+    setFormData({
+      // tagline: item.tagline,
+      // description: item.description,
+      file: null,
+    })
+    setPreview(`/api/hero/image/${item.urlImage}`)
+    setIsDialogOpen(true)
+  }
+
+  // Submit Simpan / Update
   const handleSubmit = () => {
-    if (!formData.tagline || !formData.description || (!heroData && !formData.file)) {
-      toast('Lengkapi semua field wajib!', {
-        icon: <Ban className="text-red-500" />,
-        style: {
-          borderRadius: '12px',
-          background: 'linear-gradient(135deg, #1a1a1a, #2a2a2a)',
-          color: '#f5f5f5',
-          border: '1px solid #3a3a3a',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-          padding: '14px 18px',
-          fontSize: '14px',
-          fontWeight: 500,
-        },
-        duration: 3500,
-      })
+    if ((!editingId && !formData.file)) {
+      toast('Lengkapi semua field wajib!', { icon: <Ban className="text-red-500" /> })
       return
     }
 
     startTransition(async () => {
       try {
         let res = null
-        if (heroData) {
-          res = await updateHero(formData)
+        if (editingId) {
+          // Kirim data beserta ID untuk update
+          res = await updateHero({ ...formData, id: editingId })
         } else {
           res = await createHero(formData)
         }
 
         if (res) {
-          toast('Hero berhasil disimpan!', { icon: '✅' })
-          const imageUrl = `/api/hero/image/${res.urlImage}`
-
-          // perbarui semua state dengan data terbaru
-          setHeroData(res)
-          setFormData({
-            tagline: res.tagline,
-            description: res.description,
-            urlImage: imageUrl,
-            file: null,
-          })
-          setPreview(null)
-          setIsEditing(false)
+          toast(editingId ? 'Hero berhasil diperbarui!' : 'Hero berhasil ditambahkan!', { icon: '✅' })
+          setIsDialogOpen(false)
+          fetchHeroes() // Refresh list data
         } else {
           throw new Error()
         }
       } catch {
-        toast('Gagal menyimpan data hero.', {
-          icon: <Ban className="text-red-500" />,
-          style: {
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #1a1a1a, #2a2a2a)',
-            color: '#f5f5f5',
-            border: '1px solid #3a3a3a',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            padding: '14px 18px',
-            fontSize: '14px',
-            fontWeight: 500,
-          },
-          duration: 3500,
-        })
+        toast('Gagal menyimpan data hero.', { icon: <Ban className="text-red-500" /> })
       }
     })
   }
 
-  const handleEdit = () => setIsEditing(true)
-
-  const handleCancel = () => {
-    // reset form ke data terakhir dari heroData
-    if (heroData) {
-      const imageUrl = `/api/hero/image/${heroData.urlImage}`
-      setFormData({
-        tagline: heroData.tagline,
-        description: heroData.description,
-        urlImage: imageUrl,
-        file: null,
-      })
-    }
-    setPreview(null)
-    setIsEditing(false)
+  // Eksekusi Hapus
+  const handleDelete = () => {
+    startTransition(async () => {
+      const success = await deleteHero(deleteId)
+      if (success) {
+        toast('Hero berhasil dihapus!', { icon: '✅' })
+        setIsDeleteDialogOpen(false)
+        setDeleteId(null)
+        fetchHeroes()
+      } else {
+        toast('Gagal menghapus hero.', { icon: <Ban className="text-red-500" /> })
+      }
+    })
   }
 
   if (isLoading) {
@@ -154,101 +135,138 @@ export default function HeroAdminPage() {
     )
   }
 
-  const isViewMode = heroData && !isEditing
-
   return (
-    <div className="max-w-3xl mx-auto p-8">
+    <div className="max-w-5xl mx-auto p-8 space-y-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold tracking-tight">Manajemen Hero Section</h1>
+        <Button onClick={handleOpenAdd} className="bg-amber-600 hover:bg-amber-700 cursor-pointer text-white">
+          <Plus className="w-4 h-4 mr-2" /> Tambah Hero
+        </Button>
+      </div>
+
       <Card className="shadow-lg border border-zinc-800">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold">Hero Section</CardTitle>
+          <CardTitle className="text-lg font-semibold">Daftar Hero</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
-          {isViewMode ? (
-            <div className="space-y-6">
-              <div className="rounded-xl overflow-hidden border border-zinc-700">
-                <img
-                  src={`/api/hero/image/${heroData.urlImage}`}
-                  alt="Hero"
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-              <div>
-                <h2 className="text-lg font-bold">{heroData.tagline}</h2>
-                <p className="text-sm text-zinc-400 mt-2">{heroData.description}</p>
-              </div>
-              <Button onClick={handleEdit} className={"bg-amber-600 hover:bg-amber-700 cursor-pointer text-white"}>
-                <Pencil className="w-4 h-4 mr-2" /> Edit
-              </Button>
-            </div>
-          ) : (
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <label className="text-sm font-medium">Tagline</label>
-                <Input
-                  name="tagline"
-                  value={formData.tagline}
-                  onChange={handleChange}
-                  placeholder="Masukkan tagline"
-                />
-              </div>
-
-              <div className="space-y-3">
-                <label className="text-sm font-medium">Deskripsi</label>
-                <Textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  placeholder="Masukkan deskripsi singkat"
-                  rows={4}
-                />
-              </div>
-
-              <div className="space-y-3">
-                <label className="text-sm font-medium">Gambar Hero</label>
-                <Input type="file" accept="image/*" onChange={handleImageChange} />
-                {(preview || formData.urlImage) && (
-                  <div className="rounded-xl overflow-hidden border border-zinc-700">
-                    <img
-                      src={preview || formData.urlImage}
-                      alt="Preview"
-                      className="w-full h-64 object-cover"
-                    />
-                  </div>
-                )}
-              </div>
-
-              <Button
-                onClick={handleSubmit}
-                disabled={isPending}
-                className={`w-full py-2 rounded-md text-white flex items-center justify-center gap-2 font-medium transition-colors ${
-                  isPending
-                    ? 'bg-neutral-500 cursor-not-allowed'
-                    : 'bg-amber-600 hover:bg-amber-700 cursor-pointer'
-                }`}
-              >
-                {isPending ? (
-                  <>
-                    <Loader className="w-4 h-4 mr-2 animate-spin" />
-                    Menyimpan...
-                  </>
-                ) : heroData ? (
-                  'Update Hero'
-                ) : (
-                  'Simpan Hero'
-                )}
-              </Button>
-
-              <Button
-                onClick={handleCancel}
-                disabled={isPending}
-                className="w-full py-2 rounded-md text-white flex items-center justify-center gap-2 font-medium bg-zinc-700 hover:bg-zinc-600"
-              >
-                Batal
-              </Button>
-            </div>
-          )}
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-32">Gambar</TableHead>
+                <TableHead className="text-right">Aksi</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {heroList.length > 0 ? (
+                heroList.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>
+                      <img
+                        src={`/api/hero/image/${item.urlImage}`}
+                        alt={item.tagline}
+                        className="w-28 h-16 object-cover rounded-md border border-zinc-700 bg-zinc-900"
+                      />
+                    </TableCell>
+                    <TableCell className="text-right space-x-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleOpenEdit(item)}
+                        className="cursor-pointer"
+                      >
+                        <Pencil size={14} />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setDeleteId(item.id)
+                          setIsDeleteDialogOpen(true)
+                        }}
+                        className="cursor-pointer hover:!bg-red-500 hover:!text-white"
+                      >
+                        <Trash2 size={14} />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={4} className="text-center py-10 text-muted-foreground">
+                    Belum ada data hero. Silakan tambahkan baru.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
+
+      {/* Modal Dialog Form Tambah / Edit */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle>{editingId ? 'Edit Hero Section' : 'Tambah Hero Section'}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 py-2">
+            
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Gambar Hero</label>
+              <Input type="file" accept="image/*" onChange={handleImageChange} />
+              {preview && (
+                <div className="rounded-xl overflow-hidden border border-zinc-700 mt-2">
+                  <img src={preview} alt="Preview" className="w-full h-40 object-cover" />
+                </div>
+              )}
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" disabled={isPending} onClick={() => setIsDialogOpen(false)}>
+              Batal
+            </Button>
+            <Button
+              disabled={isPending}
+              onClick={handleSubmit}
+              className="bg-amber-600 hover:bg-amber-700 text-white cursor-pointer"
+            >
+              {isPending ? (
+                <>
+                  <Loader className="w-4 h-4 mr-2 animate-spin" /> Menyimpan...
+                </>
+              ) : (
+                'Simpan'
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modal Dialog Konfirmasi Hapus */}
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Hapus Hero</DialogTitle>
+            <DialogDescription className="pt-2">
+              Apakah kamu yakin ingin menghapus data hero ini? Tindakan ini tidak dapat dibatalkan.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" disabled={isPending} onClick={() => setIsDeleteDialogOpen(false)}>
+              Batal
+            </Button>
+            <Button variant="destructive" disabled={isPending} onClick={handleDelete}>
+              {isPending ? (
+                <>
+                  <Loader className="w-4 h-4 mr-2 animate-spin" /> Menghapus...
+                </>
+              ) : (
+                'Hapus'
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

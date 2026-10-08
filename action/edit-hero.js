@@ -6,48 +6,45 @@ import { prisma } from "@/lib/db";
 
 export const updateHero = async (data) => {
     try {
+        if (!data.id) {
+            throw new Error("ID Hero tidak ditemukan untuk update");
+        }
+
         let namaFileDiDb;
         
-        if (data.file !== null) {
-            // Modifikasi nama file: hilangkan spasi dan tambahkan timestamp
+        if (data.file && data.file !== null) {
             const timestamp = Date.now();
-            const originalName = data.file?.name.replace(/\s+/g, ""); // Hapus semua spasi
-            const extension = path.extname(originalName); // Ekstensi file (.jpg, .png, dll)
+            const originalName = data.file.name.replace(/\s+/g, "");
+            const extension = path.extname(originalName);
             const fileName = `${path.basename(originalName, extension)}-${timestamp}${extension}`;
         
-            // Tentukan lokasi penyimpanan file
             const filePath = path.join(process.cwd(), "/uploads/hero", fileName);
-        
-            // Simpan file ke server
-            namaFileDiDb = `${fileName}`
             await writeFile(filePath, Buffer.from(await data.file.arrayBuffer()));
+            namaFileDiDb = fileName;
         }
     
-        const newdata = {
+        const updateData = {
             tagline: data.tagline,
             description: data.description,
-        }
+        };
     
-        if (data.file !== null) {
-            newdata.urlImage = namaFileDiDb
+        if (namaFileDiDb) {
+            updateData.urlImage = namaFileDiDb;
         }
 
-        const heroInstance = await prisma.hero.findFirst()
-
-        const newInstance = await prisma.hero.update({
-            where:{
-                id:parseInt(heroInstance.id)
+        const updatedInstance = await prisma.hero.update({
+            where: {
+                id: parseInt(data.id),
             },
-            data:newdata
-        })
+            data: updateData,
+        });
 
-        revalidatePath("/dashboard/hero-setting")
-        revalidatePath("/")
+        revalidatePath("/dashboard/hero-setting");
+        revalidatePath("/");
 
-        return newInstance
-
+        return updatedInstance;
     } catch (error) {
-        console.error("Terjadi error saat update data hero", error.message)
-        return null
+        console.error("Terjadi error saat update data hero", error.message);
+        return null;
     }
-}
+};

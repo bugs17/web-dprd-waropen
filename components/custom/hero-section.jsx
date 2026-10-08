@@ -74,10 +74,10 @@ const Hero = () => {
               }}
             >
               <span className="text-white lg:text-6xl text-2xl font-extrabold lg:mb-5 mb-3">
-                {dataHero?.tagline || <Loader className="text-amber-400 animate-spin" />}
+                {"Suara Rakyat, Tugas Kami" || <Loader className="text-amber-400 animate-spin" />}
               </span>
               <span className="text-gray-300 sm:text-sm font-sans">
-                {dataHero?.description || ""}
+                {"Website Resmi DPRK Waropen" || ""}
               </span>
 
               <Link
