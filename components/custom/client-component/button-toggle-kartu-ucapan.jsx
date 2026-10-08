@@ -1,13 +1,13 @@
 "use client";
 import { toggleKartuUcapan } from "@/action/edit-kartu-ucapan";
-import { Button } from "@/components/ui/button";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { useTransition } from "react";
+import { Loader2 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 const ButtonToggleKartuUcapan = ({ idKartuUcapan, isShow }) => {
   const [isPending, startTransition] = useTransition();
 
-  const handleToggle = () => {
+  const handleToggle = (checked) => {
     startTransition(async () => {
       try {
         await toggleKartuUcapan(idKartuUcapan, isShow);
@@ -18,30 +18,15 @@ const ButtonToggleKartuUcapan = ({ idKartuUcapan, isShow }) => {
   };
 
   return (
-    <Button
-      variant="outline"
-      size="sm"
-      disabled={isPending}
-      onClick={handleToggle}
-      className="cursor-pointer"
-    >
-      {isPending ? (
-        <>
-          <Loader2 size={14} className="animate-spin" />
-          <span>Memproses...</span>
-        </>
-      ) : isShow ? (
-        <>
-          <Eye size={14} />
-          <span>Tampil</span>
-        </>
-      ) : (
-        <>
-          <EyeOff size={14} />
-          <span>Disembunyikan</span>
-        </>
-      )}
-    </Button>
+    <span className="inline-flex items-center space-x-2 align-middle">
+      {isPending && <Loader2 size={14} className="animate-spin text-muted-foreground" />}
+      <Switch
+        checked={isShow}
+        disabled={isPending}
+        onCheckedChange={handleToggle}
+        className="cursor-pointer"
+      />
+    </span>
   );
 };
 
