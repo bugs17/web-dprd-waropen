@@ -14,7 +14,8 @@ import {
   FileText,
   ImagePlus,
   GitBranch,
-  Building
+  Building,
+  PanelsTopLeft
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -114,6 +115,12 @@ const data = {
       url: "/dashboard/galery",
       match: "/dashboard/galery",
       icon: ImagePlus,
+    },
+    {
+      name: "Kartu Ucapan",
+      url: "/dashboard/kartu-ucapan",
+      match: "/dashboard/kartu-ucapan",
+      icon: PanelsTopLeft,
     },
     {
       name: "Kontak & Alamat",
