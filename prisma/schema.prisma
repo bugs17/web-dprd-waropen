@@ -183,6 +183,7 @@ updatedAt DateTime @default(now())
 
 judul String @default("-")
 imageUrl String
+thumbnail String @default("-")
 }
 
 model JadwalSidang {

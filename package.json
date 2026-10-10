@@ -44,7 +44,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^12.15.0",
     "jotai": "^2.13.1",
-    "lightgallery": "^2.9.0-beta.1",
+    "lightgallery": "^2.9.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.511.0",
     "nanoid": "^5.1.6",
