@@ -2,8 +2,9 @@
 const nextConfig = {
     experimental: {
     serverActions: {
-      bodySizeLimit: '20mb', // kamu bisa sesuaikan misal 5mb, 10mb, 20mb
+      bodySizeLimit: '1GB', // kamu bisa sesuaikan misal 5mb, 10mb, 20mb
     },
+    middlewareClientMaxBodySize: '1GB',
   },
 };
 
