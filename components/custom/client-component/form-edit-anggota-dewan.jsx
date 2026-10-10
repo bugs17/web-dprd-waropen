@@ -97,7 +97,7 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             // langsung isi field form-nya
             setNama(dewan.nama || "")
             setTmptLahir(dewan.tempatLahir || "")
-            setDate(dewan.tanggalLahir ? new Date(dewan.tanggalLahir) : undefined)
+            // setDate(dewan.tanggalLahir ? new Date(dewan.tanggalLahir) : undefined)
             setPartaiID(dewan.partaiId || null)
             setJabatanAnggota(dewan.peranDewan || "")
             setJabatanFraksi(dewan.jabatanFraksi || "")
@@ -192,7 +192,6 @@ const FormEditAnggotaDewan = ({idDewan}) => {
         if (
             !nama ||
             !tmptLahir ||
-            !date ||
             !partaiID ||
             !jabatanAnggota ||
             !jabatanFraksi
@@ -212,7 +211,6 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             const result = await editAnggotaDewan(
             nama,
             tmptLahir,
-            new Date(date).toISOString(),
             pendidikans,
             jobs,
             partaiID,
@@ -257,12 +255,12 @@ const FormEditAnggotaDewan = ({idDewan}) => {
             </div>
 
             {/* tanggal-lahir */}
-            <div className="flex pr-[20px]">
+            {/* <div className="flex pr-[20px]">
                 <div className="flex flex-col gap-3 w-[50%]">
                     <Label htmlFor="tgl-lahir">Tanggal Lahir <span className="text-red-500"> *</span></Label>
                     <Calendar23 disabled={isPending} date={date} setDate={setDate} />
                 </div>
-            </div>
+            </div> */}
 
             <span className="text-slate-500 mt-3">Riwayat Pendidikan</span>
             <Separator className={""} />

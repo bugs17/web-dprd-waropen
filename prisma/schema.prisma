@@ -25,7 +25,7 @@ model AnggotaDewan {
 
     nama String
     tempatLahir String @default("-")
-    tanggalLahir DateTime
+    tanggalLahir DateTime?
     email String?
     facebookUrl String @default("-")
     instagramUrl String @default("-")

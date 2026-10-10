@@ -9,13 +9,12 @@ import { revalidatePath } from "next/cache";
 
 
 
-export const editAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidikan, riwayatPekerjaan, partaiID, jabatanDewan, jabatanFraksi, fotoProfil, idAnggotaDewan) => {
+export const editAnggotaDewan = async (nama, tmptLahir, riwayatPendidikan, riwayatPekerjaan, partaiID, jabatanDewan, jabatanFraksi, fotoProfil, idAnggotaDewan) => {
     try {
 
         const dataAnggotaDewan = {
             nama: nama,
             tempatLahir: tmptLahir,
-            tanggalLahir: tglLahir,
             peranDewan: jabatanDewan,
             peranKomisi: jabatanDewan,
             jabatanFraksi: jabatanFraksi,

@@ -8,7 +8,7 @@ import { revalidatePath } from "next/cache";
 
 
 
-export const addAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidikan, riwayatPekerjaan, partaiID, jabatanDewan, jabatanFraksi, fotoProfil) => {
+export const addAnggotaDewan = async (nama, tmptLahir, riwayatPendidikan, riwayatPekerjaan, partaiID, jabatanDewan, jabatanFraksi, fotoProfil) => {
     try {
 
         // ####### proses handle foto profil anggota dewan ##########
@@ -36,7 +36,7 @@ export const addAnggotaDewan = async (nama, tmptLahir, tglLahir, riwayatPendidik
         const dataAnggotaDewan = {
             nama: nama,
             tempatLahir: tmptLahir,
-            tanggalLahir: tglLahir,
+            // tanggalLahir: tglLahir,
             peranDewan: jabatanDewan,
             peranKomisi: jabatanDewan,
             jabatanFraksi: jabatanFraksi,
