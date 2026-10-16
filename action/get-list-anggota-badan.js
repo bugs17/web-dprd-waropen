@@ -4,37 +4,11 @@ import { prisma } from "@/lib/db";
 
 export const listAnggotaBadan = async () => {
   try {
-    // ambil semua badan ketua/wakil
-    const used = await prisma.badanAnggota.findMany({
-      where: {
-        jabatan: { in: ["KETUA", "WAKIL"] },
-      },
-    });
+    // Ambil semua data dewan dan setwan secara langsung tanpa filter
+    const dewan = await prisma.anggotaDewan.findMany();
+    const setwan = await prisma.pejabatSetwan.findMany();
 
-
-    const usedDewanIds = used
-      .map(x => x.anggotaDewanId)
-      .filter(Boolean);
-
-    const usedSetwanIds = used
-      .map(x => x.pejabatSetwanId)
-      .filter(Boolean);
-
-    // Ambil dewan yang ID-nya tidak terpakai
-    const dewan = await prisma.anggotaDewan.findMany({
-      where: {
-        id: { notIn: usedDewanIds },
-      },
-    });
-
-    // Ambil setwan yang ID-nya tidak terpakai
-    const setwan = await prisma.pejabatSetwan.findMany({
-      where: {
-        id: { notIn: usedSetwanIds },
-      },
-    });
-
-    // Format data rake UI melihat dari 2 tabel
+    // Format data agar seragam untuk UI dari 2 tabel
     const result = [
       ...dewan.map(d => ({
         id: d.id,
