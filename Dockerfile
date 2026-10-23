@@ -1,6 +1,6 @@
 # Menggunakan base image Node.js
 # FROM node:22 // ini ada cve disini di patch pada 23 oktober
-FROM FROM node:22.23.4
+FROM node:22.23.4
 
 
 # Set working directory
