@@ -1,5 +1,7 @@
 # Menggunakan base image Node.js
-FROM node:22
+# FROM node:22 // ini ada cve disini di patch pada 23 oktober
+FROM node:22.23.4-alpine
+
 
 # Set working directory
 WORKDIR /app
