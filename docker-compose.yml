@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3037:3000'
-      - '5517:5555'
+      - '3000'
+      - '5555'
     volumes:
       - ./realDb:/app/realDb
       - ./uploads:/app/uploads
