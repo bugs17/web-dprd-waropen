@@ -41,9 +41,9 @@ const CreateBeritaPage = () => {
                       icon: <Ban className="text-red-500" />,
                       style: {
                           borderRadius: "12px",
-                          background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                          color: "#f5f5f5",
-                          border: "1px solid #3a3a3a",
+                          background: "var(--app-surface)",
+                          color: "var(--app-ink)",
+                          border: "1px solid var(--app-line)",
                           boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                           padding: "14px 18px",
                           fontSize: "14px",
@@ -63,9 +63,9 @@ const CreateBeritaPage = () => {
                 icon: <ThumbsUp className="text-green-500" />,
                 style: {
                     borderRadius: "12px",
-                    background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                    color: "#f5f5f5",
-                    border: "1px solid #3a3a3a",
+                    background: "var(--app-surface)",
+                    color: "var(--app-ink)",
+                    border: "1px solid var(--app-line)",
                     boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                     padding: "14px 18px",
                     fontSize: "14px",
@@ -88,8 +88,8 @@ const CreateBeritaPage = () => {
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
       <div className='flex flex-row justify-between items-center'>
-        <Link href={"/dashboard/berita"} className='flex max-w-sm flex-row gap-3 items-center hover:text-gray-300 group'>
-          <ArrowLeft className='text-white group-hover:text-gray-300' />
+        <Link href={"/dashboard/berita"} className='flex max-w-sm flex-row gap-3 items-center hover:text-app-muted group'>
+          <ArrowLeft className='text-app-ink group-hover:text-app-muted' />
           <span>Kembali</span>
         </Link>
         <div className='flex flex-row items-center justify-end gap-2'>
@@ -98,16 +98,16 @@ const CreateBeritaPage = () => {
       </div>
 
       <div className='w-full flex flex-row items-center gap-7 py-5'>
-          <span className='text-lg text-white'>Judul</span>
+          <span className='text-lg text-app-ink'>Judul</span>
           <div className="relative w-full">
               <Input
                   type="text"
                   placeholder="Judul Berita"
-                  className="pr-10 text-white"
+                  className="pr-10 text-app-ink"
                   onChange={(e) => setJudul(e.target.value)}
               />
           </div>
-          <span className='text-lg text-white'>Tanggal</span>
+          <span className='text-lg text-app-ink'>Tanggal</span>
           <Calendar22 date={date} setDate={setDate} />
       </div>
 

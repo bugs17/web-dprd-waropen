@@ -21,7 +21,7 @@ export function NavProjects({
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton className={`${pathname.includes(item.match ) ? 'bg-zinc-50 text-black hover:bg-zinc-100 hover:text-black' : ''}`} asChild>
+            <SidebarMenuButton className={`${pathname.includes(item.match ) ? 'bg-sidebar-accent text-sidebar-accent-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground' : ''}`} asChild>
               <a href={item.url}>
                 <item.icon />
                 <span>{item.name}</span>

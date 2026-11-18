@@ -59,7 +59,7 @@ const LaporanKeuanganPage = () => {
 
       <div className="flex w-full lg:p-20 p-5 gap-6">
         {/* Sidebar */}
-        <div className="w-[25%] hidden h-full bg-[#231c26] lg:flex flex-col py-4">
+        <div className="w-[25%] hidden h-full bg-app-surface lg:flex flex-col py-4">
           {leftMenu.map((item, index) => (
             <Link
               href={item.path}
@@ -70,12 +70,12 @@ const LaporanKeuanganPage = () => {
             >
               <FileText
                 className={`text-black ${
-                  item.isActive ? "text-black" : "text-white"
+                  item.isActive ? "text-black" : "text-app-ink"
                 } group-hover:text-black`}
               />
               <span
                 className={`${
-                  item.isActive ? "text-black" : "text-white"
+                  item.isActive ? "text-black" : "text-app-ink"
                 } group-hover:text-black`}
               >
                 {item.title}
@@ -92,7 +92,7 @@ const LaporanKeuanganPage = () => {
               placeholder="Cari dokumen publikasi"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pr-10 text-white"
+              className="pr-10 text-app-ink"
             />
             <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 h-5 w-5 pointer-events-none" />
           </div>

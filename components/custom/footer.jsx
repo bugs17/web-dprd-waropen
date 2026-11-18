@@ -28,22 +28,22 @@ const Footer = () => {
     {
         nama: "Facebook",
         link: data?.facebook || "#",
-        icon: <Facebook className="text-white w-3 h-3 lg:w-4 lg:h-4" />
+        icon: <Facebook className="text-app-ink w-3 h-3 lg:w-4 lg:h-4" />
     },
     {
         nama: "Instagram",
         link: data?.instagram || "#",
-        icon: <Instagram className="text-white w-3 h-3 lg:w-4 lg:h-4" />
+        icon: <Instagram className="text-app-ink w-3 h-3 lg:w-4 lg:h-4" />
     },
     {
         nama: "Twitter",
         link: data?.twitter || "#",
-        icon: <Twitter className="text-white w-3 h-3 lg:w-4 lg:h-4" />
+        icon: <Twitter className="text-app-ink w-3 h-3 lg:w-4 lg:h-4" />
     },
     {
         nama: "Youtube",
         link: data?.youtube || "#",
-        icon: <Youtube className="text-white w-3 h-3 lg:w-4 lg:h-4" />
+        icon: <Youtube className="text-app-ink w-3 h-3 lg:w-4 lg:h-4" />
     }
     
 ]
@@ -59,22 +59,22 @@ const Footer = () => {
                         <Image className='object-contain' src={'/logo.png'} height={80} width={80} draggable={false} alt="logo"  />
                         
                         <div className='flex flex-col items-center lg:justify-center justify-start'>
-                            <span className='text-white lg:text-xl text-base lg:text-center text-left font-semibold'>
-                                Dewan Perwakilan Rakyat Kabupaten <span className='block lg:hidden font-semibold text-white text-lg'>Kabupaten Waropen</span>
+                            <span className='text-app-ink lg:text-xl text-base lg:text-center text-left font-semibold'>
+                                Dewan Perwakilan Rakyat Kabupaten <span className='block lg:hidden font-semibold text-app-ink text-lg'>Kabupaten Waropen</span>
                             </span>
-                            <span className='text-white lg:block hidden lg:text-center text-left  lg:text-xl text-lg font-semibold'>
+                            <span className='text-app-ink lg:block hidden lg:text-center text-left  lg:text-xl text-lg font-semibold'>
                                 Waropen
                             </span>
                         </div>
                     </div>
 
                     <div className='flex flex-row gap-5 items-center justify-center lg:justify-start'>
-                        <span className='text-white font-semibold hidden lg:block'>Media Sosial :</span>
+                        <span className='text-app-ink font-semibold hidden lg:block'>Media Sosial :</span>
                         <div className='flex flex-row gap-4'>
 
                         {
                             sosialMedia.map((item, index) => (
-                                <Link key={index} className='lg:h-10 lg:w-10 h-8 w-8 rounded-full flex justify-center items-center overflow-hidden border-white border' href={item.link} target='_blank'>
+                                <Link key={index} className='lg:h-10 lg:w-10 h-8 w-8 rounded-full flex justify-center items-center overflow-hidden border-app-line border' href={item.link} target='_blank'>
                                     {item.icon}
                                 </Link>
                             ))
@@ -84,26 +84,26 @@ const Footer = () => {
                 </div>
 
                 <div className='lg:w-[30%] w-full lg:pl-10 pt-10 flex flex-col gap-6'>
-                    <span className='font-bold lg:text-xl text-base text-white text-left '>Kontak</span>
+                    <span className='font-bold lg:text-xl text-base text-app-ink text-left '>Kontak</span>
                     <div className='flex flex-col gap-3'>
                         <div className='flex flex-row gap-2 items-center'>
-                            <Mail className='text-gray-200 lg:h-6 lg:w-6 h-5 w-5' />
-                            <span className='text-gray-200 text-sm lg:text-base'>{data.email}</span>
+                            <Mail className='text-app-muted lg:h-6 lg:w-6 h-5 w-5' />
+                            <span className='text-app-muted text-sm lg:text-base'>{data.email}</span>
                         </div>
                         <div className='flex flex-row gap-2 items-center'>
-                            <Phone className='text-gray-200 lg:h-6 lg:w-6 h-5 w-5' />
-                            <span className='text-gray-200 text-sm lg:text-base'>{data.telp}</span>
+                            <Phone className='text-app-muted lg:h-6 lg:w-6 h-5 w-5' />
+                            <span className='text-app-muted text-sm lg:text-base'>{data.telp}</span>
                         </div>
                         <div className='flex flex-row gap-2 items-center'>
-                            <Pin className='text-gray-200 lg:h-8 lg:w-8 h-10 w-10' />
-                            <span className='text-gray-200 text-sm lg:text-base'>{data.alamat}</span>
+                            <Pin className='text-app-muted lg:h-8 lg:w-8 h-10 w-10' />
+                            <span className='text-app-muted text-sm lg:text-base'>{data.alamat}</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* <div className='w-full py-4 flex justify-center'>
-                <p className="text-center text-sm text-gray-200">
+                <p className="text-center text-sm text-app-muted">
                     &copy; 2025 DPRD Kabupaten Waropen. All rights reserved.
                 </p>
             </div> */}

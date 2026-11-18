@@ -9,7 +9,7 @@ export default function FancyButton({ children, href }) {
       <button
         type="button"
         className={`
-          group inline-flex items-center rounded-md px-3 h-8 text-white 
+          group inline-flex items-center rounded-md px-3 h-8 text-app-ink 
           bg-violet-700 dark:bg-violet-600
           shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.12),
                   0_2px_2px_-1px_rgba(0,0,0,0.16),

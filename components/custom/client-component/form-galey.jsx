@@ -91,9 +91,9 @@ const FormGalery = () => {
                     icon: <Ban className="text-red-500" />,
                     style: {
                         borderRadius: "12px",
-                        background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                        color: "#f5f5f5",
-                        border: "1px solid #3a3a3a",
+                        background: "var(--app-surface)",
+                        color: "var(--app-ink)",
+                        border: "1px solid var(--app-line)",
                         boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                         padding: "14px 18px",
                         fontSize: "14px",
@@ -117,9 +117,9 @@ const FormGalery = () => {
                         icon: <ThumbsUp className="text-green-500" />,
                         style: {
                             borderRadius: "12px",
-                            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                            color: "#f5f5f5",
-                            border: "1px solid #3a3a3a",
+                            background: "var(--app-surface)",
+                            color: "var(--app-ink)",
+                            border: "1px solid var(--app-line)",
                             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                             padding: "14px 18px",
                             fontSize: "14px",
@@ -133,9 +133,9 @@ const FormGalery = () => {
                         icon: <Ban className="text-red-500" />,
                         style: {
                             borderRadius: "12px",
-                            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                            color: "#f5f5f5",
-                            border: "1px solid #3a3a3a",
+                            background: "var(--app-surface)",
+                            color: "var(--app-ink)",
+                            border: "1px solid var(--app-line)",
                             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                             padding: "14px 18px",
                             fontSize: "14px",
@@ -155,7 +155,7 @@ const FormGalery = () => {
             <div className="flex justify-end gap-2">
                 <button
                 onClick={() => toast.dismiss(t.id)}
-                className="px-3 py-1 rounded-md bg-gray-700 text-white hover:bg-gray-600 text-xs"
+                className="px-3 py-1 rounded-md bg-zinc-200 text-zinc-900 hover:bg-zinc-300 dark:bg-zinc-700 dark:text-white dark:hover:bg-zinc-600 text-xs"
                 >
                 Batal
                 </button>
@@ -169,9 +169,9 @@ const FormGalery = () => {
                                     icon: <Trash2 className="text-red-500" />,
                                     style: {
                                         borderRadius: "12px",
-                                        background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                                        color: "#f5f5f5",
-                                        border: "1px solid #3a3a3a",
+                                        background: "var(--app-surface)",
+                                        color: "var(--app-ink)",
+                                        border: "1px solid var(--app-line)",
                                         boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                                         padding: "14px 18px",
                                         fontSize: "14px",
@@ -194,9 +194,9 @@ const FormGalery = () => {
             icon: null,
             style: {
             borderRadius: "12px",
-            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-            color: "#f5f5f5",
-            border: "1px solid #3a3a3a",
+            background: "var(--app-surface)",
+            color: "var(--app-ink)",
+            border: "1px solid var(--app-line)",
             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             padding: "14px 18px",
             fontSize: "14px",
@@ -246,7 +246,7 @@ const FormGalery = () => {
                 {isPending ? <Loader className="w-5 h-5 text-white animate-spin" /> : "Simpan"}
             </button>
 
-            <div className="flex flex-wrap gap-4 justify-center mt-5 w-full p-5 overflow-y-auto rounded-xl border border-zinc-600">
+            <div className="flex flex-wrap gap-4 justify-center mt-5 w-full p-5 overflow-y-auto rounded-xl border border-app-line">
                 {images.length === 0 ? (
                     <p className="text-gray-400 italic">Belum ada media</p>
                 ) : (
@@ -260,7 +260,7 @@ const FormGalery = () => {
                             <div
                                 key={img.id}
                                 onClick={() => handleOpenPreview(img)}
-                                className="relative rounded-xl overflow-hidden shadow-md w-40 h-40 bg-zinc-900 flex items-center justify-center cursor-pointer group"
+                                className="relative rounded-xl overflow-hidden shadow-md w-40 h-40 bg-app-bg border border-app-line flex items-center justify-center cursor-pointer group"
                             >
                                 <Image
                                     src={displaySrc}
@@ -291,7 +291,7 @@ const FormGalery = () => {
 
             {/* Modal Dialog Preview Admin */}
             <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
-                <DialogContent className="max-w-3xl bg-zinc-900 border-zinc-700 text-white">
+                <DialogContent className="max-w-3xl bg-app-surface border-app-line text-app-ink">
                     <DialogHeader>
                         <DialogTitle>{previewItem?.judul || "Preview Media"}</DialogTitle>
                     </DialogHeader>

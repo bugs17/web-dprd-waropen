@@ -59,7 +59,7 @@ const Agenda = () => {
 
 
   return (
-    <div className='w-full  bg-[#231c26]'>
+    <div className='w-full  bg-app-surface'>
             <div className='w-full justify-center items-center flex flex-col lg:gap-0 gap-4 py-5'>
                 <div className="flex flex-row items-center gap-3">
                     {
@@ -69,7 +69,7 @@ const Agenda = () => {
                     </Button>
                     )
                     }
-                    <span className="font-semibold text-white lg:text-lg text-sm">{data.tanggal}</span>
+                    <span className="font-semibold text-app-ink lg:text-lg text-sm">{data.tanggal}</span>
                     <Button onClick={next} className={"cursor-pointer bg-amber-500 hover:bg-orange-300"}>
                         <ChevronRight className="text-black" />
                     </Button>
@@ -78,11 +78,11 @@ const Agenda = () => {
                 <div className="w-full lg:px-12 px-4 flex flex-col gap-6">
                     <div className="w-full border-l-4 border-violet-400 flex flex-col gap-5 pl-10">
                         <div className="flex flex-row gap-3 items-center">
-                            <Clock4 className="text-white" />
-                            <span className="text-white">{data.jam}</span>
+                            <Clock4 className="text-app-ink" />
+                            <span className="text-app-ink">{data.jam}</span>
                         </div>
                         <div>
-                            <p className="text-white font-medium">
+                            <p className="text-app-ink font-medium">
                                 {data.judul_kegiatan}
                             </p>
                         </div>

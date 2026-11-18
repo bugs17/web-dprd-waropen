@@ -11,32 +11,32 @@ import {
 
 const TabelAnggotaFraksi = () => {
     return (
-        <Table className="border border-white">
+        <Table className="border border-app-line">
             <TableCaption>LIST ANGGOTA FRAKSI DEMOKRASI INDONESIA PERJUANGAN</TableCaption>
 
             <TableHeader>
                 <TableRow className={"bg-gray-600 hover:bg-gray-600"}>
-                    <TableHead className="w-[100px] text-center text-white">Nama</TableHead>
-                    <TableHead className="w-[100px] text-center text-white">Partai</TableHead>
-                    <TableHead className="w-[100px] text-center text-white">Jabatan</TableHead>
+                    <TableHead className="w-[100px] text-center text-app-ink">Nama</TableHead>
+                    <TableHead className="w-[100px] text-center text-app-ink">Partai</TableHead>
+                    <TableHead className="w-[100px] text-center text-app-ink">Jabatan</TableHead>
                 </TableRow>
             </TableHeader>
 
             <TableBody>
                 <TableRow className={""}>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Yohanis J Tabibiati</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Partai Demokrasi Indonesia Perjaungan</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Ketua</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Yohanis J Tabibiati</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Partai Demokrasi Indonesia Perjaungan</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Ketua</TableCell>
                 </TableRow>
                 <TableRow className={""}>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Yohanis J Tabibiati</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Partai Demokrasi Indonesia Perjaungan</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Ketua</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Yohanis J Tabibiati</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Partai Demokrasi Indonesia Perjaungan</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Ketua</TableCell>
                 </TableRow>
                 <TableRow className={""}>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Yohanis J Tabibiati</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Partai Demokrasi Indonesia Perjaungan</TableCell>
-                    <TableCell className="font-medium w-[100px] text-center text-white">Ketua</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Yohanis J Tabibiati</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Partai Demokrasi Indonesia Perjaungan</TableCell>
+                    <TableCell className="font-medium w-[100px] text-center text-app-ink">Ketua</TableCell>
                 </TableRow>
             </TableBody>
         </Table>
@@ -63,7 +63,7 @@ const FraksiSection = () => {
   return (
     <div className="w-full h-full lg:px-8 px-5">
 
-        <p className="text-white lg:text-center text-balance lg:mb-10">
+        <p className="text-app-ink lg:text-center text-balance lg:mb-10">
           Fraksi-fraksi di DPRK Waropen Masa Jabatan 2024-2029 berjumlah 3 (Tiga) fraksi yaitu: Fraksi DEMOKRASI INDONESIA PERJUANGAN, Fraksi AMANAT NASIONAL, Fraksi GOLONGAN KARYA.
         </p>
 

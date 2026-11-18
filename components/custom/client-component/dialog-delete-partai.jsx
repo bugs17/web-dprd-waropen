@@ -45,7 +45,7 @@ const DialogDeletePartai = ({ namaPartai, idPartai }) => {
             <Button
               disabled={isPending}
               onClick={handleSubmit}
-              className="bg-red-400 hover:bg-red-500 text-white hover:cursor-pointer"
+              className="bg-red-400 hover:bg-red-500 text-app-ink hover:cursor-pointer"
             >
               {isPending ? (
                 <div className="w-full flex flex-row gap-3 justify-center items-center">

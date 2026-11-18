@@ -13,7 +13,7 @@ export default function ComingSoon({
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="text-center overflow-hidden border relative border-zinc-700 dark:bg-mute/50 backdrop-blur-xl p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] max-w-lg bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"
+        className="text-center overflow-hidden border relative border-app-line bg-app-surface backdrop-blur-xl p-10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] max-w-lg bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"
       >
 
         <div className="absolute left-[-30px] bottom-[-30px] -z-10 m-auto h-[110px] w-[110px] rounded-full bg-[#c93d2a] opacity-20 blur-[100px]"></div>
@@ -23,11 +23,11 @@ export default function ComingSoon({
           <Hourglass className="w-12 h-12 text-amber-400 animate-pulse " strokeWidth={1.3} />
         </div>
 
-        <h1 className="text-3xl font-semibold tracking-tight mb-2 text-gray-800 dark:text-gray-100">
+        <h1 className="text-3xl font-semibold tracking-tight mb-2 text-gray-800 dark:text-app-muted">
           {title}
         </h1>
 
-        <p className="text-gray-500 dark:text-gray-400 leading-relaxed">
+        <p className="text-gray-500 dark:text-app-muted leading-relaxed">
           {description}
         </p>
       </motion.div>

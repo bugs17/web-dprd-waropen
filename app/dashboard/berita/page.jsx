@@ -21,14 +21,14 @@ const Beritas = async () => {
                     <Input
                         type="text"
                         placeholder="Cari berita..."
-                        className="pr-10 text-white"
+                        className="pr-10 text-app-ink"
                     />
-                    <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-white h-5 w-5 pointer-events-none" />
+                    <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-app-ink h-5 w-5 pointer-events-none" />
                 </div>
 
                 <Link href={"/dashboard/berita/create"}>
                     <Button className={"cursor-pointer"}>
-                        <Newspaper className="text-black" />
+                        <Newspaper />
                         <span>Baru</span>
                     </Button>
                 </Link>

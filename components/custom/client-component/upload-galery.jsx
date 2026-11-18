@@ -73,7 +73,7 @@ export default function ImageDrop({ onFileSelect, value, ref }) {
     return (
         <div
             className={`flex flex-col items-center justify-center w-full p-6 border-2 border-dashed rounded-2xl transition-colors cursor-pointer 
-            ${isDragging ? "border-amber-500 bg-neutral-800/50" : "border-neutral-700 bg-neutral-900/50 hover:border-amber-400"}`}
+            ${isDragging ? "border-amber-500 bg-amber-500/10" : "border-app-line bg-app-surface hover:border-amber-400"}`}
             onDragOver={(e) => {
                 e.preventDefault();
                 setIsDragging(true);
@@ -91,7 +91,7 @@ export default function ImageDrop({ onFileSelect, value, ref }) {
             />
 
             {fileName ? (
-                <div className="flex items-center gap-2 text-gray-200">
+                <div className="flex items-center gap-2 text-app-muted">
                     {isVideo ? (
                         <Film size={20} className="text-amber-400" />
                     ) : (
@@ -100,7 +100,7 @@ export default function ImageDrop({ onFileSelect, value, ref }) {
                     <span className="text-sm truncate max-w-[220px]">{fileName}</span>
                 </div>
             ) : (
-                <div className="flex flex-col items-center text-gray-400 select-none">
+                <div className="flex flex-col items-center text-app-muted select-none">
                     <Upload size={28} className="text-amber-400 mb-2" />
                     <p className="text-sm">
                         Tarik file ke sini atau{" "}

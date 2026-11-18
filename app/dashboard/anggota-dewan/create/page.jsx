@@ -13,8 +13,8 @@ const page = async () => {
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
         <div className='flex flex-row justify-between items-center'>
-            <Link href={"/dashboard/anggota-dewan"} className='flex max-w-sm flex-row gap-3 items-center hover:text-gray-300 group'>
-            <ArrowLeft className='text-white group-hover:text-gray-300' />
+            <Link href={"/dashboard/anggota-dewan"} className='flex max-w-sm flex-row gap-3 items-center hover:text-app-muted group'>
+            <ArrowLeft className='text-app-ink group-hover:text-app-muted' />
             <span>Kembali</span>
             </Link>
         </div>

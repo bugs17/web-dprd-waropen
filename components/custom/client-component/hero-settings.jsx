@@ -139,12 +139,12 @@ export default function HeroAdminPage() {
     <div className="max-w-5xl mx-auto p-8 space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold tracking-tight">Manajemen Hero Section</h1>
-        <Button onClick={handleOpenAdd} className="bg-amber-600 hover:bg-amber-700 cursor-pointer text-white">
+        <Button onClick={handleOpenAdd} className="bg-amber-600 hover:bg-amber-700 cursor-pointer text-app-ink">
           <Plus className="w-4 h-4 mr-2" /> Tambah Hero
         </Button>
       </div>
 
-      <Card className="shadow-lg border border-zinc-800">
+      <Card className="shadow-lg border border-app-line">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">Daftar Hero</CardTitle>
         </CardHeader>
@@ -164,7 +164,7 @@ export default function HeroAdminPage() {
                       <img
                         src={`/api/hero/image/${item.urlImage}`}
                         alt={item.tagline}
-                        className="w-28 h-16 object-cover rounded-md border border-zinc-700 bg-zinc-900"
+                        className="w-28 h-16 object-cover rounded-md border border-app-line bg-app-bg"
                       />
                     </TableCell>
                     <TableCell className="text-right space-x-2">
@@ -183,7 +183,7 @@ export default function HeroAdminPage() {
                           setDeleteId(item.id)
                           setIsDeleteDialogOpen(true)
                         }}
-                        className="cursor-pointer hover:!bg-red-500 hover:!text-white"
+                        className="cursor-pointer hover:!bg-red-500 hover:!text-app-ink"
                       >
                         <Trash2 size={14} />
                       </Button>
@@ -215,7 +215,7 @@ export default function HeroAdminPage() {
               <label className="text-sm font-medium">Gambar Hero</label>
               <Input type="file" accept="image/*" onChange={handleImageChange} />
               {preview && (
-                <div className="rounded-xl overflow-hidden border border-zinc-700 mt-2">
+                <div className="rounded-xl overflow-hidden border border-app-line bg-app-bg mt-2">
                   <img src={preview} alt="Preview" className="w-full h-40 object-cover" />
                 </div>
               )}
@@ -228,7 +228,7 @@ export default function HeroAdminPage() {
             <Button
               disabled={isPending}
               onClick={handleSubmit}
-              className="bg-amber-600 hover:bg-amber-700 text-white cursor-pointer"
+              className="bg-amber-600 hover:bg-amber-700 text-app-ink cursor-pointer"
             >
               {isPending ? (
                 <>

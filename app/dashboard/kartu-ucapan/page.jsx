@@ -68,7 +68,7 @@ return (
                 <img
                   src={`/api/kartu-ucapan/image/${item.urlImage}`}
                   alt={item.description}
-                  className="w-36 h-20 object-contain rounded-md border bg-[#231c26]"
+                  className="w-36 h-20 object-contain rounded-md border bg-app-surface"
                 />
               </TableCell>
 

@@ -37,7 +37,7 @@ const NamaKetuaWithTooltip = () => {
                 delay:0.3,
                 duration:1.2
             }}
-            className='font-lora text-white hover:text-[#f0c400] cursor-pointer text-lg'>Ketua {ketua.nama}</motion.span>
+            className='font-lora text-app-ink hover:text-app-gold cursor-pointer text-lg'>Ketua {ketua.nama}</motion.span>
             ) : (
             <motion.span
             initial={{opacity:0, x:-100}}
@@ -49,7 +49,7 @@ const NamaKetuaWithTooltip = () => {
                 delay:0.3,
                 duration:1.2
             }}
-            className='font-lora text-white hover:text-[#f0c400] cursor-pointer text-lg'>Memuat data</motion.span>
+            className='font-lora text-app-ink hover:text-app-gold cursor-pointer text-lg'>Memuat data</motion.span>
             )}
         </TooltipTrigger>
         <TooltipContent className={'bg-transparent'}>

@@ -86,7 +86,7 @@ const AcordComponent = () => {
           </AccordionTrigger>
 
           <AccordionContent className="flex flex-col justify-center">
-            <p className="text-white lg:text-center lg:text-lg text-sm text-balance text-center">
+            <p className="text-app-ink lg:text-center lg:text-lg text-sm text-balance text-center">
               {kms.deskripsi}
             </p>
 
@@ -115,7 +115,7 @@ const AcordComponent = () => {
 const KomisiSection = () => {
   return (
     <div className="w-full h-full lg:px-8 px-5">
-      <p className="text-white text-base lg:text-center text-balance lg:mb-4 mb-8">
+      <p className="text-app-ink text-base lg:text-center text-balance lg:mb-4 mb-8">
         Komisi merupakan alat kelengkapan DPRK yang bersifat tetap dan dibentuk
         oleh DPRK pada awal masa jabatan keanggotaan DPRK. Setiap anggota DPRK
         kecuali pimpinan DPRK wajib menjadi anggota salah satu komisi. Komisi

@@ -44,16 +44,16 @@ const AgendaAndSosialMedia = async () => {
 
 
         <div className='flex flex-col gap-2 mb-[32px]'>
-            <span className='lg:text-3xl text-md font-semibold text-white'>SOSIAL MEDIA</span>
+            <span className='lg:text-3xl text-md font-semibold text-app-ink'>SOSIAL MEDIA</span>
             <div className="h-1 w-full bg-gradient-to-r from-amber-500 to-orange-300" />
         </div>
 
         <div className=' w-full flex lg:flex-row flex-col lg:gap-5 gap-2'>
             {
                 sosialMedia.map((item, index) => (
-                <div key={index} className="w-full h-24 lg:mb-[32px] mb-[22px] bg-[#231c26] flex flex-row items-center pl-6 gap-4">
+                <div key={index} className="w-full h-24 lg:mb-[32px] mb-[22px] bg-app-surface flex flex-row items-center pl-6 gap-4">
                     {item.icon}
-                    <Link href={item.link} target="_blank" className="text-white font-mono text-lg underline hover:text-violet-500">{item.nama}</Link>
+                    <Link href={item.link} target="_blank" className="text-app-ink font-mono text-lg underline hover:text-violet-500">{item.nama}</Link>
                 </div>
                 ))
             }

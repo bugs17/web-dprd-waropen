@@ -20,7 +20,7 @@ export default function DigitalClock() {
   }, [])
 
   return (
-    <div className="text-gray-300 text-2xl font-mono">
+    <div className="text-app-muted text-2xl font-mono">
       {time}
     </div>
   )

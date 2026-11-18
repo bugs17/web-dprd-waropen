@@ -9,9 +9,9 @@ export const generateMetadata = () => {
 const FraksiList = async () => {
 
     return (
-        <div className="bg-[#0a0a0a] min-h-screen p-6">
+        <div className="bg-app-bg min-h-screen p-6">
         <div className="w-full flex justify-between mb-6">
-            <h4 className="text-white text-2xl font-semibold">Fraksi DPRK</h4>
+            <h4 className="text-app-ink text-2xl font-semibold">Fraksi DPRK</h4>
         </div>
 
         <FormInputFraksi />

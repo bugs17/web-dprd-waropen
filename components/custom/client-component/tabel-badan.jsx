@@ -116,10 +116,10 @@ export default function BadanTables({
             <span>Anda yakin ingin menghapus?</span>
             <span>{nama}</span>
             <div className="flex justify-end gap-2">
-                <button onClick={() => toast.dismiss(t.id)} className="px-3 py-1 rounded-md bg-gray-700 text-white hover:bg-gray-600">
+                <button onClick={() => toast.dismiss(t.id)} className="px-3 py-1 rounded-md bg-zinc-200 text-zinc-900 hover:bg-zinc-300 dark:bg-zinc-700 dark:text-white dark:hover:bg-zinc-600">
                     Batal
                 </button>
-                <button className="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600 flex items-center gap-1"
+                <button className="px-3 py-1 rounded-md bg-red-500 text-app-ink hover:bg-red-600 flex items-center gap-1"
                     onClick={() => {
                         startTransition(async () => {
                             try {
@@ -144,9 +144,9 @@ export default function BadanTables({
             icon: null,
             style: {
             borderRadius: "12px",
-            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-            color: "#f5f5f5",
-            border: "1px solid #3a3a3a",
+            background: "var(--app-surface)",
+            color: "var(--app-ink)",
+            border: "1px solid var(--app-line)",
             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             padding: "14px 18px",
             fontSize: "14px",
@@ -157,10 +157,10 @@ export default function BadanTables({
     };
 
     return (
-        <div className="border border-gray-700 rounded-xl p-4 shadow-md bg-[#111]">
+        <div className="border border-app-line rounded-xl p-4 shadow-md bg-app-surface">
         {/* Judul + Button */}
         <div className="flex w-full flex-row justify-between mb-4">
-            <span className="block text-xl font-semibold text-white">
+            <span className="block text-xl font-semibold text-app-ink">
             {namaBadan}
             </span>
 
@@ -169,7 +169,7 @@ export default function BadanTables({
                 <Button className={"cursor-pointer bg-amber-500 hover:bg-amber-600"}><UserPlus className={"text-black"} /></Button>
             </DialogTrigger>
 
-            <DialogContent className="text-white">
+            <DialogContent className="text-app-ink">
                 <DialogHeader>
                 <DialogTitle>Tambah Anggota</DialogTitle>
                 <DialogDescription>
@@ -230,17 +230,17 @@ export default function BadanTables({
             <Table className="table-fixed w-full">
                 <TableHeader>
                     <TableRow>
-                    <TableHead className="text-white text-left w-2/3">Nama</TableHead>
-                    <TableHead className="text-white text-center w-1/6">Jabatan</TableHead>
-                    <TableHead className="text-white text-right w-1/6">Aksi</TableHead>
+                    <TableHead className="text-app-ink text-left w-2/3">Nama</TableHead>
+                    <TableHead className="text-app-ink text-center w-1/6">Jabatan</TableHead>
+                    <TableHead className="text-app-ink text-right w-1/6">Aksi</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {badanAnggota.length > 0 ? (
                     sortAnggotaBadan(badanAnggota).map((item, idx) => (
                         <TableRow key={idx}>
-                        <TableCell className="text-gray-200 text-left">{item.nama}</TableCell>
-                        <TableCell className="text-gray-200 text-center">{item.jabatan}</TableCell>
+                        <TableCell className="text-app-muted text-left">{item.nama}</TableCell>
+                        <TableCell className="text-app-muted text-center">{item.jabatan}</TableCell>
                         <TableCell className="text-right">
                             <Trash2 onClick={() => handleDelete(item.id, item.nama)} size={14} className="text-red-500 inline-block hover:cursor-pointer" />
                         </TableCell>
@@ -248,8 +248,8 @@ export default function BadanTables({
                     ))
                     ) : (
                     <TableRow>
-                        <TableCell className="text-gray-400 text-left">--</TableCell>
-                        <TableCell className="text-gray-400 text-center">--</TableCell>
+                        <TableCell className="text-app-muted text-left">--</TableCell>
+                        <TableCell className="text-app-muted text-center">--</TableCell>
                         <TableCell className="text-right">
                         --
                         </TableCell>

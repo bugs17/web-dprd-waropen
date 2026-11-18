@@ -62,7 +62,7 @@ const DashboardPage = async () => {
       {/* 🔹 Greeting */}
       <div className="bg-muted/50 rounded-xl flex flex-col items-center justify-center p-6">
         <span className="font-bold text-3xl">😊👋</span>
-        <span className="text-white mt-2 text-lg text-center">Hallo Admin, selamat datang!</span>
+        <span className="text-app-ink mt-2 text-lg text-center">Hallo Admin, selamat datang!</span>
       </div>
 
       {/* 🔹 Statistik Cards */}
@@ -80,7 +80,7 @@ const DashboardPage = async () => {
                 <span className="font-bold text-4xl">{s.count}</span>
               </div>
             </div>
-            <div className="mt-4 text-gray-400 font-mono">{s.label}</div>
+            <div className="mt-4 text-app-muted font-mono">{s.label}</div>
           </div>
         ))}
       </div>
@@ -90,9 +90,9 @@ const DashboardPage = async () => {
         <h3 className="text-xl font-semibold mb-4">Akses Cepat</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           {stats.map((s, idx) => (
-            <Link key={idx} href={s.url} className="flex flex-col items-center justify-center bg-gray-800/30 hover:bg-gray-700/40 p-4 rounded-lg transition">
+            <Link key={idx} href={s.url} className="flex flex-col items-center justify-center bg-app-surface border border-app-line hover:border-app-gold hover:bg-muted p-4 rounded-lg transition">
               <div className={`${s.color} mb-2`}>{s.icon}</div>
-              <span className="text-sm text-gray-200">{s.label}</span>
+              <span className="text-sm text-app-muted">{s.label}</span>
             </Link>
           ))}
         </div>

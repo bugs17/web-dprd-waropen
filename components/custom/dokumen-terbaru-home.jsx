@@ -7,12 +7,12 @@ import { getAllDocumentsHome, getAllDocumentsHomeByKategory } from '@/action/get
 
 const Card = ({judul, urlFile, date}) => {
     return (
-        <div className='w-full px-5 py-5 flex flex-col gap-4 h-48 bg-[#231c26]'>
+        <div className='w-full px-5 py-5 flex flex-col gap-4 h-48 bg-app-surface'>
             <div className='flex items-center flex-row gap-2'>
-                <Clock4 size={18} className='text-white' />
-                <p className='text-white'>{new Date(date).toLocaleString('id-ID', {day: 'numeric',month: 'long',year: 'numeric'})}</p>
+                <Clock4 size={18} className='text-app-ink' />
+                <p className='text-app-ink'>{new Date(date).toLocaleString('id-ID', {day: 'numeric',month: 'long',year: 'numeric'})}</p>
             </div>
-            <span className='text-white text-lg font-semibold'>
+            <span className='text-app-ink text-lg font-semibold'>
             {judul}
             </span>
 
@@ -31,10 +31,10 @@ const CustomSelect = ({onSelect, isPending}) => {
                 <SelectValue  placeholder="Jenis Dokumen" />
             </SelectTrigger>
             <SelectContent className={"rounded-none"}>
-                <SelectItem className={"focus:bg-amber-500 focus:text-white rounded-none"} value="Laporan Keuangan DPRK">Laporan Keuangan DPRD</SelectItem>
-                <SelectItem className={"focus:bg-amber-500 focus:text-white rounded-none"} value="Rencana Strategis DPRK">Rencana Strategis DPRD</SelectItem>
-                <SelectItem className={"focus:bg-amber-500 focus:text-white rounded-none"} value="Dokumen Publikasi">Dokumen Publikasi</SelectItem>
-                <SelectItem className={"focus:bg-amber-500 focus:text-white rounded-none"} value="Produk Hukum">Produk Hukum</SelectItem>
+                <SelectItem className={"focus:bg-amber-500 focus:text-app-ink rounded-none"} value="Laporan Keuangan DPRK">Laporan Keuangan DPRD</SelectItem>
+                <SelectItem className={"focus:bg-amber-500 focus:text-app-ink rounded-none"} value="Rencana Strategis DPRK">Rencana Strategis DPRD</SelectItem>
+                <SelectItem className={"focus:bg-amber-500 focus:text-app-ink rounded-none"} value="Dokumen Publikasi">Dokumen Publikasi</SelectItem>
+                <SelectItem className={"focus:bg-amber-500 focus:text-app-ink rounded-none"} value="Produk Hukum">Produk Hukum</SelectItem>
             </SelectContent>
         </Select>
     )
@@ -87,9 +87,9 @@ const DokumenTerbaru = () => {
             <div className="absolute left-[-60px] bottom-[-60px] -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#c93d2a] opacity-20 blur-[100px]"></div>
             <div className="absolute right-[-60px] top-[-60px] -z-10 m-auto h-[310px] w-[310px] rounded-full bg-[#c93d2a] opacity-20 blur-[100px]"></div>
             
-            <div className='w-full hidden lg:block px-8 min-h-[700px] bg-[#231c26] pt-10 overflow-hidden'>
-                <div className='h-32 w-full flex flex-col gap-8 border-b-[2px] border-b-white'>
-                    <span className='font-semibold text-2xl text-white'>Jenis Dokumen</span>
+            <div className='w-full hidden lg:block px-8 min-h-[700px] bg-app-surface pt-10 overflow-hidden'>
+                <div className='h-32 w-full flex flex-col gap-8 border-b-[2px] border-b-app-line'>
+                    <span className='font-semibold text-2xl text-app-ink'>Jenis Dokumen</span>
                     <CustomSelect isPending={isPending} onSelect={handleSelectChange} />
                 </div>
             </div>

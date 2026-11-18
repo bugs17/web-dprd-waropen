@@ -16,13 +16,13 @@ function DocItem({ name, jumlahAnggota, handleDeleteList }) {
 
 
   return (
-    <div className="w-full flex items-center justify-between bg-neutral-800 text-gray-100 px-4 py-2 rounded-2xl shadow-md hover:bg-neutral-700 transition-colors">
+    <div className="w-full flex items-center justify-between bg-app-surface text-app-ink border border-app-line px-4 py-2 rounded-2xl shadow-sm hover:border-app-gold hover:bg-muted transition-colors">
         {/* Kiri: Icon file + info */}
         <div className="flex items-center gap-3">
             <Award className="text-amber-400" size={24} />
             <div>
-            <p className="text-sm font-medium text-white">{name}</p>
-            <p className="text-xs text-gray-400 capitalize">Total Partai: {jumlahAnggota}</p>
+            <p className="text-sm font-medium text-app-ink">{name}</p>
+            <p className="text-xs text-app-muted capitalize">Total Partai: {jumlahAnggota}</p>
             </div>
         </div>
 
@@ -30,7 +30,7 @@ function DocItem({ name, jumlahAnggota, handleDeleteList }) {
         <div className="flex items-center gap-3">
             <button
                 onClick={handleDeleteList}
-                className="p-2 rounded-lg hover:bg-neutral-700 transition"
+                className="p-2 rounded-lg hover:bg-muted transition"
                 title="Delete"
                 >
                 <Trash2 size={18} className="text-red-400 cursor-pointer" />
@@ -67,9 +67,9 @@ const FormInputFraksi = () => {
                         icon: <Ban className="text-red-500" />,
                         style: {
                             borderRadius: "12px",
-                            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                            color: "#f5f5f5",
-                            border: "1px solid #3a3a3a",
+                            background: "var(--app-surface)",
+                            color: "var(--app-ink)",
+                            border: "1px solid var(--app-line)",
                             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                             padding: "14px 18px",
                             fontSize: "14px",
@@ -100,7 +100,7 @@ const FormInputFraksi = () => {
             <div className="flex justify-end gap-2">
                 <button
                 onClick={() => toast.dismiss(t.id)}
-                className="px-3 py-1 rounded-md bg-gray-700 text-white hover:bg-gray-600"
+                className="px-3 py-1 rounded-md bg-zinc-200 text-zinc-900 hover:bg-zinc-300 dark:bg-zinc-700 dark:text-white dark:hover:bg-zinc-600"
                 >
                 Batal
                 </button>
@@ -114,9 +114,9 @@ const FormInputFraksi = () => {
                                     icon: <Trash2 className="text-red-500" />,
                                     style: {
                                         borderRadius: "12px",
-                                        background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                                        color: "#f5f5f5",
-                                        border: "1px solid #3a3a3a",
+                                        background: "var(--app-surface)",
+                                        color: "var(--app-ink)",
+                                        border: "1px solid var(--app-line)",
                                         boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                                         padding: "14px 18px",
                                         fontSize: "14px",
@@ -128,7 +128,7 @@ const FormInputFraksi = () => {
                         }
                         toast.dismiss(t.id);
                     }}
-                    className="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600 flex items-center gap-1"
+                    className="px-3 py-1 rounded-md bg-red-500 text-app-ink hover:bg-red-600 flex items-center gap-1"
                     >
                     <Trash2 className="w-4 h-4" /> Hapus
                 </button>
@@ -138,9 +138,9 @@ const FormInputFraksi = () => {
             icon: null,
             style: {
             borderRadius: "12px",
-            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-            color: "#f5f5f5",
-            border: "1px solid #3a3a3a",
+            background: "var(--app-surface)",
+            color: "var(--app-ink)",
+            border: "1px solid var(--app-line)",
             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             padding: "14px 18px",
             fontSize: "14px",
@@ -164,7 +164,7 @@ const FormInputFraksi = () => {
                     <button
                         disabled={isPending}
                         onClick={handleSubmit}
-                        className={`w-full py-2 rounded-md text-white flex items-center justify-center gap-2 font-medium transition-colors ${
+                        className={`w-full py-2 rounded-md text-app-ink flex items-center justify-center gap-2 font-medium transition-colors ${
                             isPending
                             ? "bg-neutral-500 cursor-not-allowed"
                             : "bg-amber-600 hover:bg-amber-700 cursor-pointer"
@@ -172,7 +172,7 @@ const FormInputFraksi = () => {
                     >
                         {isPending ? (
                             <>
-                                <Loader className="w-5 h-5 text-white animate-spin mr-2" />
+                                <Loader className="w-5 h-5 text-app-ink animate-spin mr-2" />
                             </>
                         )
                         :

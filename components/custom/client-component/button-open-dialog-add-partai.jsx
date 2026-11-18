@@ -9,7 +9,7 @@ const ButtonOpenDialogAddPartai = () => {
 
   return (
     <Button className={"cursor-pointer"} onClick={() => setOpen(true)}>
-        <Plus className="text-black" />
+        <Plus />
         <span>Tambah</span>
     </Button>
   )

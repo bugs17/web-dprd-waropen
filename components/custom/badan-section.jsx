@@ -81,7 +81,7 @@ const BadanSection = () => {
   return (
     <div className="w-full h-full lg:px-8 px-5">
 
-        <p className="text-white lg:text-center text-balance text-base mb-8 lg:mb-4">
+        <p className="text-app-ink lg:text-center text-balance text-base mb-8 lg:mb-4">
           Badan-badan sebagai alat kelengkapan Dewan Perwakilan Rakyat Kabupaten Waropen meliputi Badan Musyawarah, Badan Pembentuk Peraturan Daerah, Badan Kehormatan, dan Badan Anggaran.
         </p>
 

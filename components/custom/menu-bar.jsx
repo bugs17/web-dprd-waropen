@@ -86,14 +86,14 @@ const MenuBar = ({ editor }) => {
   ]
 
   return (
-    <div className="border rounded-md p-1 mb-1 bg-[#222222] flex justify-center space-x-2 z-50">
+    <div className="border rounded-md p-1 mb-1 bg-app-surface flex justify-center space-x-2 z-50">
       {options.map((option, index) => (
         <button
           key={index}
           onClick={option.command}
           className={
             option.isActive
-              ? "bg-violet-400 p-2 px-2 text-white border rounded-sm"
+              ? "bg-violet-400 p-2 px-2 text-app-ink border rounded-sm"
               : "p-2 px-2 bg-muted hover:bg-violet-200 hover:text-black border rounded-sm"
           }
         >

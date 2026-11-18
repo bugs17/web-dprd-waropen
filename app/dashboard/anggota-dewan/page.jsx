@@ -21,7 +21,7 @@ const page = async () => {
                     
                     
                     <Button className={"cursor-pointer"}>
-                        <User className="text-black" />
+                        <User />
                         <span>Tambah</span>
                     </Button>
                 </Link>

@@ -56,11 +56,11 @@ const DetailBerita = () => {
       <div className='w-full lg:px-16 lg:py-10'>
 
         {/* berita */}
-        <div className='w-full bg-[#231c26] pb-10 pt-8 lg:px-10 px-3 mb-10'>
+        <div className='w-full bg-app-surface pb-10 pt-8 lg:px-10 px-3 mb-10'>
           <div className='w-full border-b  border-amber-300 flex flex-row justify-between py-2 mb-8'>
             <div className='flex flex-row gap-2 items-center'>
-              <Clock className='text-white' size={16} />
-              <span className='text-white lg:text-sm text-xs'>{new Date(beritaState.createdAt).toLocaleDateString('id-ID', {
+              <Clock className='text-app-ink' size={16} />
+              <span className='text-app-ink lg:text-sm text-xs'>{new Date(beritaState.createdAt).toLocaleDateString('id-ID', {
                   day: '2-digit',
                   month: 'short',
                   year: 'numeric',
@@ -70,7 +70,7 @@ const DetailBerita = () => {
             <ShareBeritaComponent />
           </div>
 
-          <h1 className='text-white font-bold text-center mb-8 text-2xl lg:text-5xl'>{beritaState.judul}</h1>
+          <h1 className='text-app-ink font-bold text-center mb-8 text-2xl lg:text-5xl'>{beritaState.judul}</h1>
 
           <div className="w-full relative overflow-hidden mb-8 aspect-[3/2] md:aspect-[16/9] lg:aspect-[16/9]" >
             <Image
@@ -123,7 +123,7 @@ const DetailBerita = () => {
                           </TooltipContent>
                         </Tooltip>
                       </div>
-                      <span className="text-white text-xs font-mono">
+                      <span className="text-gray-200 text-xs font-mono">
                         {new Date(b.createdAt).toLocaleDateString('id-ID', {
                           day: '2-digit',
                           month: 'short',

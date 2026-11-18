@@ -22,7 +22,7 @@ const StrukturOragnisasiPage = async () => {
     <>
         <HeaderPages title={"Struktur Organisasi"} />
         <div className='w-full justify-center flex'>
-            {/* <span className='text-white text-center '>Susunan Organisasi Sekretariat DPRK sebagai berikut :</span> */}
+            {/* <span className='text-app-ink text-center '>Susunan Organisasi Sekretariat DPRK sebagai berikut :</span> */}
             {data && (<img
               src={`/api/struktur/image/${data?.urlImageStrukturOrganisasi}`}
               alt="Preview"

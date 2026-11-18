@@ -20,7 +20,7 @@ function Card({imgUrl, judul, update, urlBerita}){
 
                 <div className='relative flex flex-col z-30 h-full w-full gap-2 justify-end px-6 pb-6'>
                     <span className='text-xl group-hover:text-amber-300 font-semibold text-white'>{judul}</span>
-                    <p className='text-sm text-slate-400'>{update}</p>
+                    <p className='text-sm text-gray-200'>{update}</p>
                 </div>
 
             </Link>
@@ -44,7 +44,7 @@ const BeritaHomeComponent = () => {
     }, [])
 
   return (
-    <div className="flex flex-wrap justify-center gap-3 px-6 pb-11 bg-[#231c26]">
+    <div className="flex flex-wrap justify-center gap-3 px-6 pb-11 bg-app-surface">
 
         {data.length > 0 ? 
             

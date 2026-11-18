@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/sidebar"
 import AuthWrapper from "@/context/AuthProvider";
 import { ClerkProvider, UserButton } from "@clerk/nextjs";
+import ThemeToggle from "@/components/custom/client-component/theme-toggle";
 
 export const generateMetadata = () => {
   return {
@@ -27,11 +28,11 @@ const DashboardLayout = ({children}) => {
                 <div className="flex items-center gap-2 px-4 w-full">
                   <SidebarTrigger className="-ml-1" />
                   <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
-                  <div className="ml-auto">
-                      {/* <DigitalClock /> */}
+                  <div className="ml-auto flex items-center gap-3">
+                      <ThemeToggle />
                       <UserButton appearance={{
                         elements: {
-                          userButtonText: "text-white", // bisa pakai tailwind class
+                          userButtonText: "text-app-ink",
                         },
                       }}
                       userProfileMode="modal"  />

@@ -50,8 +50,8 @@ const FormEditBerita = ({idProps, judulProps, dateProps, imgUrlProps, postProps}
   return (
     <div className="bg-muted/50 min-h-[100vh] flex flex-col flex-1 rounded-xl md:min-h-min p-6">
       <div className='flex flex-row justify-between items-center'>
-        <Link href={"/dashboard/berita"} className='flex max-w-sm flex-row gap-3 items-center hover:text-gray-300 group'>
-          <ArrowLeft className='text-white group-hover:text-gray-300' />
+        <Link href={"/dashboard/berita"} className='flex max-w-sm flex-row gap-3 items-center hover:text-app-muted group'>
+          <ArrowLeft className='text-app-ink group-hover:text-app-muted' />
           <span>Kembali</span>
         </Link>
         <div className='flex flex-row items-center justify-end gap-2'>
@@ -60,17 +60,17 @@ const FormEditBerita = ({idProps, judulProps, dateProps, imgUrlProps, postProps}
       </div>
 
       <div className='w-full flex flex-row items-center gap-7 py-5'>
-          <span className='text-lg text-white'>Judul</span>
+          <span className='text-lg text-app-ink'>Judul</span>
           <div className="relative w-full">
               <Input
                   type="text"
                   placeholder="Judul Berita"
-                  className="pr-10 text-white"
+                  className="pr-10 text-app-ink"
                   onChange={(e) => setJudul(e.target.value)}
                   value={judul}
               />
           </div>
-          <span className='text-lg text-white'>Tanggal</span>
+          <span className='text-lg text-app-ink'>Tanggal</span>
           <Calendar22 date={date} setDate={setDate} />
       </div>
 

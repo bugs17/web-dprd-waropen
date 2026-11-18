@@ -47,9 +47,9 @@ const DialogDeleteAnggotaDewan = ({ namaPartai, idAnggotaDewan }) => {
         className="!max-w-2xl !w-full"
         style={{
           borderRadius: "12px",
-          background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-          color: "#f5f5f5",
-          border: "1px solid #3a3a3a",
+          background: "var(--app-surface)",
+          color: "var(--app-ink)",
+          border: "1px solid var(--app-line)",
           boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
           padding: "24px",
         }}
@@ -60,7 +60,7 @@ const DialogDeleteAnggotaDewan = ({ namaPartai, idAnggotaDewan }) => {
           <div className="flex justify-center w-full mt-3">
             <p>
               Apakah anda yakin akan menghapus Anggota dewan{" "}
-              <span className="font-bold text-amber-200">{nama}</span>?
+              <span className="font-bold text-app-gold">{nama}</span>?
             </p>
           </div>
 
@@ -68,7 +68,7 @@ const DialogDeleteAnggotaDewan = ({ namaPartai, idAnggotaDewan }) => {
             <Button
               disabled={isPending}
               onClick={handleSubmit}
-              className="bg-red-400 hover:bg-red-500 text-white hover:cursor-pointer"
+              className="bg-red-400 hover:bg-red-500 text-app-ink hover:cursor-pointer"
               style={{
                 borderRadius: "8px",
                 padding: "10px 16px",

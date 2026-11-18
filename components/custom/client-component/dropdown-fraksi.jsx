@@ -20,7 +20,7 @@ export default function FraksiDropdown({ options = [], value = null, onSelect, p
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button disabled={disabled} className="w-full text-slate-500 bg-[#222222] px-3 py-1 border rounded-md text-left flex items-center justify-between">
+        <button disabled={disabled} className="w-full text-slate-500 bg-app-surface px-3 py-1 border rounded-md text-left flex items-center justify-between">
           {selectedItem ? selectedItem.nama : <span className="text-gray-500">{placeholder}</span>}
           <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />

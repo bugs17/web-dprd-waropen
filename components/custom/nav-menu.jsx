@@ -143,11 +143,11 @@ const NavMenu = () => {
                 {menuItems.map((item, index) => (
                     item.subMenu ? (
                         <NavigationMenuItem className={`group/linktitle`} key={index}>
-                            <NavigationMenuTrigger className={`bg-transparent  rounded-none text-white hover:bg-none text-md`}>{item.title}</NavigationMenuTrigger>
+                            <NavigationMenuTrigger className={`bg-transparent  rounded-none text-app-ink hover:bg-none text-md`}>{item.title}</NavigationMenuTrigger>
                                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-[#f0c400] group-hover/linktitle:w-full transition-all duration-300`}></span>
                                 
                                 <NavigationMenuContent >
-                                    <ul className="grid overflow-hidden gap-2 md:w-[400px] lg:w-screen py-5 px-5 fixed  bg-[#231c26] left-0 right-0 lg:grid-cols-[.75fr_1fr]">
+                                    <ul className="grid overflow-hidden gap-2 md:w-[400px] lg:w-screen py-5 px-5 fixed bg-app-surface border-y border-app-line shadow-md left-0 right-0 lg:grid-cols-[.75fr_1fr]">
                                         
                                         
                                         <li className="row-span-3">
@@ -156,13 +156,13 @@ const NavMenu = () => {
                                                 className=" flex relative  h-full group/link w-full flex-col justify-end rounded-none  p-6 no-underline outline-hidden select-none focus:shadow-md"
                                                 href={item.subMenu[0].path}
                                             >
-                                                <div className="mt-4 mb-2 group-hover/link:text-black text-white text-lg font-medium">
+                                                <div className="mt-4 mb-2 group-hover/link:text-black text-app-ink text-lg font-medium">
                                                 {item.subMenu[0].title}
                                                 </div>
-                                                <p className="text-slate-100 group-hover/link:text-black text-sm leading-tight">
+                                                <p className="text-app-muted group-hover/link:text-black text-sm leading-tight">
                                                 {item.subMenu[0].desc}
                                                 </p>
-                                                <ArrowUpRight size={50} className="text-[#f0c400] absolute right-4 top-3 transition-all duration-300 group-hover/link:text-black" />
+                                                <ArrowUpRight size={50} className="text-app-gold absolute right-4 top-3 transition-all duration-300 group-hover/link:text-black" />
                                             </Link>
                                             </NavigationMenuLink>
                                         </li>
@@ -181,7 +181,7 @@ const NavMenu = () => {
                     ) : (
 
                         <NavigationMenuItem className={`group/linktitle`} key={index}>
-                            <NavigationMenuLink asChild className={`bg-transparent ${pathName === item.match ? 'text-[#f0c400]' : 'text-white'}  rounded-none   hover:bg-[#231c26] hover:text-white text-md`}>
+                            <NavigationMenuLink asChild className={`bg-transparent ${pathName === item.match ? 'text-app-gold' : 'text-app-ink'}  rounded-none   hover:bg-app-surface hover:text-app-ink text-md`}>
                                 <Link href={item.path} >
                                     {item.title}
                                 </Link>
@@ -209,12 +209,12 @@ function ListItem({title,children,href,...props}) {
         <NavigationMenuLink className={'rounded-none hover:bg-[#f0c400] border-b-[1px] border-dashed border-[#f0c400]'} asChild>
           <Link href={href} className="flex flex-row justify-between items-center group/link">
           <div>
-            <div className="text-lg leading-none group-hover/link:text-black font-semibold text-white transition-all duration-300 mb-0.5">{title}</div>
-            <p className="text-slate-100 group-hover/link:text-black transition-all duration-300 line-clamp-2 text-sm leading-snug">
+            <div className="text-lg leading-none group-hover/link:text-black font-semibold text-app-ink transition-all duration-300 mb-0.5">{title}</div>
+            <p className="text-app-muted group-hover/link:text-black transition-all duration-300 line-clamp-2 text-sm leading-snug">
               {children}
             </p>
           </div>
-            <ArrowUpRight size={50} className="text-[#f0c400] transition-all duration-300 group-hover/link:text-black" />
+            <ArrowUpRight size={50} className="text-app-gold transition-all duration-300 group-hover/link:text-black" />
           </Link>
         </NavigationMenuLink>
       </li>

@@ -34,7 +34,7 @@ const KartuUcapan = () => {
   }
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#231c26]">
+    <section className="relative w-full overflow-hidden bg-app-surface">
       {/* Pattern background */}
       <div
         className="absolute inset-0 z-0 bg-repeat opacity-[0.03]"
@@ -98,8 +98,8 @@ const KartuUcapan = () => {
         }
 
         .kartu-ucapan-swiper .swiper-pagination-bullet {
-          background: #ffffff;
-          opacity: 0.5;
+          background: var(--app-muted);
+          opacity: 0.7;
         }
 
         .kartu-ucapan-swiper .swiper-pagination-bullet-active {

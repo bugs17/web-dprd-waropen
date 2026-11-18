@@ -26,7 +26,7 @@ const LoadingBar = () => {
   return (
     <AnimatePresence>
         {loading && (
-            <div className="absolute top-0 h-1 w-11 left-1/2 -translate-x-1/2 bg-[#231c26]rounded-full">
+            <div className="absolute top-0 h-1 w-11 left-1/2 -translate-x-1/2 bg-app-surface rounded-full">
             <motion.span
                 className="block h-1 w-full bg-[#f0c400] rounded-full origin-center"
                 style={{ transformOrigin: 'center' }}

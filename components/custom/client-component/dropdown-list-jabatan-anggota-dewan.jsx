@@ -18,7 +18,7 @@ export default function JabatanAnggotaDewanDropdown({ options = [], onSelect, pl
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button disabled={disabled} className="w-full text-slate-500 bg-[#222222] px-3 py-1 border rounded-md text-left flex items-center justify-between">
+        <button disabled={disabled} className="w-full text-slate-500 bg-app-surface px-3 py-1 border rounded-md text-left flex items-center justify-between">
           {selected ? (
             <div className="flex items-center gap-2">
               

@@ -57,7 +57,7 @@ export default function NewsList() {
             <div className="flex justify-end gap-2">
                 <button
                 onClick={() => toast.dismiss(t.id)}
-                className="px-3 py-1 rounded-md bg-gray-700 text-white hover:bg-gray-600"
+                className="px-3 py-1 rounded-md bg-zinc-200 text-zinc-900 hover:bg-zinc-300 dark:bg-zinc-700 dark:text-white dark:hover:bg-zinc-600"
                 >
                 Batal
                 </button>
@@ -76,9 +76,9 @@ export default function NewsList() {
                             icon: <Trash2 className="text-red-500" />,
                             style: {
                                 borderRadius: "12px",
-                                background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                                color: "#f5f5f5",
-                                border: "1px solid #3a3a3a",
+                                background: "var(--app-surface)",
+                                color: "var(--app-ink)",
+                                border: "1px solid var(--app-line)",
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                                 padding: "14px 18px",
                                 fontSize: "14px",
@@ -97,9 +97,9 @@ export default function NewsList() {
                             icon: <Ban className="text-red-500" />,
                             style: {
                                 borderRadius: "12px",
-                                background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                                color: "#f5f5f5",
-                                border: "1px solid #3a3a3a",
+                                background: "var(--app-surface)",
+                                color: "var(--app-ink)",
+                                border: "1px solid var(--app-line)",
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                                 padding: "14px 18px",
                                 fontSize: "14px",
@@ -114,9 +114,9 @@ export default function NewsList() {
                             icon: <Ban className="text-red-500" />,
                             style: {
                                 borderRadius: "12px",
-                                background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                                color: "#f5f5f5",
-                                border: "1px solid #3a3a3a",
+                                background: "var(--app-surface)",
+                                color: "var(--app-ink)",
+                                border: "1px solid var(--app-line)",
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                                 padding: "14px 18px",
                                 fontSize: "14px",
@@ -125,7 +125,7 @@ export default function NewsList() {
                         })
                     }
                 }}
-                className="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600 flex items-center gap-1"
+                className="px-3 py-1 rounded-md bg-red-500 text-app-ink hover:bg-red-600 flex items-center gap-1"
                 >
                 <Trash2 className="w-4 h-4" /> Hapus
                 </button>
@@ -135,9 +135,9 @@ export default function NewsList() {
             icon: null,
             style: {
             borderRadius: "12px",
-            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-            color: "#f5f5f5",
-            border: "1px solid #3a3a3a",
+            background: "var(--app-surface)",
+            color: "var(--app-ink)",
+            border: "1px solid var(--app-line)",
             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             padding: "14px 18px",
             fontSize: "14px",
@@ -160,10 +160,10 @@ export default function NewsList() {
         news.map((item) => (
           <div
             key={item.id}
-            className="bg-muted/50 rounded-xl flex items-center justify-between p-4 border border-zinc-800 hover:border-zinc-500 hover:bg-muted/70 transition"
+            className="bg-app-surface rounded-xl flex items-center justify-between p-4 border border-app-line hover:border-app-gold hover:bg-muted transition"
           >
             {/* Gambar kiri */}
-            <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border border-zinc-700">
+            <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 border border-app-line">
               <img
                 src={`/api/berita/image/${item.imageUrl}`}
                 alt={item.judul}
@@ -176,12 +176,12 @@ export default function NewsList() {
               <Link
                 href={`/berita/${item.id}`}
                 target="_blank"
-                className="text-base hover:text-amber-400 font-semibold text-zinc-100 truncate"
+                className="text-base hover:text-amber-400 font-semibold text-app-ink truncate"
               >
                 {item.judul}
               </Link>
               <p
-                className="text-sm text-zinc-400 mt-1 line-clamp-2"
+                className="text-sm text-app-muted mt-1 line-clamp-2"
                 dangerouslySetInnerHTML={{ __html: truncateHtml(item.isi, 5) }}
               />
               <p className="text-xs text-zinc-500 mt-2">

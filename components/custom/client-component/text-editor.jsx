@@ -118,7 +118,7 @@ const TextEditor = ({content, onChange}) => {
     editorProps: {
       attributes: {
         class:
-          "bg-[#222222] border rounded-md py-2 px-3 outline-none h-full w-full max-h-96 overflow-y-scroll",
+          "bg-app-surface text-app-ink border rounded-md py-2 px-3 outline-none h-full w-full max-h-96 overflow-y-scroll",
         // style: "height: 100%; min-height: 100%;"
       },
     },

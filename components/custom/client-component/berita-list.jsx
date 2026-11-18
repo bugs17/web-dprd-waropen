@@ -114,14 +114,14 @@ export default function BeritaClient() {
                     <Input
                         type="text"
                         placeholder="Cari berita..."
-                        className="pr-10 text-white"
+                        className="pr-10 text-app-ink"
                         value={query}
                         onChange={onSearchChange}
                     />
                     {searching ? (
                         <Loader className="absolute right-3 top-1/2 -translate-y-1/2 text-amber-600 h-5 w-5" />
                     ):(
-                        <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-white h-5 w-5" />
+                        <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-app-ink h-5 w-5" />
                     )}
                 </div>
             </div>
@@ -152,7 +152,7 @@ export default function BeritaClient() {
                                     <TooltipContent>{berita.judul}</TooltipContent>
                                 </Tooltip>
 
-                                <span className="text-white text-xs font-mono">
+                                <span className="text-gray-200 text-xs font-mono">
                                     {formatTanggalIndo(berita.createdAt)}
                                 </span>
                             </div>
@@ -163,7 +163,7 @@ export default function BeritaClient() {
 
             {/* Loading */}
             {loading && (
-                <p className="w-full text-center text-gray-300 py-4">Memuat...</p>
+                <p className="w-full text-center text-app-muted py-4">Memuat...</p>
             )}
 
             {/* End */}

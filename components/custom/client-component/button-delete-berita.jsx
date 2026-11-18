@@ -54,13 +54,13 @@ const DeleteBerita = ({judulBerita, idBerita}) => {
                         <AlertDialogFooter>
                             <AlertDialogCancel disabled={isPending}>Batal</AlertDialogCancel>
                             <AlertDialogAction
-                                className={"bg-red-500 hover:bg-red-400 text-white cursor-pointer"}
+                                className={"bg-red-500 hover:bg-red-400 text-app-ink cursor-pointer"}
                                 onClick={handleDelete}
                                 disabled={isPending}
                             >
                                 {isPending ? (
                                     <>
-                                    <Loader2 className="h-4 w-4 animate-spin text-white" />
+                                    <Loader2 className="h-4 w-4 animate-spin text-app-ink" />
                                     </>
                                 ) 
                                 : 

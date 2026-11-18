@@ -38,9 +38,9 @@ export default function JadwalSidangInputs() {
       icon: <Ban className="text-red-500" />,
       style: {
         borderRadius: "12px",
-        background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-        color: "#f5f5f5",
-        border: "1px solid #3a3a3a",
+        background: "var(--app-surface)",
+        color: "var(--app-ink)",
+        border: "1px solid var(--app-line)",
         boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
         padding: "14px 18px",
         fontSize: "14px",
@@ -80,7 +80,7 @@ export default function JadwalSidangInputs() {
         <div className="flex justify-end gap-2">
             <button
             onClick={() => toast.dismiss(t.id)}
-            className="px-3 py-1 rounded-md bg-gray-700 text-white hover:bg-gray-600"
+            className="px-3 py-1 rounded-md bg-zinc-200 text-zinc-900 hover:bg-zinc-300 dark:bg-zinc-700 dark:text-white dark:hover:bg-zinc-600"
             >
             Batal
             </button>
@@ -92,7 +92,7 @@ export default function JadwalSidangInputs() {
                 }
                 toast.dismiss(t.id);
             }}
-            className="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600 flex items-center gap-1"
+            className="px-3 py-1 rounded-md bg-red-500 text-app-ink hover:bg-red-600 flex items-center gap-1"
             >
             <Trash2 className="w-4 h-4" /> Hapus
             </button>
@@ -102,9 +102,9 @@ export default function JadwalSidangInputs() {
         icon: null,
         style: {
         borderRadius: "12px",
-        background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-        color: "#f5f5f5",
-        border: "1px solid #3a3a3a",
+        background: "var(--app-surface)",
+        color: "var(--app-ink)",
+        border: "1px solid var(--app-line)",
         boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
         padding: "14px 18px",
         fontSize: "14px",
@@ -146,7 +146,7 @@ export default function JadwalSidangInputs() {
         <button
         onClick={handleSave}
         disabled={isPending}
-        className={`w-full cursor-pointer py-2 rounded-md text-white flex items-center justify-center gap-2 font-medium transition-colors ${
+        className={`w-full cursor-pointer py-2 rounded-md text-app-ink flex items-center justify-center gap-2 font-medium transition-colors ${
             isPending
             ? "bg-amber-400 cursor-not-allowed"
             : "bg-amber-600 hover:bg-amber-700"
@@ -154,7 +154,7 @@ export default function JadwalSidangInputs() {
         >
         {isPending ? (
             <>
-            <Loader className="w-5 h-5 animate-spin text-white" />
+            <Loader className="w-5 h-5 animate-spin text-app-ink" />
             </>
         ) : (
             "Simpan Jadwal"
@@ -177,11 +177,11 @@ export default function JadwalSidangInputs() {
             {jadwals.map((j) => (
               <li
                 key={j.id}
-                className="flex justify-between items-center border rounded-md p-2 hover:bg-gray-800 transition-colors"
+                className="flex justify-between items-center border border-app-line rounded-md p-2 hover:border-app-gold hover:bg-muted transition-colors"
               >
                 <div>
-                  <p className="font-medium text-white">{j.tentang}</p>
-                  <p className="text-sm text-gray-300">
+                  <p className="font-medium text-app-ink">{j.tentang}</p>
+                  <p className="text-sm text-app-muted">
                     {new Date(j.date).toLocaleString("id-ID", {
                       dateStyle: "medium",
                       timeStyle: "short",
@@ -189,7 +189,7 @@ export default function JadwalSidangInputs() {
                     {j.lokasi && ` • ${j.lokasi}`}
                   </p>
                   {j.deskripsi && (
-                    <p className="text-xs text-gray-400 mt-1">{j.deskripsi}</p>
+                    <p className="text-xs text-app-muted mt-1">{j.deskripsi}</p>
                   )}
                 </div>
                 <button

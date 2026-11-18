@@ -13,6 +13,7 @@ import { ArrowUpRight, ChevronRight, Facebook, Instagram, Menu, Twitter } from "
 import { motion } from "framer-motion"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible"
 import Link from "next/link"
+import ThemeToggle from "./client-component/theme-toggle"
 
 const menuItems = [
   {
@@ -139,13 +140,14 @@ const SideBarMobile = () => {
             delay:0.3,
             duration:1.2
         }}
-        className='lg:hidden px-3 items-center justify-end flex h-full'>
-          <Menu size={32} className='text-[#f0c400]' />
+        className='lg:hidden px-3 items-center justify-end gap-2 flex h-full'>
+          <ThemeToggle />
+          <Menu size={32} className='text-app-gold' />
         </motion.div>
       </SheetTrigger>
-      <SheetContent className="bg-[#231c26] border-none" side="left">
+      <SheetContent className="bg-app-surface border-none" side="left">
         <SheetHeader>
-          <SheetTitle className="text-white">Menu</SheetTitle>
+          <SheetTitle className="text-app-ink">Menu</SheetTitle>
         </SheetHeader>
 
         <div className="w-full h-full">
@@ -156,16 +158,16 @@ const SideBarMobile = () => {
                 <div className="">
                     <CollapsibleTrigger asChild>
                         <div className="flex flex-row w-full justify-between items-center px-2 mb-3">
-                            <span className="text-white">{item.title}</span>
-                            <ChevronRight className="ml-auto text-[#f0c400] transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            <span className="text-app-ink">{item.title}</span>
+                            <ChevronRight className="ml-auto text-app-gold transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                         </div>
                     </CollapsibleTrigger>
                     {item.subMenu.map((subitem, subindex) => (
                       <CollapsibleContent key={subindex}>
                         <div className="w-full pl-6 mb-2 ">
                             <SheetClose asChild >
-                                <Link className=" text-white flex flex-row items-center gap-2" href={subitem.path}>
-                                    <ArrowUpRight className="text-[#f0c400]" size={14} />
+                                <Link className=" text-app-ink flex flex-row items-center gap-2" href={subitem.path}>
+                                    <ArrowUpRight className="text-app-gold" size={14} />
                                     <span>{subitem.title}</span>
                                 </Link>
                             </SheetClose>
@@ -176,7 +178,7 @@ const SideBarMobile = () => {
             </Collapsible>
             ) : (
               <SheetClose asChild key={index} >
-                  <Link className=" text-white flex flex-row items-center px-2 mb-3" href={item.path}>
+                  <Link className=" text-app-ink flex flex-row items-center px-2 mb-3" href={item.path}>
                       <span>{item.title}</span>
                   </Link>
               </SheetClose>
@@ -188,11 +190,11 @@ const SideBarMobile = () => {
         
         <SheetFooter className="w-full px-0 pb-0">
           <div className="w-full flex flex-row justify-center gap-8 items-center h-12">
-            <Facebook size={20} className="text-[#f0c400] cursor-pointer" />
-            <Instagram size={20} className="text-[#f0c400] cursor-pointer" />
-            <Twitter size={20} className="text-[#f0c400] cursor-pointer" />
+            <Facebook size={20} className="text-app-gold cursor-pointer" />
+            <Instagram size={20} className="text-app-gold cursor-pointer" />
+            <Twitter size={20} className="text-app-gold cursor-pointer" />
           </div>
-          <div className="text-slate-400 text-center text-xs pb-4">
+          <div className="text-app-muted text-center text-xs pb-4">
             <span>© {currentYear} DPRK Kabupaten Waropen. All rights reserved.</span>
           </div>
         </SheetFooter>

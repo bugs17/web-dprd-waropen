@@ -25,11 +25,11 @@ const BroadcumCustom = () => {
 
 
   return (
-    <div className='w-full h-10 bg-[#533a4e] flex items-center lg:pl-24 pl-3'>
+    <div className='w-full h-10 bg-app-crumb flex items-center lg:pl-24 pl-3'>
         <Breadcrumb>
             <BreadcrumbList>
                 <BreadcrumbItem>
-                    <Link href={"/"} className={"text-gray-400 lg:text-base text-xs"}>Home</Link>
+                    <Link href={"/"} className={"text-app-muted lg:text-base text-xs"}>Home</Link>
                 </BreadcrumbItem>
                 
                 
@@ -47,7 +47,7 @@ const BroadcumCustom = () => {
                     <React.Fragment key={index}>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                        <BreadcrumbPage className={`${isLast ? "text-white" : "text-gray-400 lg:text-base text-xs"}`}>
+                        <BreadcrumbPage className={`${isLast ? "text-app-ink" : "text-app-muted lg:text-base text-xs"}`}>
                         {label}
                         </BreadcrumbPage>
                     </BreadcrumbItem>

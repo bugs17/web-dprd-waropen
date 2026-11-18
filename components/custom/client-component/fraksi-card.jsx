@@ -33,7 +33,7 @@ export default function FraksiComponent({ fraksiData }) {
         return (
           <div
             key={idx}
-            className="bg-muted/50 bg-[radial-gradient(#312e31_1px,transparent_0.3px)] [background-size:16px_16px] p-8 shadow-md text-white"
+            className="bg-muted/50 bg-[radial-gradient(var(--app-dot)_1px,transparent_0.3px)] [background-size:16px_16px] p-8 shadow-md text-app-ink"
           >
             {/* Nama Fraksi */}
             <h2 className="lg:text-3xl text-2xl text-center font-bold lg:mb-6 mb-10 border-b-2 lg:border-b-amber-400 border-b-zinc-500">
@@ -67,7 +67,7 @@ export default function FraksiComponent({ fraksiData }) {
                 <Link
                   key={mIdx}
                   href={`/tentang-dprd/detail-anggota-dprk/${member.id}`}
-                  className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200 shadow rounded lg:h-96 h-80 overflow-hidden"
+                  className="flex-1 bg-app-surface border border-app-line hover:cursor-pointer group hover:shadow-violet-200 shadow rounded lg:h-96 h-80 overflow-hidden"
                 >
                   <div className="flex lg:flex-row flex-col w-full h-full overflow-hidden">
                     
@@ -89,13 +89,13 @@ export default function FraksiComponent({ fraksiData }) {
                     <div className="lg:w-[50%] md:w-[50%] w-full lg:group-hover:w-[40%] transition-all duration-300 ease-in-out h-full py-5 px-2 flex flex-col">
 
                       <div className="w-full lg:h-[50%] h-[40%] flex flex-col items-center lg:items-start gap-2">
-                        <span className="text-white font-semibold text-base lg:text-lg">
+                        <span className="text-app-ink font-semibold text-base lg:text-lg">
                           {member.nama}
                         </span>
                       </div>
 
                       <div className="w-full lg:h-[50%] h-[20%] flex lg:items-end items-center lg:justify-start justify-center">
-                        <div className="w-full lg:items-start items-center justify-center lg:justify-start flex lg:block py-5 border-t-2 lg:border-t-zinc-500 border-t-zinc-500 text-white text-sm">
+                        <div className="w-full lg:items-start items-center justify-center lg:justify-start flex lg:block py-5 border-t-2 lg:border-t-zinc-500 border-t-zinc-500 text-app-ink text-sm">
                           {member.jabatanFraksi}
                         </div>
                       </div>

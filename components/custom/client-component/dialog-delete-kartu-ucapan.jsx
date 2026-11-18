@@ -33,7 +33,7 @@ const DialogDeleteKartuUcapan = ({ idKartuUcapan, description }) => {
         variant="outline"
         size="sm"
         onClick={() => setOpen(true)}
-        className="cursor-pointer hover:!bg-red-500 hover:!text-white"
+        className="cursor-pointer hover:!bg-red-500 hover:!text-app-ink"
       >
         <Trash2 size="14" />
       </Button>

@@ -74,7 +74,7 @@ const CardPerson = () => {
     return (
             anggotaDewanMapping.map((a, idx) => (
 
-                <Link key={idx} href={`/tentang-dprd/detail-anggota-dprk/${a.id}`} className="flex-1 bg-[#231c26] hover:cursor-pointer group hover:shadow-violet-200  shadow rounded h-96 overflow-hidden">
+                <Link key={idx} href={`/tentang-dprd/detail-anggota-dprk/${a.id}`} className="flex-1 bg-app-surface border border-app-line hover:cursor-pointer group hover:shadow-violet-200  shadow rounded h-96 overflow-hidden">
                     <div className="flex lg:flex-row flex-col w-full h-full overflow-hidden">
                         <div className="lg:w-[40%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full overflow-hidden">
                             <Image 
@@ -91,7 +91,7 @@ const CardPerson = () => {
                         <div className="lg:w-[60%] group-hover:w-[50%] transition-all duration-300 ease-in-out h-full py-5 px-2 flex flex-col">
 
                             <div className="w-full h-[50%] flex flex-col gap-2">
-                                <span className="text-white font-semibold text-lg">{a.nama}</span>
+                                <span className="text-app-ink font-semibold text-lg">{a.nama}</span>
                                 <div className="flex flex-row items-center gap-1">
                                     <span className="text-xs text-zinc-500">{a.fraksi_partai}</span>
                                 </div>

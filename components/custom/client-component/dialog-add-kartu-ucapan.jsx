@@ -97,7 +97,7 @@ const DialogAddKartuUcapan = ({ children }) => {
             </div>
             {preview && (
               <div className="flex justify-center w-full">
-                <div className="w-full max-w-xl aspect-[16/6] overflow-hidden rounded-md border bg-[#231c26]">
+                <div className="w-full max-w-xl aspect-[16/6] overflow-hidden rounded-md border bg-app-surface">
                   <img
                     src={preview}
                     alt="Preview kartu ucapan"

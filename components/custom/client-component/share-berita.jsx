@@ -31,18 +31,18 @@ const ShareBeritaComponent = () => {
     
   return (
     <div className='flex flex-row gap-2 items-center'>
-        <span className='text-white hidden lg:flex text-sm'>Bagikan melalui</span>
-        <div className='border border-white rounded-full p-1'>
-            <Link2 onClick={copy} className='text-white hover:text-amber-400 cursor-pointer' size={18} />
+        <span className='text-app-ink hidden lg:flex text-sm'>Bagikan melalui</span>
+        <div className='border border-app-line rounded-full p-1'>
+            <Link2 onClick={copy} className='text-app-ink hover:text-amber-400 cursor-pointer' size={18} />
         </div>
-        <div className='border border-white rounded-full p-1'>
-        <Facebook onClick={shareFacebook} className='text-white hover:text-blue-500 cursor-pointer' size={18} />
+        <div className='border border-app-line rounded-full p-1'>
+        <Facebook onClick={shareFacebook} className='text-app-ink hover:text-blue-500 cursor-pointer' size={18} />
         </div>
-        <div className='border border-white rounded-full p-1'>
-        <Twitter onClick={shareX} className='text-white hover:text-white cursor-pointer' size={18} />
+        <div className='border border-app-line rounded-full p-1'>
+        <Twitter onClick={shareX} className='text-app-ink hover:text-app-ink cursor-pointer' size={18} />
         </div>
-        <div className='border border-white rounded-full p-1'>
-            <Share2 onClick={shareNative} className='text-white hover:text-green-500 cursor-pointer' size={18} />
+        <div className='border border-app-line rounded-full p-1'>
+            <Share2 onClick={shareNative} className='text-app-ink hover:text-green-500 cursor-pointer' size={18} />
         </div>
         
     </div>

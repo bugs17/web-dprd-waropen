@@ -32,7 +32,7 @@ const Hero = () => {
 
   if (isLoading) {
     return (
-      <div className="h-[calc(100vh-112px)] w-full flex items-center justify-center bg-zinc-950 text-amber-400">
+      <div className="h-[calc(100vh-112px)] w-full flex items-center justify-center bg-app-bg text-app-gold">
         <Loader className="w-6 h-6 animate-spin mr-2" /> Memuat hero...
       </div>
     );

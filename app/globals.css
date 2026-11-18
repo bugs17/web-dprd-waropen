@@ -42,9 +42,27 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
   --font-lora: var(--font-lora);
+  --color-app-bg: var(--app-bg);
+  --color-app-surface: var(--app-surface);
+  --color-app-ink: var(--app-ink);
+  --color-app-muted: var(--app-muted);
+  --color-app-crumb: var(--app-crumb);
+  --color-app-line: var(--app-line);
+  --color-app-gold: var(--app-gold);
+  --color-app-navstrip: var(--app-navstrip);
 }
 
 :root {
+  color-scheme: light;
+  --app-bg: #f4f0f5;
+  --app-surface: #ffffff;
+  --app-ink: #1c1420;
+  --app-muted: #5e5666;
+  --app-crumb: #efe4ea;
+  --app-line: #e4dbe3;
+  --app-gold: #8a6508;
+  --app-navstrip: #f3eef2;
+  --app-dot: #d5ccd8;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -80,6 +98,16 @@
 }
 
 .dark {
+  color-scheme: dark;
+  --app-bg: #110e12;
+  --app-surface: #231c26;
+  --app-ink: #ffffff;
+  --app-muted: #d4d0d6;
+  --app-crumb: #533a4e;
+  --app-line: rgb(255 255 255 / 16%);
+  --app-gold: #f0c400;
+  --app-navstrip: #475569;
+  --app-dot: #312e31;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);

@@ -4,8 +4,10 @@ import { createViewMonthGrid } from '@schedule-x/calendar'
 import '@schedule-x/theme-default/dist/calendar.css'
 import { createEventModalPlugin } from '@schedule-x/event-modal'
 import { formatDateCalander } from '@/lib/formatDate'
+import { useTheme } from './client-component/theme-toggle'
 
 const Calendar = ({instances}) => {
+  const { theme } = useTheme()
 
 
   
@@ -26,7 +28,9 @@ const Calendar = ({instances}) => {
   })
 
   return (
-    <ScheduleXCalendar calendarApp={kalender} />
+    <div className={theme === "dark" ? "is-dark" : undefined}>
+      <ScheduleXCalendar calendarApp={kalender} />
+    </div>
   )
 }
 

@@ -37,16 +37,16 @@ const ItemComponen = ({title, desc, icon, link, imgUrl}) => {
             <div className='relative w-full px-10 pt-14 z-10'>
                 <div className='flex flex-row justify-between'>
                     <div>
-                        <span className='text-white text-2xl font-semibold group-hover:text-amber-500'>{title}</span>
-                        <p className='text-white'>{desc}</p>
+                        <span className='text-app-ink text-2xl font-semibold group-hover:text-amber-500'>{title}</span>
+                        <p className='text-app-muted group-hover:text-white'>{desc}</p>
                     </div>
                     {icon}
                 </div>
 
                 <Link href={link} >
                     <Button className="mt-3 rounded-none cursor-pointer hover:bg-amber-500 group/btn1 flex flex-row items-center gap-4">
-                        <span className='text-amber-500 group-hover/btn1:text-white'>Selengkapnya</span>
-                        <MoveUpRight size={18} className='text-amber-500 group-hover/btn1:text-white' />
+                        <span className='text-amber-500 group-hover/btn1:text-app-ink'>Selengkapnya</span>
+                        <MoveUpRight size={18} className='text-amber-500 group-hover/btn1:text-app-ink' />
                     </Button>
                 </Link>
             </div>
@@ -58,42 +58,42 @@ const data = [
     {
         "titile": "Berita",
         "desc": "Informasi Berita Kegiatan DPR Terkini",
-        "icon" : <Newspaper size={24}  className='group-hover:text-amber-500 text-white'/>,
+        "icon" : <Newspaper size={24}  className='group-hover:text-amber-500 text-app-ink'/>,
         "imgUrl":"/news.jpeg",
         "link": "/berita",
     },
     {
         "titile": "Anggota DPRK",
         "desc": "Informasi Anggota DPRK Waropen",
-        "icon" : <Users size={24}  className='group-hover:text-amber-500 text-white'/>,
+        "icon" : <Users size={24}  className='group-hover:text-amber-500 text-app-ink'/>,
         "imgUrl":"/2.jpeg",
         "link": "/tentang-dprd/informasi-anggota-dprd",
     },
     {
         "titile": "Produk Hukum",
         "desc": "Informasi Tentang Produk Hukum",
-        "icon" : <FolderOpenDot size={24}  className='group-hover:text-amber-500 text-white'/>,
+        "icon" : <FolderOpenDot size={24}  className='group-hover:text-amber-500 text-app-ink'/>,
         "imgUrl":"/3.jpeg",
         "link": "/dokumen/produk-hukum",
     },
     {
         "titile": "Pengaduan ke Wakil Anda",
         "desc": "Layanan Pengaduan Langsung ke DPRK",
-        "icon" : <Headset size={24}  className='group-hover:text-amber-500 text-white'/>,
+        "icon" : <Headset size={24}  className='group-hover:text-amber-500 text-app-ink'/>,
         "imgUrl":"/5.jpeg",
         "link": "#",
     },
     {
         "titile": "Sekretariat DPRK",
         "desc": "Profil Sekretariat DPRK",
-        "icon" : <Landmark size={24}  className='group-hover:text-amber-500 text-white'/>,
+        "icon" : <Landmark size={24}  className='group-hover:text-amber-500 text-app-ink'/>,
         "imgUrl":"/4.jpeg",
         "link": "/tentang-setwan/profil-sekretariat-dprk",
     },
     {
         "titile": "Laporan Keuangan",
         "desc": "Akses Dokumen Laporan Keuangan DPRK",
-        "icon" : <HandCoins size={24}  className='group-hover:text-amber-500 text-white'/>,
+        "icon" : <HandCoins size={24}  className='group-hover:text-amber-500 text-app-ink'/>,
         "imgUrl":"/6.jpeg",
         "link": "/dokumen/laporan-keuangan",
     },

@@ -32,9 +32,9 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                         icon: <Ban className="text-red-500" />,
                         style: {
                             borderRadius: "12px",
-                            background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                            color: "#f5f5f5",
-                            border: "1px solid #3a3a3a",
+                            background: "var(--app-surface)",
+                            color: "var(--app-ink)",
+                            border: "1px solid var(--app-line)",
                             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                             padding: "14px 18px",
                             fontSize: "14px",
@@ -56,9 +56,9 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                             icon: <ThumbsUp className="text-green-500" />,
                             style: {
                                 borderRadius: "12px",
-                                background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                                color: "#f5f5f5",
-                                border: "1px solid #3a3a3a",
+                                background: "var(--app-surface)",
+                                color: "var(--app-ink)",
+                                border: "1px solid var(--app-line)",
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                                 padding: "14px 18px",
                                 fontSize: "14px",
@@ -75,9 +75,9 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                             icon: <Ban className="text-red-500" />,
                             style: {
                                 borderRadius: "12px",
-                                background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
-                                color: "#f5f5f5",
-                                border: "1px solid #3a3a3a",
+                                background: "var(--app-surface)",
+                                color: "var(--app-ink)",
+                                border: "1px solid var(--app-line)",
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
                                 padding: "14px 18px",
                                 fontSize: "14px",
@@ -111,7 +111,7 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                             <button
                                 disabled={isPending}
                                 onClick={handleSubmit}
-                                className={`w-full py-2 rounded-md text-white flex items-center justify-center gap-2 font-medium transition-colors ${
+                                className={`w-full py-2 rounded-md text-app-ink flex items-center justify-center gap-2 font-medium transition-colors ${
                                     isPending
                                     ? "bg-neutral-500 cursor-not-allowed"
                                     : "bg-amber-600 hover:bg-amber-700 cursor-pointer"
@@ -119,7 +119,7 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                             >
                                 {isPending ? (
                                     <>
-                                        <Loader className="w-5 h-5 text-white animate-spin mr-2" />
+                                        <Loader className="w-5 h-5 text-app-ink animate-spin mr-2" />
                                     </>
                                 )
                                 :
@@ -131,7 +131,7 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                             {/* Tombol Submit */}
                             <button
                                 onClick={() => setIsUploadMode(false)}
-                                className={`w-full py-2 rounded-md text-white cursor-pointer flex items-center justify-center gap-2 font-medium transition-colors  bg-neutral-500`}
+                                className={`w-full py-2 rounded-md text-app-ink cursor-pointer flex items-center justify-center gap-2 font-medium transition-colors  bg-neutral-500`}
                             >
                                 Batal
                             </button>
@@ -146,7 +146,7 @@ const FormStrukturOrganisasiSetwan = ({data}) => {
                     />
                     <button
                         onClick={() => setIsUploadMode(true)}
-                        className={`w-full py-2 rounded-md self-end text-white cursor-pointer flex items-center justify-center gap-2 font-medium transition-colors  bg-amber-600`}
+                        className={`w-full py-2 rounded-md self-end text-app-ink cursor-pointer flex items-center justify-center gap-2 font-medium transition-colors  bg-amber-600`}
                     >
                         Edit
                     </button>
